@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntries = require("webpack-fix-style-only-entries");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -60,13 +59,6 @@ module.exports = {
     modules: ["node_modules"]
   },
   plugins: [
-    // 出力先のフォルダを一旦空に
-    new CleanWebpackPlugin({
-      // 対象ファイル指定
-      cleanOnceBeforeBuildPatterns: [ // 複数ある場合は配列で指定
-        'src/static/webpack/**/*', // 出力フォルダ（output: で指定したパス）内のすべてのファイル
-      ],
-    }),
     new MiniCssExtractPlugin({
       // 出力ファイル名
       filename: "[name]",
