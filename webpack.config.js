@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FixStyleOnlyEntries = require("webpack-fix-style-only-entries");
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
   mode: 'development',
@@ -63,6 +63,6 @@ module.exports = {
       // 出力ファイル名
       filename: "[name]",
     }),
-    new FixStyleOnlyEntries(),
+    new FixStyleOnlyEntriesPlugin(),
   ]
 }
