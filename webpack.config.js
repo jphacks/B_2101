@@ -8,5 +8,20 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'src/static/webpack/'),
     filename: 'build_[name].js'
-  }
+  },
+  module: {
+    rules: [
+      // TypeScript
+      {
+        test: /.(ts|tsx)?$/,
+        loader: 'ts-loader',
+        include: [path.resolve(__dirname, 'src/entry')],
+        exclude: [/node_modules/]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+    modules: ["node_modules"]
+  },
 }
