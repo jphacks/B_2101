@@ -7,6 +7,7 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/entry/js/components/test.js":
@@ -15,7 +16,7 @@
   \*****************************************/
 /***/ (() => {
 
-eval("console.log('webpack!!');\n\n\n//# sourceURL=webpack:///./src/entry/js/components/test.js?");
+eval("\nconsole.log('webpack!!');\n\n\n//# sourceURL=webpack:///./src/entry/js/components/test.js?");
 
 /***/ }),
 
@@ -25,8 +26,17 @@ eval("console.log('webpack!!');\n\n\n//# sourceURL=webpack:///./src/entry/js/com
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_test_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/test.js */ \"./src/entry/js/components/test.js\");\n/* harmony import */ var _components_test_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_test_js__WEBPACK_IMPORTED_MODULE_0__);\n// JavaScript\n\n\n\n//# sourceURL=webpack:///./src/entry/js/pages/top.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ts_test_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../ts/test.ts */ \"./src/entry/ts/test.ts\");\n/* harmony import */ var _ts_test_ts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_ts_test_ts__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_test_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/test.js */ \"./src/entry/js/components/test.js\");\n/* harmony import */ var _components_test_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_test_js__WEBPACK_IMPORTED_MODULE_1__);\n// TypeScript\n\n// JavaScript\n\n\n\n//# sourceURL=webpack:///./src/entry/js/pages/top.js?");
+
+/***/ }),
+
+/***/ "./src/entry/ts/test.ts":
+/*!******************************!*\
+  !*** ./src/entry/ts/test.ts ***!
+  \******************************/
+/***/ (() => {
+
+eval("\nconsole.log('TypeScript!!');\n\n\n//# sourceURL=webpack:///./src/entry/ts/test.ts?");
 
 /***/ })
 
