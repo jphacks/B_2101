@@ -5,5 +5,8 @@
   },
   "scripts": {
     "build": "webpack --watch"
+  },
+  "dependencies": {
+    "three.js": "^0.77.0"
   }
 }
