@@ -14,8 +14,7 @@
     "build": "webpack --watch"
   },
   "dependencies": {
-    "three": "^0.133.1",
-    "three-ik": "^0.1.0",
-    "three.js": "^0.77.0"
+    "@pixiv/three-vrm": "^0.6.7",
+    "three": "^0.133.1"
   }
 }
