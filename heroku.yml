@@ -1,0 +1,7 @@
+build:
+  languages:
+    - python
+  packages:
+    - libopencv-dev
+run:
+  web: gunicorn main:app --log-file -
