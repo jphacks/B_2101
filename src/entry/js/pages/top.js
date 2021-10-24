@@ -1,5 +1,5 @@
 // TypeScript
-//import '../../ts/test.ts';
+import '../../ts/index.ts';
 
 // JavaScript
 import '../components/test.js';
