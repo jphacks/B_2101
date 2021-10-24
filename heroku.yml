@@ -2,4 +2,6 @@ build:
   languages:
     - python
 run:
-  web: gunicorn main:app --log-file -
+  #web: gunicorn main:app --log-file -
+  #web: .venv/Scripts/gunicorn --config /src/app
+  web: .venv/Scripts/gunicorn -main:src/app --log-file -
