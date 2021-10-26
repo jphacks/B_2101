@@ -8,14 +8,15 @@ def index():
     return render_template("top.html", pageTitle='TopPage', css='top')
 
 
-@app.route('/face')
+@app.route('/face', methods=['POST'])
 def face_test():
-    return render_template("test_face.html")
+    return render_template("test_face.html", pageTitle='FacePage', css='face')
 
 
 @app.route('/emotion')
 def emotion_test():
     return render_template("test_emotion.html")
+
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

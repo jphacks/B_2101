@@ -1,0 +1,18 @@
+/* video 要素の上に canvas 要素をオーバーレイするための CSS */
+/* コンテナ用の div について */
+#container {
+  position: relative; /* 座標指定を相対値指定にする */
+}
+
+/* カメラ映像を流す video について */
+#video {
+  transform: scaleX(-1); /* 左右反転させる */
+}
+
+/* 描画用の canvas について */
+#faceCanvas {
+  transform: scaleX(-1); /* 左右反転させる */
+  position: absolute; /* 座標指定を絶対値指定にして */
+  left: 0; /* X座標を0に */
+  top: 0; /* Y座標を0に */
+}
