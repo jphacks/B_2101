@@ -2,6 +2,8 @@ var video = document.getElementById("video");
 var canvas = document.getElementById("faceCanvas");
 var context = canvas.getContext("2d");
 
+var positionStorage = null;
+
 // getUserMedia によるカメラ映像の取得
 // メディアデバイスを取得
 var media = navigator.mediaDevices.getUserMedia({
@@ -29,8 +31,21 @@ tracker.start(video);
 function drawLoop() {
   // drawLoop 関数を繰り返し実行
   requestAnimationFrame(drawLoop);
+
+  // 比較用変数に値が入っているか確認
+  if (positionStorage != null) {
+    console.log(positionStorage[3][0]);
+  }
   // 顔部品の現在位置の取得
   var positions = tracker.getCurrentPosition();
+  console.log(positions[3][0]);
+  /*
+    ここで現在位置と前回位置の計算を行う
+  */
+  // 顔部品の現在位置を比較用変数に代入して値を更新する
+  positionStorage = positions
+  console.log(positionStorage[3][0]);
+
   // データの表示
   showData(positions);
   // canvas をクリア
