@@ -10,7 +10,7 @@ def index():
 
 @app.route('/face')
 def face_test():
-    return render_template("test_face.html")
+    return render_template("test_face.html", pageTitle='FacePage', css='face')
 
 
 @app.route('/emotion')
