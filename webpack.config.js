@@ -8,6 +8,7 @@ module.exports = {
     'top': './src/entry/js/pages/top.js',
     'face': './src/entry/js/pages/face.js',
     'top.css': './src/entry/style/pages/top.scss',
+    'face.css': './src/entry/style/pages/face.scss',
   },
   output: {
     path: path.resolve(__dirname, 'src/static/webpack/'),
