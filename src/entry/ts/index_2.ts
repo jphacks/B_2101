@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
   function newLoad() {
     loader.load(modelPass,
       (gltf) => {
-        VRM.from(gltf).then((vrm) => {
+        VRM.from(gltf).then((vrm:any) => {
           // シーンへの追加
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
