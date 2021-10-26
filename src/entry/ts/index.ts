@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //var modelPass = '../static/base_model/base.vrm';
   //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
+  var facemode = 'normal';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -148,6 +149,38 @@ window.addEventListener("DOMContentLoaded", () => {
     clip.tracks.some((track) => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
+
+    if (facemode == "normal") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,1.0)
+      vrm.blendShapeProxy.update()
+    }
+    if (facemode == "a") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.48)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
+      vrm.blendShapeProxy.update()
+    }
+    if (facemode == "i") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.05)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.I,1.0)
+      vrm.blendShapeProxy.update()
+    }
+    if (facemode == "u") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,0.5)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Fun,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,0.14)
+      vrm.blendShapeProxy.update()
+    }
+    if (facemode == "e") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.2)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
+      vrm.blendShapeProxy.update()
+    }
+    if (facemode == "o") {
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,0.05)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,1.0)
+      vrm.blendShapeProxy.update()
+    }
 
     // AnimationMixerの生成と再生
     mixer = new THREE.AnimationMixer(vrm.scene)
