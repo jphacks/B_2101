@@ -33,15 +33,19 @@ function drawLoop() {
   requestAnimationFrame(drawLoop);
 
   // 比較用変数に値が入っているか確認
-  if (positionStorage != null) {
+  /*if (positionStorage != null) {
     console.log(positionStorage[3][0]);
-  }
+  }*/
   // 顔部品の現在位置の取得
   var positions = tracker.getCurrentPosition();
   console.log(positions[3][0]);
-  /*
-    ここで現在位置と前回位置の計算を行う
-  */
+  
+    //ここで現在位置と前回位置の計算を行う
+    //x方向の値を計算する
+  faceWidth = positions[11][0]-positions[3][0]
+  lipWidth = positions[50][0] - positions[44][0]
+  x
+
   // 顔部品の現在位置を比較用変数に代入して値を更新する
   positionStorage = positions
   console.log(positionStorage[3][0]);
