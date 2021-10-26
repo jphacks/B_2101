@@ -35,3 +35,13 @@
   border-radius: 15px 20px/70px 10px;
   border: solid 3px #FF943D;
 }
+
+#mainArea{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 0 auto;
+  padding: 5rem 0 0;
+}

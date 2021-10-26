@@ -1,17 +1,19 @@
 {% extends "layout.html" %}{% block content %}
 
-<div id="modelArea">
-  <canvas id="canvas"></canvas>
-</div>
+<div id="mainArea">
+  <div id="modelArea">
+    <canvas id="canvas"></canvas>
+  </div>
 
-<div class="note_wrap">
-  <div class="note">
-    <p class="note_text"><span class="highlighter">表情筋トレーニング</span></p>
-    <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
-    <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
-    <form action="/face" method="POST">
-      <button class="btn-handWritte" type="submit">はじめる</button>
-    </form>
+  <div class="note_wrap">
+    <div class="note">
+      <p class="note_text"><span class="highlighter">表情筋トレーニング</span></p>
+      <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
+      <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
+      <form action="/face" method="POST">
+        <button class="btn-handWritte" type="submit">はじめる</button>
+      </form>
+    </div>
   </div>
 </div>
 
