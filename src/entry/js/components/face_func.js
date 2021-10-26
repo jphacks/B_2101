@@ -44,7 +44,10 @@ function drawLoop() {
     //x方向の値を計算する
   faceWidth = positions[11][0]-positions[3][0]
   lipWidth = positions[50][0] - positions[44][0]
-  x
+  xCornerMouth = lipWidth/faceWidth
+  
+  faceheight = positions[37][1] - positions[7][1]
+  
 
   // 顔部品の現在位置を比較用変数に代入して値を更新する
   positionStorage = positions
