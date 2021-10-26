@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
     0.1,
     1000,
   )
-  camera.position.set(0, 1, 4)
+  camera.position.set(0, 1, 3)
 
   // カメラコントロールの設定
   //if (getWidth > 950) {
