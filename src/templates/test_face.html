@@ -1,51 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>顔認識</title>
-<!--<style>
-  /* video 要素の上に canvas 要素をオーバーレイするための CSS */
-  /* コンテナ用の div について */
-  #container {
-    position: relative; /* 座標指定を相対値指定にする */
-  }
-  /* カメラ映像を流す video について */
-  #video {
-    transform: scaleX(-1); /* 左右反転させる */
-  }
-  /* 描画用の canvas について */
-  #faceCanvas {
-    transform: scaleX(-1); /* 左右反転させる */
-    position: absolute; /* 座標指定を絶対値指定にして */
-    left: 0; /* X座標を0に */
-    top: 0; /* Y座標を0に */
-  }
-</style>-->
-<link rel="stylesheet" href="../static/webpack/face.css">
-</head>
+{% extends "layout.html" %}{% block content %}
 
-<body>
-  <!-- video の上に canvas をオーバーレイするための div 要素 -->
-  <div id="container">
-    <!-- カメラ映像を流す video -->
-    <video id="video" width="400" height="300" autoplay></video>
-    <!-- 重ねて描画する canvas -->
-    <canvas id="faceCanvas" width="400" height="300"></canvas>
-  </div>
+<!-- video の上に canvas をオーバーレイするための div 要素 -->
+<div id="container">
+  <!-- カメラ映像を流す video -->
+  <video id="video" width="400" height="300" autoplay></video>
+  <!-- 重ねて描画する canvas -->
+  <canvas id="faceCanvas" width="400" height="300"></canvas>
+</div>
 
-  <div id="modelArea">
-    <canvas id="canvas"></canvas>
-  </div>
+<div id="modelArea">
+  <canvas id="canvas"></canvas>
+</div>
 
-  <!-- データ表示用 div 要素 -->
-  <div id="dat"></div>
+<!-- データ表示用 div 要素 -->
+<div id="dat"></div>
 
-  <script src="../static/webpack/face.js"></script>
+<!-- clmtrackr 関連ファイルの読み込み -->
+<!-- clmtrackr のメインライブラリの読み込み -->
+<script src="../static/js/face/clmtrackr.js"></script>
+<!-- 顔モデル（※）の読み込み -->
+<script src="../static/js/face/model_pca_20_svm.js"></script>
 
-  <!-- clmtrackr 関連ファイルの読み込み -->
-  <script src="../static/js/face/clmtrackr.js"></script>  <!-- clmtrackr のメインライブラリの読み込み -->
-  <script src="../static/js/face/model_pca_20_svm.js"></script>   <!-- 顔モデル（※）の読み込み -->
+<script src="../static/webpack/face.js"></script>
 
 <script>
   var video = document.getElementById("video");
@@ -117,5 +93,4 @@
     dat.innerHTML = str;
   }
 </script>
-</body>
-</html>
+{% endblock %}
