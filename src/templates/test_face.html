@@ -83,6 +83,14 @@
 
   // 顔部品（特徴点）の位置データを表示する showData 関数
   function showData(pos) {
+    //test
+    console.log('右口角の座標');
+    console.log('x座標：「'+pos[44][0]+'」y座標：「' + pos[44][1] + '」');
+    console.log('左口角の座標');
+    console.log('x座標：「' + pos[50][0] + '」y座標：「' + pos[50][1] + '」');
+    console.log('2点の差');
+    console.log('x座標：「' + Math.round(pos[50][0] - pos[44][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[44][1] )+ '」');
+
     // データの文字列を入れる変数
     var str = "";
     // 全ての特徴点（71個）について
