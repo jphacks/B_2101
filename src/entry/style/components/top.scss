@@ -19,7 +19,8 @@
   font-size: 1.1rem;
   font-family: 'Zen Kurenaido', sans-serif;
   font-weight: bold;
-  margin-bottom:2.15rem;
+  width: fit-content;
+  margin: 0 0 2.15rem 1rem;
 }
 
 .highlighter{
@@ -49,4 +50,16 @@
 #startBtn{
   width: fit-content;
   margin: 0 auto;
+}
+
+#header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1rem 0.55rem;
+}
+
+#logo{
+  width: 9rem;
 }
