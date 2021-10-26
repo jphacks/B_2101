@@ -2,15 +2,17 @@ import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema } from '@pixiv/three-vrm'
+import { convertToObject } from 'typescript';
 
 window.addEventListener("DOMContentLoaded", () => {
   // canvasの取得
   var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 
   // model_pathの取得
-  //var modelPass = '../static/base_model/Miraikomachi.vrm';
-  var modelPass = '../static/base_model/base.vrm';
-  var posepass = '../static/pose/hellovrm.csv';
+  var modelPass = '../static/base_model/Miraikomachi.vrm';
+  //var modelPass = '../static/base_model/base.vrm';
+  //var posepass = '../static/pose/hellovrm.csv';
+  var posepass = '../static/pose/hellomirai.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -67,10 +69,12 @@ window.addEventListener("DOMContentLoaded", () => {
   function newLoad() {
     loader.load(modelPass,
       (gltf) => {
-        VRM.from(gltf).then((vrm) => {
+        VRM.from(gltf).then((vrm:any) => {
           // シーンへの追加
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
+          //vrm.humanoid.getBoneNode(VRMSchema.HumanoidBoneName.Hips).rotation.y = Math.PI;
+          //vrm.humanoid.getBoneNode("hips").rotation.y = Math.PI;
           setupAnimation(vrm)
         })
       }
@@ -100,13 +104,13 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let j = 0; j < lines.length; j++) {
       data[j] = []
       let strs = lines[j].split(',')
-      for (let i = 0; i < 55 * 4; i++) {
+      for (let i = 0; i < 17 * 4; i++) {
         data[j][i] = Number(strs[i])
       }
     }
     // 配列 → hierarchy
     let hierarchy = []
-    for (let i = 0; i < 55; i++) {
+    for (let i = 0; i < 17; i++) {
       let keys = []
       for (let j = 0; j < data.length; j++) {
         keys[j] = {
@@ -117,8 +121,8 @@ window.addEventListener("DOMContentLoaded", () => {
       hierarchy[i] = { 'keys': keys }
     }
     //vroid用のsplice
-    hierarchy.splice(23, 1)
-
+    //hierarchy.splice(23, 1)
+    console.log(hierarchy)
     return hierarchy
   }
 
@@ -126,11 +130,19 @@ window.addEventListener("DOMContentLoaded", () => {
   const setupAnimation = (vrm: any) => {
     // ボーンリストの生成
     //const bones = ["hips","leftUpperLeg","rightUpperLeg","leftLowerLeg","rightLowerLeg","leftFoot","rightFoot","spine","chest","neck","head","leftShoulder","rightShoulder","leftUpperArm","rightUpperArm","leftLowerArm","rightLowerArm","leftHand","rightHand","leftToes","rightToes","leftEye","rightEye","jaw","leftThumbProximal","leftThumbIntermediate","leftThumbDistal","leftIndexProximal","leftIndexIntermediate","leftIndexDistal","leftMiddleProximal","leftMiddleIntermediate","leftMiddleDistal","leftRingProximal","leftRingIntermediate","leftRingDistal","leftLittleProximal","leftLittleIntermediate","leftLittleDistal","rightThumbProximal","rightThumbIntermediate","rightThumbDistal","rightIndexProximal","rightIndexIntermediate","rightIndexDistal","rightMiddleProximal","rightMiddleIntermediate","rightMiddleDistal","rightRingProximal","rightRingIntermediate","rightRingDistal","rightLittleProximal","rightLittleIntermediate","rightLittleDistal","upperChest"]
-    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
+    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
+    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
+    //const bones = ["Hips", "LeftUpperLeg", "RightUpperLeg", "LeftLowerLeg", "RightLowerLeg", "LeftFoot", "RightFoot", "Spine", "Chest", "Neck", "Head", "LeftUpperArm", "RightUpperArm", "LeftLowerArm", "RightLowerArm", "LeftHand", "RightHand"]
+    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
     const boneNode = []
     for (let i = 0; i < bones.length; i++) {
+      //boneNode[i] = vrm.humanoid.getBoneNode("VRMSchema.HumanoidBoneName."+bones[i])
+      //console.log(bones[i])
+      //console.log("bonenode")
+      //console.log(boneNode)
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
+    //boneの数を変更した場合、csv2hierarchyの中身を変更すること
 
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
