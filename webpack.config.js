@@ -6,6 +6,7 @@ module.exports = {
   mode: 'development',
   entry: {
     'top': './src/entry/js/pages/top.js',
+    'face': './src/entry/js/pages/face.js',
     'top.css': './src/entry/style/pages/top.scss',
   },
   output: {
