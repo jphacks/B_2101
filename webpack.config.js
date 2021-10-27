@@ -6,8 +6,10 @@ module.exports = {
   mode: 'development',
   entry: {
     'top': './src/entry/js/pages/top.js',
+    'face': './src/entry/js/pages/face.js',
     'face_test': './src/entry/js/pages/face_test.js',
     'top.css': './src/entry/style/pages/top.scss',
+    'face.css': './src/entry/style/pages/face.scss',
     'face_test.css': './src/entry/style/pages/face_test.scss',
   },
   output: {
