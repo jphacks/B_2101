@@ -51,6 +51,8 @@ function drawLoop() {
   var yMouthLeft = lipHeightLeft/faceHeight
   var yMouthRight = lipHeightRight/faceHeight
 
+  aiueoc
+
   // 顔部品の現在位置を比較用変数に代入して値を更新する
   var positionStorage = positions
   //console.log(positionStorage[3][0]);

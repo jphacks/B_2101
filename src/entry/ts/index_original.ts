@@ -11,12 +11,10 @@ window.addEventListener("DOMContentLoaded", () => {
   //var modelPass = '../static/base_model/Miraikomachi.vrm';
   var modelPass = '../static/base_model/base.vrm';
   var posepass = '../static/pose/hellovrm.csv';
-  var posepass2 = '../static/pose/cats.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
   sceneOption()
-  console.log("sceneoption")
 
   function sceneOption() {
     // ライトの設定
@@ -61,7 +59,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //controls.update()
   //}
 
-  console.log("vrmの読み込み")
   // VRMの読み込み
   let mixer: any
   const loader = new GLTFLoader()
@@ -75,7 +72,6 @@ window.addEventListener("DOMContentLoaded", () => {
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
-          makeAnimation(posepass2)
         })
       }
     )
@@ -126,20 +122,16 @@ window.addEventListener("DOMContentLoaded", () => {
     return hierarchy
   }
 
-  var boneNode:any = []
   // アニメーションの設定
   const setupAnimation = (vrm: any) => {
-    // AnimationMixerの生成と再生
-    mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成
     //const bones = ["hips","leftUpperLeg","rightUpperLeg","leftLowerLeg","rightLowerLeg","leftFoot","rightFoot","spine","chest","neck","head","leftShoulder","rightShoulder","leftUpperArm","rightUpperArm","leftLowerArm","rightLowerArm","leftHand","rightHand","leftToes","rightToes","leftEye","rightEye","jaw","leftThumbProximal","leftThumbIntermediate","leftThumbDistal","leftIndexProximal","leftIndexIntermediate","leftIndexDistal","leftMiddleProximal","leftMiddleIntermediate","leftMiddleDistal","leftRingProximal","leftRingIntermediate","leftRingDistal","leftLittleProximal","leftLittleIntermediate","leftLittleDistal","rightThumbProximal","rightThumbIntermediate","rightThumbDistal","rightIndexProximal","rightIndexIntermediate","rightIndexDistal","rightMiddleProximal","rightMiddleIntermediate","rightMiddleDistal","rightRingProximal","rightRingIntermediate","rightRingDistal","rightLittleProximal","rightLittleIntermediate","rightLittleDistal","upperChest"]
     const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
-    //const boneNode = []
+    const boneNode = []
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
-  }
-  const makeAnimation = (posepass:string) => {
+
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
       hierarchy: csv2hierarchy(http2str(posepass), 200)
@@ -150,12 +142,16 @@ window.addEventListener("DOMContentLoaded", () => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
 
+    // AnimationMixerの生成と再生
+    mixer = new THREE.AnimationMixer(vrm.scene)
+    console.log(mixer)
+
     // AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
     action.play()
+    console.log(boneNode)
   }
   let lastTime = (new Date()).getTime()
-  let cnt = 0
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -170,19 +166,11 @@ window.addEventListener("DOMContentLoaded", () => {
       mixer.update(delta)
     }
 
-    if(cnt==300){
-      //posepass = posepass2
-      //makeAnimation(posepass2)
-      console.log("切り替え！")
-    }
-
     // 最終更新時間
     lastTime = time;
-    cnt += 1
 
     // レンダリング
     renderer.render(scene, camera)
   }
-  console.log("update直前")
   update()
 })
