@@ -20,6 +20,7 @@
   font-family: 'Zen Kurenaido', sans-serif;
   width: fit-content;
   margin: 0 0 2.15rem 1rem;
+  text-align: justify;
 }
 
 .highlighter{
@@ -58,8 +59,41 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 1rem 0.55rem;
+  gap: 0;
 }
 
 #logo{
   width: 9rem;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  .note_wrap{
+    width: 20rem;
+    height: fit-content;
+  }
+
+  .note {
+    width: auto;
+    height: fit-content;
+  }
+
+  .note_text {
+    margin: 0 0 1.9rem 0;
+  }
+
+  #mainArea{
+    flex-direction: column;
+    padding: 3rem 0 5rem;
+  }
+
+  #startBtn{
+    margin: 0 auto 1rem;
+  }
+
+  #header{
+    flex-direction: column-reverse;
+    margin: 0 1rem 0.28rem;
+    gap: 2.8rem;
+  }
 }
