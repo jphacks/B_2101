@@ -58,6 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //if (getWidth > 950) {
   //const controls = new OrbitControls(camera, renderer.domElement)
   //controls.target.set(0, 0.85, 0)
+  camera.lookAt(0, 0.85, 0)
   //controls.screenSpacePanning = true
   //controls.update()
   //}
