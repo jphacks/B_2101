@@ -23,6 +23,12 @@
   text-align: justify;
 }
 
+.text_heading{
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 2.7rem 0 0 1rem;
+}
+
 .highlighter{
   background:linear-gradient(transparent 60%, #ffe0c1 60%);
 }
@@ -58,7 +64,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 1rem 0.55rem;
+  margin: 0 1rem 3rem;
   gap: 0;
 }
 
@@ -82,6 +88,11 @@
     margin: 0 0 1.9rem 0;
   }
 
+  .text_heading{
+    font-size: 1.3rem;
+    margin: 0 0 2rem;
+  }
+
   #mainArea{
     flex-direction: column;
     padding: 3rem 0 5rem;
@@ -93,7 +104,7 @@
 
   #header{
     flex-direction: column-reverse;
-    margin: 0 1rem 0.28rem;
-    gap: 2.8rem;
+    margin: 0 1rem;
+    gap: 2.5rem;
   }
 }
