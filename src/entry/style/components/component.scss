@@ -17,6 +17,10 @@ body {
 
 /* mobileここから */
 @media screen and (max-width: 950px) {
+  body {
+    height: auto;
+  }
+
   #modelArea{
     canvas{
       width: calc(100vw*(3/4));
