@@ -3,6 +3,13 @@ const face = new Vue({
   // FlaskとVueを共存させるためにDelimiterを変更する
   delimiters: ["[[", "]]"],
   data: {
-    testMessage: 'Hello Vue!!',
+    modeChoicePage: true,
+    tutorialPage: false,
+  },
+  methods: {
+    beginnerMode: function () {
+      this.modeChoicePage=false
+      this.tutorialPage=true
+    }
   }
 });

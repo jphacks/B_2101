@@ -1,11 +1,19 @@
 {% extends "layout.html" %}{% block content %}
 
 <div id="face">
-  <p>face</p>
-  <p>[[ testMessage ]]</p>
+  <!-- モデル表示 -->
   <div id="modelArea">
     <canvas id="canvas"></canvas>
   </div>
+  <!-- モード選択画面 -->
+  <template v-if='modeChoicePage'>
+    <button @click="beginnerMode()">初心者</button>
+    <button>経験者</button>
+  </template>
+  <!-- 説明画面 -->
+  <template v-if='tutorialPage'>
+    <p>show tutorial</p>
+  </template>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
