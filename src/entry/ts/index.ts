@@ -56,10 +56,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // カメラコントロールの設定
   //if (getWidth > 950) {
-  const controls = new OrbitControls(camera, renderer.domElement)
-  controls.target.set(0, 0.85, 0)
-  controls.screenSpacePanning = true
-  controls.update()
+  //const controls = new OrbitControls(camera, renderer.domElement)
+  //controls.target.set(0, 0.85, 0)
+  //controls.screenSpacePanning = true
+  //controls.update()
   //}
 
   // VRMの読み込み
