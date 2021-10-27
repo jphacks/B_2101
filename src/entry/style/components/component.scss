@@ -14,3 +14,13 @@ body {
     height: calc(100vh*(5/7));
   }
 }
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #modelArea{
+    canvas{
+      width: calc(100vw*(3/4));
+      height: calc(100vh*(3/4));
+    }
+  }
+}
