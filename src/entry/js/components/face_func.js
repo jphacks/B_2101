@@ -34,24 +34,26 @@ function drawLoop() {
 
   // 比較用変数に値が入っているか確認
   /*if (positionStorage != null) {
-    console.log(positionStorage[3][0]);
-  }*/
+    console.log(positionStorage[3][0]);}
+  */
   // 顔部品の現在位置の取得
   var positions = tracker.getCurrentPosition();
-  console.log(positions[3][0]);
   
     //ここで現在位置と前回位置の計算を行う
     //x方向の値を計算する
-  faceWidth = positions[11][0]-positions[3][0]
-  lipWidth = positions[50][0] - positions[44][0]
-  xCornerMouth = lipWidth/faceWidth
+  var faceWidth = positions[11][0]-positions[3][0]
+  var lipWidth = positions[50][0] - positions[44][0]
+  var xMouth = lipWidth/faceWidth
   
-  faceheight = positions[37][1] - positions[7][1]
-  
+  var faceHeight = positions[37][1] - positions[7][1]
+  var lipHeightLeft = positions[44][1] - positions[7][1]  
+  var lipHeightRight = positions[50][1] - positions[7][1]
+  var yMouthLeft = lipHeightLeft/faceHeight
+  var yMouthRight = lipHeightRight/faceHeight
 
   // 顔部品の現在位置を比較用変数に代入して値を更新する
-  positionStorage = positions
-  console.log(positionStorage[3][0]);
+  var positionStorage = positions
+  //console.log(positionStorage[3][0]);
 
   // データの表示
   showData(positions);
@@ -65,14 +67,19 @@ drawLoop();
 
 // 顔部品（特徴点）の位置データを表示する showData 関数
 function showData(pos) {
+  /*
   //test
   console.log('右口角の座標');
   console.log('x座標：「'+pos[44][0]+'」y座標：「' + pos[44][1] + '」');
   console.log('左口角の座標');
   console.log('x座標：「' + pos[50][0] + '」y座標：「' + pos[50][1] + '」');
-  console.log('2点の差');
-  console.log('x座標：「' + Math.round(pos[50][0] - pos[44][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[44][1] )+ '」');
-
+  */
+  //console.log('Xの2点');
+  //console.log('x座標：「' + Math.round(pos[50][0] - pos[44][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[44][1] )+ '」');
+  //console.log('x座標：「' + Math.round(pos[11][0] - pos[3][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[3][1] )+ '」');
+  console.log('頬：「' + Math.round(pos[11][0] - pos[3][0]) + '」くちびる：「' + Math.round(pos[50][0] - pos[44][0] )+ '」');
+  console.log('鼻下: 「'+Math.round(pos[37][1] - pos[7][1]) + '」唇: 「'+Math.round(pos[44][1] - pos[7][1])+'」');
+  
   // データの文字列を入れる変数
   var str = "";
   // 全ての特徴点（71個）について
