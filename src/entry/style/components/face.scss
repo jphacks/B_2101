@@ -56,8 +56,8 @@
 }
 
 .circleBtn{
-  width: 10rem;
-  height: 10rem;
+  width: 11rem;
+  height: 11rem;
   background-color: #fff;
   border-radius: 50%;
   text-align: center;
@@ -69,10 +69,25 @@
   box-shadow: 5px 5px 13px #a17a46;
 }
 
+.choiceBtnGrid{
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  display: grid;
+  grid-template-rows: $grid-size $grid-size;
+  grid-template-columns: $grid-size $grid-size;
+  align-items: center;
+  justify-items: center;
+}
+
 .yellowCircleBtn{
   border: 10px solid $sub-color;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
 
 .orangeCircleBtn{
   border: 10px solid $main-color;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
 }
