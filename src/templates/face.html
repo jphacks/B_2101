@@ -23,7 +23,7 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
+          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
@@ -41,12 +41,17 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
+          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
-        <div class="note_text advancedTextShow" v-for="item in advancedText" :key="item.id">
-          <p>[[ item.text ]]</p>
-          <span class="material-icons">[[ item.check ]]</span>
+        <div class="mainText">
+          <div class="advancedText">
+            <div class="note_text advancedTextShow" v-for="item in advancedText" :key="item.id">
+              <p>[[ item.text ]]</p>
+              <span class="material-icons">[[ item.check ]]</span>
+            </div>
+          </div>
+          <img class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
       </div>
     </div>
