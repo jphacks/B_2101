@@ -276,6 +276,7 @@ template {
   display: none;
 }
 
+/* 変数宣言 */
 html {
   height: 100%;
   background: #ff943d;
@@ -289,6 +290,39 @@ body {
 #modelArea canvas {
   width: 28.5714285714vw;
   height: 71.4285714286vh;
+}
+
+/* model & dialog */
+.modelAndDialogue {
+  width: unset;
+  margin: unset;
+  position: relative;
+}
+.modelAndDialogue .modelMessage {
+  width: fit-content;
+  max-width: 90%;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: #fffffff3;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #494949;
+}
+
+/* 戻るボタン */
+.back2topBtn {
+  width: fit-content;
+  position: absolute;
+  margin: 2rem;
+  z-index: 500;
+  color: #fff;
+}
+.back2topBtn button .material-icons {
+  font-weight: bold;
+  font-size: 35px;
 }
 
 /* mobileここから */
@@ -339,42 +373,29 @@ body {
 }
 
 .btn-handWritte {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
   font-size: 1.3rem;
   font-weight: bold;
   font-family: "Zen Kurenaido", sans-serif;
   padding: 0.2rem 1.3rem;
   background: #fff;
   border-radius: 15px 20px/70px 10px;
-  border: solid 3px #FF943D;
+  border: solid 3px #ff943d;
 }
 
-#mainArea {
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 auto;
-  padding: 5rem 0 0;
+.logo {
+  width: 9rem;
 }
 
-#startBtn {
-  width: fit-content;
-  margin: 0 auto;
-}
-
-#header {
+.header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 0 1rem 3rem;
   gap: 0;
-}
-
-#logo {
-  width: 9rem;
 }
 
 /* mobileここから */
@@ -398,18 +419,31 @@ body {
     margin: 0 0 2rem;
   }
 
-  #mainArea {
-    flex-direction: column;
-    padding: 3rem 0 5rem;
-  }
-
-  #startBtn {
+  .btn-handWritte {
     margin: 0 auto 1rem;
   }
 
-  #header {
+  .header {
     flex-direction: column-reverse;
     margin: 0 1rem;
     gap: 2.5rem;
+  }
+}
+#mainArea {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  padding: 5rem 0 0;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #mainArea {
+    flex-direction: column;
+    padding: 3rem 0 5rem;
   }
 }
