@@ -35,6 +35,9 @@
 }
 
 .btn-handWritte{
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
   font-size: 1.3rem;
   font-weight: bold;
   font-family: 'Zen Kurenaido', sans-serif;
@@ -46,11 +49,6 @@
 
 .logo{
   width: 9rem;
-}
-
-.startBtn{
-  width: fit-content;
-  margin: 0 auto;
 }
 
 .header{
@@ -83,7 +81,7 @@
     margin: 0 0 2rem;
   }
 
-  .startBtn{
+  .btn-handWritte{
     margin: 0 auto 1rem;
   }
 
