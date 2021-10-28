@@ -2,20 +2,15 @@ import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema } from '@pixiv/three-vrm'
-import { convertToObject } from 'typescript';
 
 window.addEventListener("DOMContentLoaded", () => {
   // canvasの取得
   var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 
   // model_pathの取得
-  
-  var modelPass = '../static/base_model/Miraikomachi.vrm';
-  //var modelPass = '../static/base_model/base.vrm';
-  //var posepass = '../static/pose/hellovrm.csv';
-  var posepass = '../static/pose/hellomirai.csv';
-  var posepass2 = "../static/pose/a_face.csv";
-  var facemode = 'normal';
+  //var modelPass = '../static/base_model/Miraikomachi.vrm';
+  var modelPass = '../static/base_model/base.vrm';
+  var posepass = '../static/pose/hellovrm.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -51,17 +46,15 @@ window.addEventListener("DOMContentLoaded", () => {
   const camera = new THREE.PerspectiveCamera(
     35,
     canvas.clientWidth / canvas.clientHeight,
-    
     0.1,
     1000,
   )
-  camera.position.set(0, 1, 3)
+  camera.position.set(0, 1, 4)
 
   // カメラコントロールの設定
   //if (getWidth > 950) {
   //const controls = new OrbitControls(camera, renderer.domElement)
   //controls.target.set(0, 0.85, 0)
-  camera.lookAt(0, 0.85, 0)
   //controls.screenSpacePanning = true
   //controls.update()
   //}
@@ -74,12 +67,11 @@ window.addEventListener("DOMContentLoaded", () => {
   function newLoad() {
     loader.load(modelPass,
       (gltf) => {
-        VRM.from(gltf).then((vrm: any) => {
+        VRM.from(gltf).then((vrm) => {
           // シーンへの追加
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
-          makeAnimation(posepass)
         })
       }
     )
@@ -108,13 +100,13 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let j = 0; j < lines.length; j++) {
       data[j] = []
       let strs = lines[j].split(',')
-      for (let i = 0; i < 17 * 4; i++) {
+      for (let i = 0; i < 55 * 4; i++) {
         data[j][i] = Number(strs[i])
       }
     }
     // 配列 → hierarchy
     let hierarchy = []
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < 55; i++) {
       let keys = []
       for (let j = 0; j < data.length; j++) {
         keys[j] = {
@@ -125,58 +117,21 @@ window.addEventListener("DOMContentLoaded", () => {
       hierarchy[i] = { 'keys': keys }
     }
     //vroid用のsplice
-    //hierarchy.splice(23, 1)
+    hierarchy.splice(23, 1)
+
     return hierarchy
   }
 
-  var boneNode:any = []
   // アニメーションの設定
   const setupAnimation = (vrm: any) => {
-    // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
-    //完全bone
+    // ボーンリストの生成
     //const bones = ["hips","leftUpperLeg","rightUpperLeg","leftLowerLeg","rightLowerLeg","leftFoot","rightFoot","spine","chest","neck","head","leftShoulder","rightShoulder","leftUpperArm","rightUpperArm","leftLowerArm","rightLowerArm","leftHand","rightHand","leftToes","rightToes","leftEye","rightEye","jaw","leftThumbProximal","leftThumbIntermediate","leftThumbDistal","leftIndexProximal","leftIndexIntermediate","leftIndexDistal","leftMiddleProximal","leftMiddleIntermediate","leftMiddleDistal","leftRingProximal","leftRingIntermediate","leftRingDistal","leftLittleProximal","leftLittleIntermediate","leftLittleDistal","rightThumbProximal","rightThumbIntermediate","rightThumbDistal","rightIndexProximal","rightIndexIntermediate","rightIndexDistal","rightMiddleProximal","rightMiddleIntermediate","rightMiddleDistal","rightRingProximal","rightRingIntermediate","rightRingDistal","rightLittleProximal","rightLittleIntermediate","rightLittleDistal","upperChest"]
-
-    //顎抜き
-    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
-
-    //最低限bone
-    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
+    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
+    const boneNode = []
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
-    if (facemode == "normal") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "a") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.48)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "i") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.I,1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "u") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,0.5)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Fun,1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,0.14)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "e") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.2)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "o") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,1.0)
-      vrm.blendShapeProxy.update()
-    }
-  }
-  const makeAnimation = (posepass:string) => {
+
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
       hierarchy: csv2hierarchy(http2str(posepass), 200)
@@ -187,13 +142,16 @@ window.addEventListener("DOMContentLoaded", () => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
 
-    mixer.stopAllAction();
+    // AnimationMixerの生成と再生
+    mixer = new THREE.AnimationMixer(vrm.scene)
+    console.log(mixer)
+
     // AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
     action.play()
+    console.log(boneNode)
   }
   let lastTime = (new Date()).getTime()
-  let cnt = 0
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -208,15 +166,8 @@ window.addEventListener("DOMContentLoaded", () => {
       mixer.update(delta)
     }
 
-    if(cnt==300){
-      //posepass = posepass2
-      makeAnimation(posepass2)
-      console.log("切り替え！")
-    }
-
     // 最終更新時間
     lastTime = time;
-    cnt += 1
 
     // レンダリング
     renderer.render(scene, camera)
