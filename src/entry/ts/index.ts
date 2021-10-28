@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
 
@@ -216,17 +216,18 @@ window.addEventListener("DOMContentLoaded", () => {
       console.log("計測開始！");
       console.log(step.value)
       startStep = (new Date()).getTime();
-      stepValue = Number(step.value);      
+      stepValue += Number(step.value);      
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
-      if(stepValue == -1){ camera.position.set(0, 1.3, 0.85);camera.lookAt(0, 1.4, 0)}
+      console.log(stepValue)
+      if(stepValue == -5){ camera.position.set(0, 1.3, 0.85);camera.lookAt(0, 1.4, 0);stepValue=0}
       if(stepValue == 1){posepass = pose_a}
       if(stepValue == 3){posepass = pose_i}
       if(stepValue == 5){posepass = pose_u}
       if(stepValue == 7){posepass = pose_e}
-      if(stepValue == 9){posepass = pose_o}
+      if(stepValue == 9){posepass = pose_o; stepValue=0}
       if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       makeAnimation(posepass)
-      elapsedFlag =true
+      //elapsedFlag =true
     }
     let step_elapsed = time - startStep
     //if(step_elapsed > 5000){}
@@ -234,7 +235,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // 最終更新時間
     lastTime = time;
     cnt += 1
-    console.log(stepValue)
 
     // レンダリング
     renderer.render(scene, camera)

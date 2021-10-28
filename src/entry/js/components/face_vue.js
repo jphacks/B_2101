@@ -19,7 +19,7 @@ const face = new Vue({
     ],
     tutorialCountNum: 0,
     nextBtnMessage: '次へ進む',
-    animationFlag: -1
+    animationFlag: -5 //ページの初期番号 camera位置修正に使う
   },
   methods: {
     beginnerMode: function () {
@@ -33,11 +33,12 @@ const face = new Vue({
     trainingStart: function () {
       this.startBtn = false
       this.nextBtnArea = true
-      this.animationFlag = 1
+      this.animationFlag = 1 //進んだら一に戻す
     },
     replayBtn: function () {
       this.nextBtnArea = false
       this.startBtn = true
+      //this.animationFlag = -1 //戻ったらマイナス－1
     },
     nextTraining: function () {
       if (this.tutorialCountNum < 4) {
