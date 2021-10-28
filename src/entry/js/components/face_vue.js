@@ -19,7 +19,7 @@ const face = new Vue({
     ],
     tutorialCountNum: 0,
     nextBtnMessage: '次へ進む',
-    animationFlag: 0
+    animationFlag: -1
   },
   methods: {
     beginnerMode: function () {

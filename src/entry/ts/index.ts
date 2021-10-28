@@ -4,28 +4,15 @@ import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
 
-class PromiseGLTFLoader extends GLTFLoader {
-  promiseLoad(
-    url: string,
-    onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined,
-  ) {
-    return new Promise<GLTF>((resolve, reject) => {
-      super.load(url, resolve, onProgress, reject)
-    })
-  }
- }
-
 window.addEventListener("DOMContentLoaded", () => {
   // canvasの取得
   var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 
   // model_pathの取得
-  
   var modelPass = '../static/base_model/Miraikomachi.vrm';
   //var modelPass = '../static/base_model/base.vrm';
   //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
-  //var posepass2 = "../static/pose/a_face.csv";
   var pose_a = '../static/pose/a_face.csv';
   var pose_i = '../static/pose/i_face.csv';
   var pose_u = '../static/pose/u_face.csv';
@@ -133,7 +120,6 @@ window.addEventListener("DOMContentLoaded", () => {
       hierarchy[i] = { 'keys': keys }
     }
     //vroid用のsplice
-    //hierarchy.splice(23, 1)
     return hierarchy
   }
 
@@ -230,8 +216,9 @@ window.addEventListener("DOMContentLoaded", () => {
       console.log("計測開始！");
       console.log(step.value)
       startStep = (new Date()).getTime();
-      stepValue += Number(step.value);      
+      stepValue = Number(step.value);      
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
+      if(stepValue == -1){ camera.position.set(0, 1.3, 0.85);camera.lookAt(0, 1.4, 0)}
       if(stepValue == 1){posepass = pose_a}
       if(stepValue == 3){posepass = pose_i}
       if(stepValue == 5){posepass = pose_u}
