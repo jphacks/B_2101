@@ -14,8 +14,10 @@
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
-    <button @click="beginnerMode()">初心者</button>
-    <button @click="advancedMode()">経験者</button>
+    <div class="choiceBtnGrid">
+      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()">初心者</button>
+      <button class="circleBtn orangeCircleBtn" @click="advancedMode()">経験者</button>
+    </div>
   </template>
   <!-- 初心者モード -->
   <template v-if='beginnerPage'>

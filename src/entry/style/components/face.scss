@@ -54,3 +54,25 @@
 .note_wrap{
   width: 29rem;
 }
+
+.circleBtn{
+  width: 10rem;
+  height: 10rem;
+  background-color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Zen Kurenaido', sans-serif;
+  letter-spacing: 0.2rem;
+  color: $text-color;
+  box-shadow: 5px 5px 13px #a17a46;
+}
+
+.yellowCircleBtn{
+  border: 10px solid $sub-color;
+}
+
+.orangeCircleBtn{
+  border: 10px solid $main-color;
+}
