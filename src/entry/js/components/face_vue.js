@@ -18,12 +18,13 @@ const face = new Vue({
       { id: '4', text: '・「お」', check: '' }
     ],
     tutorialCountNum: 0,
-    nextBtnMessage: '次へ進む'
+    nextBtnMessage: '次へ進む',
+    animationFlag: 1
   },
   methods: {
     beginnerMode: function () {
       this.modeChoicePage=false
-      this.beginnerPage=true
+      this.beginnerPage = true
     },
     advancedMode: function () {
       this.modeChoicePage=false
@@ -32,6 +33,7 @@ const face = new Vue({
     trainingStart: function () {
       this.startBtn = false
       this.nextBtnArea = true
+      this.animationFlag += 1
     },
     replayBtn: function () {
       this.nextBtnArea = false
