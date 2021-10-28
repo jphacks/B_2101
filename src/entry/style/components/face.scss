@@ -1,0 +1,13 @@
+.advancedTextShow{
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 auto 0 2.5rem;
+  span{
+    color: $main-color;
+    font-weight: bold;
+  }
+}
