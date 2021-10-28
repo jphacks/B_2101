@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", () => {
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
-          makeAnimation(posepass2)
+          makeAnimation(posepass)
         })
       }
     )
@@ -149,7 +149,8 @@ window.addEventListener("DOMContentLoaded", () => {
     clip.tracks.some((track) => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
-
+    
+    mixer.stopAllAction();
     // AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
     action.play()
@@ -172,7 +173,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if(cnt==300){
       //posepass = posepass2
-      //makeAnimation(posepass2)
+      makeAnimation(posepass2)
       console.log("切り替え！")
     }
 
