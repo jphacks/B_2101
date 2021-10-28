@@ -10,7 +10,7 @@
     <div id="modelArea">
       <canvas id="canvas"></canvas>
     </div>
-    <p>[[ modelMessage ]]</p>
+    <p class="modelMessage">[[ modelMessage ]]</p>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
@@ -19,17 +19,16 @@
   </template>
   <!-- 初心者モード -->
   <template v-if='beginnerPage'>
-    <p>beginner</p>
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
+          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
         <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">はじめる</button>
-        <div v-if='nextBtnArea'>
-          <button class="btn-handWritte" type="submit" @click="replayBtn()">もう1回</button>
+        <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
+          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
         </div>
       </div>
@@ -37,7 +36,23 @@
   </template>
   <!-- 経験者モード -->
   <template v-if='advancedPage'>
-    <p>advanced</p>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+        </div>
+        <div class="mainText">
+          <div class="advancedText">
+            <div class="note_text advancedTextShow" v-for="item in advancedText" :key="item.id">
+              <p>[[ item.text ]]</p>
+              <span class="material-icons">[[ item.check ]]</span>
+            </div>
+          </div>
+          <img class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
+        </div>
+      </div>
+    </div>
   </template>
 </div>
 
