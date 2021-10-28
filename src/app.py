@@ -8,9 +8,19 @@ def index():
     return render_template("top.html", pageTitle='TopPage', css='top')
 
 
+@app.route("/top", methods=["POST"])
+def move_top():
+    return render_template("top.html", pageTitle='TopPage', css='top')
+
+
 @app.route('/face', methods=['POST'])
+def face():
+    return render_template("face.html", pageTitle='FacePage', css='face')
+
+
+@app.route('/faceTest')
 def face_test():
-    return render_template("test_face.html", pageTitle='FacePage', css='face')
+    return render_template("test_face.html", pageTitle='FaceTestPage', css='face_test')
 
 
 @app.route('/emotion')
