@@ -1,8 +1,19 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { VRM, VRMSchema } from '@pixiv/three-vrm'
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
+
+class PromiseGLTFLoader extends GLTFLoader {
+  promiseLoad(
+    url: string,
+    onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined,
+  ) {
+    return new Promise<GLTF>((resolve, reject) => {
+      super.load(url, resolve, onProgress, reject)
+    })
+  }
+ }
 
 window.addEventListener("DOMContentLoaded", () => {
   // canvasの取得
@@ -56,15 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
     1000,
   )
   camera.position.set(0, 1, 3)
-
-  // カメラコントロールの設定
-  //if (getWidth > 950) {
-  //const controls = new OrbitControls(camera, renderer.domElement)
-  //controls.target.set(0, 0.85, 0)
   camera.lookAt(0, 0.85, 0)
-  //controls.screenSpacePanning = true
-  //controls.update()
-  //}
 
   // VRMの読み込み
   let mixer: any
@@ -177,28 +180,36 @@ window.addEventListener("DOMContentLoaded", () => {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,1.0)
       vrm.blendShapeProxy.update()
     }
-    console.log(boneNode)
   }
   const makeAnimation = (posepass:string) => {
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
       hierarchy: csv2hierarchy(http2str(posepass), 200)
     }, boneNode)
-    console.log(clip)
-
     // トラック名の変更
     clip.tracks.some((track) => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
     
 
-    //mixer.stopAllAction();
-// AnimationActionの生成とアニメーションの再生
+    mixer.stopAllAction();
+    //AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
     action.play()
   }
+
+  //消えないように変数宣言
   let lastTime = (new Date()).getTime()
   let cnt = 0
+  //let step = <HTMLInputElement>document.getElementById('hoge');
+  let step = 0
+  let startStep = 0
+  let dialogue_1 = false
+  var pose_a = '../static/pose/hellomirai.csv';
+  var pose_i = '../static/pose/hellomirai.csv';
+  var pose_u = '../static/pose/hellomirai.csv';
+  var pose_e = '../static/pose/hellomirai.csv';
+  var pose_o = '../static/pose/hellomirai.csv';
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -213,10 +224,22 @@ window.addEventListener("DOMContentLoaded", () => {
       mixer.update(delta)
     }
 
-    //if(cnt==300){
+    if(cnt==300){
       //posepass = posepass2
-    //  makeAnimation(posepass2)
-    //  console.log("切り替え！")
+      //makeAnimation(posepass2)
+      console.log("切り替え！")
+      step = 1
+    }
+    if(step > 0){
+      console.log("計測開始！")
+      startStep = (new Date()).getTime()
+      makeAnimation(pose_a)
+      //stepを0にする処理
+      step = 0
+    }
+    let step_elapsed = time - startStep
+    //if(step_elapsed >= 5000){
+      //html要素書き換え
     //}
 
     // 最終更新時間
