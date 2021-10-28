@@ -19,7 +19,7 @@ const face = new Vue({
     ],
     tutorialCountNum: 0,
     nextBtnMessage: '次へ進む',
-    animationFlag: 1
+    animationFlag: 0
   },
   methods: {
     beginnerMode: function () {
@@ -33,7 +33,7 @@ const face = new Vue({
     trainingStart: function () {
       this.startBtn = false
       this.nextBtnArea = true
-      this.animationFlag += 1
+      this.animationFlag = 1
     },
     replayBtn: function () {
       this.nextBtnArea = false

@@ -26,6 +26,11 @@ window.addEventListener("DOMContentLoaded", () => {
   //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
   //var posepass2 = "../static/pose/a_face.csv";
+  var pose_a = '../static/pose/a_face.csv';
+  var pose_i = '../static/pose/i_face.csv';
+  var pose_u = '../static/pose/u_face.csv';
+  var pose_e = '../static/pose/e_face.csv';
+  var pose_o = '../static/pose/o_face.csv';
   var facemode = 'normal';
 
   // シーンの設定
@@ -194,14 +199,12 @@ window.addEventListener("DOMContentLoaded", () => {
   //消えないように変数宣言
   let lastTime = (new Date()).getTime()
   let cnt = 0
-  //let step = <HTMLInputElement>document.getElementById('hoge');
-  let step = 0
+  let step = <HTMLInputElement>document.getElementById('flag');
+  //let step = 0
   let startStep = 0
-  var pose_a = '../static/pose/hellomirai.csv';
-  var pose_i = '../static/pose/hellomirai.csv';
-  var pose_u = '../static/pose/hellomirai.csv';
-  var pose_e = '../static/pose/hellomirai.csv';
-  var pose_o = '../static/pose/hellomirai.csv';
+  let stepValue = 0
+  let elapsedFlag = true
+
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -218,22 +221,33 @@ window.addEventListener("DOMContentLoaded", () => {
     /*
     if(cnt==300){
       //posepass = posepass2
-      //makeAnimation(posepass2)
-      console.log("切り替え！")
-      step = 1
-    }*/
-    if(step > 0){
-      console.log("計測開始！")
-      startStep = (new Date()).getTime()
       makeAnimation(pose_a)
-      //stepを0にする処理
-      step = 0
+      console.log("切り替え！")
+      //step = 1
+    }*/
+    
+    if(Number(step.value) != 0){
+      console.log("計測開始！");
+      console.log(step.value)
+      startStep = (new Date()).getTime();
+      stepValue += Number(step.value);      
+      (<HTMLInputElement>document.getElementById('flag')).value = '0';
+      if(stepValue == 1){posepass = pose_a}
+      if(stepValue == 3){posepass = pose_i}
+      if(stepValue == 5){posepass = pose_u}
+      if(stepValue == 7){posepass = pose_e}
+      if(stepValue == 9){posepass = pose_o}
+      if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
+      makeAnimation(posepass)
+      elapsedFlag =true
     }
     let step_elapsed = time - startStep
+    //if(step_elapsed > 5000){}
 
     // 最終更新時間
     lastTime = time;
     cnt += 1
+    console.log(stepValue)
 
     // レンダリング
     renderer.render(scene, camera)
