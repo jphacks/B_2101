@@ -2,8 +2,11 @@
 
 <div id="face">
   <!-- モデル表示 -->
-  <div id="modelArea">
-    <canvas id="canvas"></canvas>
+  <div class="modelAndDialogue">
+    <div id="modelArea">
+      <canvas id="canvas"></canvas>
+    </div>
+    <p>[[ modelMessage ]]</p>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>

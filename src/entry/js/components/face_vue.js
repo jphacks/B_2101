@@ -5,6 +5,7 @@ const face = new Vue({
   data: {
     modeChoicePage: true,
     tutorialPage: false,
+    modelMessage: 'こんにちは！'
   },
   methods: {
     beginnerMode: function () {
