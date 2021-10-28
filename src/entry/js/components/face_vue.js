@@ -23,6 +23,7 @@ const face = new Vue({
       if (this.tutorialCountNum < 4) {
         this.tutorialCountNum += 1
       } else {
+        this.tutorialCountNum = 0
         this.modeChoicePage=true
         this.beginnerPage=false
       }
