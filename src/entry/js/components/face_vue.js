@@ -4,13 +4,18 @@ const face = new Vue({
   delimiters: ["[[", "]]"],
   data: {
     modeChoicePage: true,
-    tutorialPage: false,
+    beginnerPage: false,
+    advancedPage: false,
     modelMessage: 'こんにちは！'
   },
   methods: {
     beginnerMode: function () {
       this.modeChoicePage=false
-      this.tutorialPage=true
+      this.beginnerPage=true
+    },
+    advancedMode: function () {
+      this.modeChoicePage=false
+      this.advancedPage=true
     }
   }
 });

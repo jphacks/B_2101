@@ -11,11 +11,15 @@
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
     <button @click="beginnerMode()">初心者</button>
-    <button>経験者</button>
+    <button @click="advancedMode()">経験者</button>
   </template>
-  <!-- 説明画面 -->
-  <template v-if='tutorialPage'>
-    <p>show tutorial</p>
+  <!-- 初心者モード -->
+  <template v-if='beginnerPage'>
+    <p>beginner</p>
+  </template>
+  <!-- 経験者モード -->
+  <template v-if='advancedPage'>
+    <p>advanced</p>
   </template>
 </div>
 
