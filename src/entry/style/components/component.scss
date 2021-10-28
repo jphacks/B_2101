@@ -2,6 +2,8 @@
 $main-color:#ff943d;
 $bg-thin-color:#ffa963;
 $sub-color: #FFD655;
+$BG-white-thin: #fffffff3;
+$text-color: #494949;
 
 html {
   height:100%;
@@ -17,6 +19,26 @@ body {
   canvas{
     width: calc(100vw*(2/7));
     height: calc(100vh*(5/7));
+  }
+}
+
+/* model & dialog */
+.modelAndDialogue{
+  width: unset;
+  margin: unset;
+  position: relative;
+  .modelMessage{
+    width: fit-content;
+    max-width: 90%;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: $BG-white-thin;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    color: $text-color;
   }
 }
 
