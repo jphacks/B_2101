@@ -3,7 +3,14 @@
   display: flex;
   gap: 2rem;
   margin: 0 auto;
-  padding-top: 6rem;
+  padding-top: 5rem;
+}
+
+#modelArea{
+  canvas{
+    width: calc(100vw*(2/5));
+    height: calc(100vh*(7/9));
+  }
 }
 
 .beginnerNextBtnArea{
