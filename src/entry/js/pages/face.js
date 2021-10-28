@@ -2,4 +2,5 @@
 import '../../ts/index.ts';
 
 // JavaScript
-import '../components/face_func.js';
+import '../components/test.js';
+import '../components/face_vue.js';
