@@ -18,6 +18,14 @@ const face = new Vue({
     advancedMode: function () {
       this.modeChoicePage=false
       this.advancedPage=true
+    },
+    nextTraining: function () {
+      if (this.tutorialCountNum < 4) {
+        this.tutorialCountNum += 1
+      } else {
+        this.modeChoicePage=true
+        this.beginnerPage=false
+      }
     }
   }
 });

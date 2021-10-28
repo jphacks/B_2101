@@ -27,9 +27,7 @@
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
-        <form class="startBtn" action="/face" method="POST">
-          <button class="btn-handWritte" type="submit">はじめる</button>
-        </form>
+        <button class="btn-handWritte" type="submit" @click="nextTraining()">はじめる</button>
       </div>
     </div>
   </template>
