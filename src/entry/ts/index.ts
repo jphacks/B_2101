@@ -137,12 +137,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
-    //完全bone
-    //const bones = ["hips","leftUpperLeg","rightUpperLeg","leftLowerLeg","rightLowerLeg","leftFoot","rightFoot","spine","chest","neck","head","leftShoulder","rightShoulder","leftUpperArm","rightUpperArm","leftLowerArm","rightLowerArm","leftHand","rightHand","leftToes","rightToes","leftEye","rightEye","jaw","leftThumbProximal","leftThumbIntermediate","leftThumbDistal","leftIndexProximal","leftIndexIntermediate","leftIndexDistal","leftMiddleProximal","leftMiddleIntermediate","leftMiddleDistal","leftRingProximal","leftRingIntermediate","leftRingDistal","leftLittleProximal","leftLittleIntermediate","leftLittleDistal","rightThumbProximal","rightThumbIntermediate","rightThumbDistal","rightIndexProximal","rightIndexIntermediate","rightIndexDistal","rightMiddleProximal","rightMiddleIntermediate","rightMiddleDistal","rightRingProximal","rightRingIntermediate","rightRingDistal","rightLittleProximal","rightLittleIntermediate","rightLittleDistal","upperChest"]
-
-    //顎抜き
-    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftEye", "rightEye", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal", "upperChest"]
-
     //最低限bone
     const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
     for (let i = 0; i < bones.length; i++) {
@@ -190,8 +184,7 @@ window.addEventListener("DOMContentLoaded", () => {
     clip.tracks.some((track) => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
-    
-
+    //前のアニメをストップ
     mixer.stopAllAction();
     //AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
@@ -204,7 +197,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //let step = <HTMLInputElement>document.getElementById('hoge');
   let step = 0
   let startStep = 0
-  let dialogue_1 = false
   var pose_a = '../static/pose/hellomirai.csv';
   var pose_i = '../static/pose/hellomirai.csv';
   var pose_u = '../static/pose/hellomirai.csv';
@@ -223,13 +215,13 @@ window.addEventListener("DOMContentLoaded", () => {
     if (mixer) {
       mixer.update(delta)
     }
-
+    /*
     if(cnt==300){
       //posepass = posepass2
       //makeAnimation(posepass2)
       console.log("切り替え！")
       step = 1
-    }
+    }*/
     if(step > 0){
       console.log("計測開始！")
       startStep = (new Date()).getTime()
@@ -238,9 +230,6 @@ window.addEventListener("DOMContentLoaded", () => {
       step = 0
     }
     let step_elapsed = time - startStep
-    //if(step_elapsed >= 5000){
-      //html要素書き換え
-    //}
 
     // 最終更新時間
     lastTime = time;
