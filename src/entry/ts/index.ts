@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //var modelPass = '../static/base_model/base.vrm';
   //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
-  var posepass2 = "../static/pose/a_face.csv";
+  //var posepass2 = "../static/pose/a_face.csv";
   var facemode = 'normal';
 
   // シーンの設定
@@ -132,6 +132,7 @@ window.addEventListener("DOMContentLoaded", () => {
   var boneNode:any = []
   // アニメーションの設定
   const setupAnimation = (vrm: any) => {
+    mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
     //完全bone
     //const bones = ["hips","leftUpperLeg","rightUpperLeg","leftLowerLeg","rightLowerLeg","leftFoot","rightFoot","spine","chest","neck","head","leftShoulder","rightShoulder","leftUpperArm","rightUpperArm","leftLowerArm","rightLowerArm","leftHand","rightHand","leftToes","rightToes","leftEye","rightEye","jaw","leftThumbProximal","leftThumbIntermediate","leftThumbDistal","leftIndexProximal","leftIndexIntermediate","leftIndexDistal","leftMiddleProximal","leftMiddleIntermediate","leftMiddleDistal","leftRingProximal","leftRingIntermediate","leftRingDistal","leftLittleProximal","leftLittleIntermediate","leftLittleDistal","rightThumbProximal","rightThumbIntermediate","rightThumbDistal","rightIndexProximal","rightIndexIntermediate","rightIndexDistal","rightMiddleProximal","rightMiddleIntermediate","rightMiddleDistal","rightRingProximal","rightRingIntermediate","rightRingDistal","rightLittleProximal","rightLittleIntermediate","rightLittleDistal","upperChest"]
@@ -144,6 +145,7 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
+    console.log(boneNode)
     if (facemode == "normal") {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,1.0)
       vrm.blendShapeProxy.update()
@@ -175,20 +177,23 @@ window.addEventListener("DOMContentLoaded", () => {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,1.0)
       vrm.blendShapeProxy.update()
     }
+    console.log(boneNode)
   }
   const makeAnimation = (posepass:string) => {
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
       hierarchy: csv2hierarchy(http2str(posepass), 200)
     }, boneNode)
+    console.log(clip)
 
     // トラック名の変更
     clip.tracks.some((track) => {
       track.name = track.name.replace(/^\.bones\[([^\]]+)\].(position|quaternion|scale)$/, '$1.$2')
     })
+    
 
-    mixer.stopAllAction();
-    // AnimationActionの生成とアニメーションの再生
+    //mixer.stopAllAction();
+// AnimationActionの生成とアニメーションの再生
     let action = mixer.clipAction(clip)
     action.play()
   }
@@ -208,11 +213,11 @@ window.addEventListener("DOMContentLoaded", () => {
       mixer.update(delta)
     }
 
-    if(cnt==300){
+    //if(cnt==300){
       //posepass = posepass2
-      makeAnimation(posepass2)
-      console.log("切り替え！")
-    }
+    //  makeAnimation(posepass2)
+    //  console.log("切り替え！")
+    //}
 
     // 最終更新時間
     lastTime = time;
