@@ -16,7 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // シーンの設定
   const scene = new THREE.Scene()
   sceneOption()
-  console.log("sceneoption")
 
   function sceneOption() {
     // ライトの設定
@@ -48,6 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const camera = new THREE.PerspectiveCamera(
     35,
     canvas.clientWidth / canvas.clientHeight,
+    
     0.1,
     1000,
   )
@@ -61,7 +61,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //controls.update()
   //}
 
-  console.log("vrmの読み込み")
   // VRMの読み込み
   let mixer: any
   const loader = new GLTFLoader()
@@ -184,6 +183,5 @@ window.addEventListener("DOMContentLoaded", () => {
     // レンダリング
     renderer.render(scene, camera)
   }
-  console.log("update直前")
   update()
 })
