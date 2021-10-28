@@ -3,7 +3,7 @@
   width: 35rem;
   height: 35rem;
   padding: 2rem;
-  border: 10px solid #FFD655;
+  border: 10px solid $sub-color;
   border-radius: 20px;
 }
 
@@ -44,7 +44,7 @@
   padding: 0.2rem 1.3rem;
   background: #fff;
   border-radius: 15px 20px/70px 10px;
-  border: solid 3px #FF943D;
+  border: solid 3px $main-color;
 }
 
 .logo{
