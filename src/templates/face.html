@@ -20,6 +20,19 @@
   <!-- 初心者モード -->
   <template v-if='beginnerPage'>
     <p>beginner</p>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+        </div>
+        <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
+        <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
+        <form class="startBtn" action="/face" method="POST">
+          <button class="btn-handWritte" type="submit">はじめる</button>
+        </form>
+      </div>
+    </div>
   </template>
   <!-- 経験者モード -->
   <template v-if='advancedPage'>
