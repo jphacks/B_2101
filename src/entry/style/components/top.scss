@@ -9,6 +9,17 @@
   padding: 5rem 0 0;
 }
 
+#soundCheckbox{
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 auto 1.5rem;
+  p{
+    margin: 0;
+  }
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   #mainArea{
