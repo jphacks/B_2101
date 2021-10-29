@@ -1,4 +1,5 @@
 {% extends "layout.html" %}{% block content %}
+<input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 
 <form class="back2topBtn" action="/top" method="POST">
   <button type="submit"><span class="material-icons">arrow_back</span></button>
@@ -25,11 +26,11 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <p class="note_text text_heading"><span class="highlighter">[[ tutorialTitle ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
-        <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">やってみる</button>
+        <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">[[ startBtnMessage ]]</button>
         <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
           <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
