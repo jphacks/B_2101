@@ -133,7 +133,6 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
-    console.log(boneNode)
     if (facemode == "normal") {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,1.0)
       vrm.blendShapeProxy.update()
@@ -214,18 +213,18 @@ window.addEventListener("DOMContentLoaded", () => {
     
     if(Number(step.value) != 0){
       console.log("計測開始！");
-      console.log(step.value)
+      console.log("step.value"+step.value)
       startStep = (new Date()).getTime();
-      stepValue += Number(step.value);      
+      stepValue = Number(step.value);      
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
-      console.log(stepValue)
+      console.log("stepValue"+stepValue)
       if(stepValue == -5){ camera.position.set(0, 1.3, 0.85);camera.lookAt(0, 1.4, 0);stepValue=0}
       if(stepValue == 1){posepass = pose_a}
-      if(stepValue == 3){posepass = pose_i}
-      if(stepValue == 5){posepass = pose_u}
-      if(stepValue == 7){posepass = pose_e}
-      if(stepValue == 9){posepass = pose_o; stepValue=0}
-      if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
+      if(stepValue == 2){posepass = pose_i}
+      if(stepValue == 3){posepass = pose_u}
+      if(stepValue == 4){posepass = pose_e}
+      if(stepValue == 5){posepass = pose_o; stepValue=0}
+      //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       makeAnimation(posepass)
       //elapsedFlag =true
     }
