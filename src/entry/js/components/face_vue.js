@@ -25,10 +25,20 @@ const face = new Vue({
   },
   methods: {
     beginnerMode: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        start_voice.play()
+      }
       this.modeChoicePage=false
       this.beginnerPage = true
     },
     advancedMode: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        start_voice.play()
+      }
       this.modeChoicePage=false
       this.advancedPage=true
     },
@@ -42,9 +52,10 @@ const face = new Vue({
           start_voice.play()
         }
         this.tutorialCountNum += 1
+      } else {
+        this.startBtn = false
+        this.nextBtnArea = true
       }
-      this.startBtn = false
-      this.nextBtnArea = true
       this.animationFlag = 1 //進んだら一に戻す
     },
     replayBtn: function () {
