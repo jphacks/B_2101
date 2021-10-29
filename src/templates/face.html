@@ -5,6 +5,17 @@
   <button type="submit"><span class="material-icons">arrow_back</span></button>
 </form>
 
+<!-- video の上に canvas をオーバーレイするための div 要素 -->
+<div id="container">
+  <!-- カメラ映像を流す video -->
+  <video id="video" width="400" height="300" autoplay></video>
+  <!-- 重ねて描画する canvas -->
+  <canvas id="faceCanvas" width="400" height="300"></canvas>
+</div>
+
+<!-- データ表示用 div 要素 -->
+<div id="dat"></div>
+
 <div id="face">
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
   <!-- モデル表示 -->
@@ -61,6 +72,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../static/js/face/clmtrackr.js"></script>
+<script src="../static/js/face/model_pca_20_svm.js"></script>
 <script src="../static/webpack/face.js"></script>
 
 {% endblock %}
