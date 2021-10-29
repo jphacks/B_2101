@@ -1,6 +1,7 @@
 # にこトレ！
 
-![ogp](https://user-images.githubusercontent.com/63311737/139258315-50e6f3f6-6d3b-4649-b5f0-4668fd451664.png)
+
+![ホーム画](https://user-images.githubusercontent.com/63311737/139374114-96d9272c-06b6-4e0b-a0b1-987909a693e4.png)
 
 
 ## 製品概要
