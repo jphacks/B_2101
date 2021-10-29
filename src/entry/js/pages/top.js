@@ -2,4 +2,4 @@
 import '../../ts/index.ts';
 
 // JavaScript
-import '../components/test.js';
+import '../components/top.js';

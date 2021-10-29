@@ -48,7 +48,7 @@
 }
 
 .logo{
-  width: 9rem;
+  width: 8rem;
 }
 
 .header{
@@ -56,7 +56,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 1rem 3rem;
+  margin: 0 1rem 1.5rem;
   gap: 0;
 }
 
@@ -88,6 +88,6 @@
   .header{
     flex-direction: column-reverse;
     margin: 0 1rem;
-    gap: 2.5rem;
+    gap: 1.2rem;
   }
 }

@@ -1,4 +1,5 @@
 {% extends "layout.html" %}{% block content %}
+<input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 
 <div id="mainArea">
   <div id="modelArea">
@@ -15,6 +16,10 @@
       <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
       <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
       <form action="/face" method="POST">
+        <div id="soundCheckbox">
+          <input type="checkbox" id="sound" name="sound" value="1">
+          <label for="sound" class="note_text">音声再生を許可します</label>
+        </div>
         <button class="btn-handWritte" type="submit">はじめる</button>
       </form>
     </div>
