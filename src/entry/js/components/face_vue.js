@@ -1,4 +1,6 @@
 import { isThisTypeNode } from "typescript";
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 const face = new Vue({
   el: '#face',
@@ -23,6 +25,7 @@ const face = new Vue({
     tutorialCountNum: 0,
     startBtnMessage: 'はじめる',
     nextBtnMessage: '次へ進む',
+    toggle: false,
     animationFlag: -5 //ページの初期番号 camera位置修正に使う
   },
   methods: {
