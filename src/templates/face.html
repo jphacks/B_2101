@@ -5,16 +5,13 @@
   <button type="submit"><span class="material-icons">arrow_back</span></button>
 </form>
 
-<!-- video の上に canvas をオーバーレイするための div 要素 -->
-<div id="container">
-  <!-- カメラ映像を流す video -->
-  <video id="video" width="400" height="300" autoplay></video>
-  <!-- 重ねて描画する canvas -->
-  <canvas id="faceCanvas" width="400" height="300"></canvas>
-</div>
-
 <div id="face">
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
+  <!-- 自分の顔を表示 -->
+  <div id="container">
+    <video id="video" width="200" height="150" autoplay></video>
+    <canvas id="faceCanvas" width="200" height="150"></canvas>
+  </div>
   <!-- モデル表示 -->
   <div class="modelAndDialogue">
     <div id="modelArea">
