@@ -1,3 +1,5 @@
+import { isThisTypeNode } from "typescript";
+
 const face = new Vue({
   el: '#face',
   // FlaskとVueを共存させるためにDelimiterを変更する
@@ -55,6 +57,7 @@ const face = new Vue({
           start_voice.play()
         }
         this.tutorialCountNum += 1
+        this.animationFlag = 1
       } else {
         this.modelMessage = '私のまねをしてください！'
         if (sound == 1) {
@@ -85,6 +88,7 @@ const face = new Vue({
           nextPlay.play()
         }
         this.tutorialCountNum += 1
+        this.animationFlag = this.tutorialCountNum
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = 'おわる'
