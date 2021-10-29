@@ -60,6 +60,11 @@ const face = new Vue({
           this.nextBtnMessage = 'おわる'
         }
       } else {
+        var sound = document.getElementById('vueSound').value
+        if (sound == 1) {
+          const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+          start_voice.play()
+        }
         this.tutorialCountNum = 0
         this.tutorialTitle = 'にこトレの使い方'
         this.startBtnMessage = 'はじめる'
