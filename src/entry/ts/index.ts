@@ -1,24 +1,11 @@
 import * as THREE from 'three'
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+//import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { VRMLoader } from 'three/examples/jsm/loaders/VRMLoader'
 import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
 import { mode } from '../../../webpack.config';
 
 window.addEventListener("DOMContentLoaded", () => {
-
-  class PromiseGLTFLoader extends GLTFLoader {
-    promiseLoad(
-      url: string,
-      onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined,
-    ) {
-      return new Promise<GLTF>((resolve, reject) => {
-        super.load(url, resolve, onProgress, reject)
-      })
-    }
-  }
-
   // canvasの取得
   var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 
@@ -43,15 +30,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const light = new THREE.DirectionalLight(0xffffff)
     light.position.set(1, 1, 1).normalize()
     scene.add(light)
-
-    // グリッドを表示
-    //const gridHelper = new THREE.GridHelper(10, 10)
-    //scene.add(gridHelper)
-    //gridHelper.visible = true
-
-    // 座標軸を表示
-    //const axesHelper = new THREE.AxesHelper(0.5)
-    //scene.add(axesHelper)
   }
 
   // レンダラーの設定
@@ -77,11 +55,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // VRMの読み込み
   var boneNode: any = []
-  var faceNode: any = []
-  var bones:any = []
+  var faceNode:any = []
   let mixer: any
   const loader = new GLTFLoader()
-  var loader2 = new VRMLoader();
   newLoad()
   
   function newLoad() {
@@ -93,72 +69,12 @@ window.addEventListener("DOMContentLoaded", () => {
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
           makeAnimation(posepass);
-          vrm.scene.traverse((vrm:any) =>{
-            if (vrm.isBlendShapePresetName) 
-            {
-              bones[vrm.name] = vrm;
-            }
-          })
-          console.log(bones)
         })
       },
       (progress) => console.log('Loading model...', 100.0 * (progress.loaded / progress.total), '%'),
       (error) => console.error(error)
     )
   }
-/*
-  // モデルをロード
-  const loader = new PromiseGLTFLoader()
-  const gltf = loader.promiseLoad(
-  './models/AliciaSolid.vrm',
-  progress => {
-    console.log(
-      'Loading model...',
-      100.0 * (progress.loaded / progress.total),
-      '%',
-    )
-  },
-)
-  // VRMインスタンス生成
-  const vrm = VRM.from(gltf)
-  // シーンに追加
-  scene.add(vrm.scene)
-  vrm.scene.rotation.y = Math.PI
-*/
-/*
-// モデル var loader = new THREE.VRMLoader();
-loader2.load( '../static/base_model/Miraikomachi.vrm', function ( vrm ) {
-  // VRMLoader doesn't support VRM Unlit extension yet so
-  // converting all materials to MeshBasicMaterial here as workaround so far.
-  vrm.scene.traverse( function ( object ) {
-    if ( object.material ) {
-      if ( Array.isArray( object.material ) ) {
-        for ( var i = 0, il = object.material.length; i < il; i ++ ) {
-          var material = new THREE.MeshBasicMaterial();
-          THREE.Material.prototype.copy.call( material, object.material[ i ] );
-          material.color.copy( object.material[ i ].color );
-          material.map = object.material[ i ].map;
-          material.lights = false;
-          material.skinning = object.material[ i ].skinning;
-          material.morphTargets = object.material[ i ].morphTargets;
-          material.morphNormals = object.material[ i ].morphNormals;
-          object.material[ i ] = material;
-        }
-      } else {
-        var material = new
-        THREE.MeshBasicMaterial();
-        THREE.Material.prototype.copy.call( material, object.material );
-        material.color.copy( object.material.color );
-        material.map = object.material.map;
-        material.lights = false; material.skinning = object.material.skinning;                 
-        material.morphTargets = object.material.morphTargets;
-        material.morphNormals = object.material.morphNormals;
-        object.material = material;
-      }
-    }
-  } );
-  scene.add( vrm.scene );
-} );*/
 
   // http → str
   const http2str = (url: string) => {
@@ -199,7 +115,6 @@ loader2.load( '../static/base_model/Miraikomachi.vrm', function ( vrm ) {
       }
       hierarchy[i] = { 'keys': keys }
     }
-    //vroid用のsplice
     return hierarchy
   }
 
@@ -212,37 +127,9 @@ loader2.load( '../static/base_model/Miraikomachi.vrm', function ( vrm ) {
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
-    faceNode = VRMSchema.BlendShapePresetName.A
-    console.log("facenode"+faceNode)
+    faceNode = vrm.blendShapeProxy //表情読み込む用のやつ
     if (facemode == "normal") {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "a") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "i") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "u") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U, 1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "e") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-    if (facemode == "o") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
       vrm.blendShapeProxy.update()
     }
 
@@ -263,15 +150,26 @@ loader2.load( '../static/base_model/Miraikomachi.vrm', function ( vrm ) {
     action.play()
   }
 
+  const resetFaceNode = (faceNode:any) => {
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Angry, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 0)
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Sorrow, 0)
+    faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.I, 0)
+    faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.E, 0)
+    faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0)
+  }
+
   //消えないように変数宣言
   let lastTime = (new Date()).getTime()
   let cnt = 0
+  let stepValue = 0
   let step = <HTMLInputElement>document.getElementById('flag');
   //let step = 0
-  let startStep = 0
-  let stepValue = 0
-  let elapsedFlag = true
-  //console.log(scene.getObjectByName(VRMSchema.BlendShapePresetName.A))
+  //let startStep = 0
+  //let elapsedFlag = true
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -285,40 +183,64 @@ loader2.load( '../static/base_model/Miraikomachi.vrm', function ( vrm ) {
     if (mixer) {
       mixer.update(delta)
     }
-    
+    /*
     if(cnt==200){
       //posepass = posepass2
       console.log("切り替え！")
-      facemode = "a"
       //scene.children[7].
 //      .setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
       //VRM.from.blendShapeProxy.update()
       //step = 1
-    }
+    }*/
 
     if (Number(step.value) != 0) {
       console.log("計測開始！");
       console.log("step.value" + step.value)
-      startStep = (new Date()).getTime();
+      //startStep = (new Date()).getTime();
       stepValue = Number(step.value);
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
       console.log("stepValue" + stepValue)
-      faceNode[0] = 1.0
+      if (mixer != null) { resetFaceNode(faceNode) }
       if (stepValue == -5) {
         camera.position.set(0, 1.3, 0.85);
         camera.lookAt(0, 1.4, 0);
         stepValue = 0
       }
-      if (stepValue == 1) { posepass = pose_a }
-      if (stepValue == 2) { posepass = pose_i }
-      if (stepValue == 3) { posepass = pose_u }
-      if (stepValue == 4) { posepass = pose_e }
-      if (stepValue == 5) { posepass = pose_o; stepValue = 0 }
+      if (stepValue == 1) { 
+        posepass = pose_a
+        faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
+        faceNode.update()
+            }
+      if (stepValue == 2) { 
+        posepass = pose_i
+        faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
+        faceNode.update()
+             }
+      if (stepValue == 3) { 
+        posepass = pose_u
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.U, 1.0)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
+        faceNode.update() }
+      if (stepValue == 4) { 
+        posepass = pose_e 
+        faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
+        faceNode.update()
+      }
+      if (stepValue == 5) { posepass = pose_o; 
+        faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
+        faceNode.update()
+        stepValue = 0 }
       //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       if (mixer != undefined) { makeAnimation(posepass) }
       //elapsedFlag =true
     }
-    let step_elapsed = time - startStep
+    //let step_elapsed = time - startStep
     //if(step_elapsed > 5000){}
 
     // 最終更新時間
