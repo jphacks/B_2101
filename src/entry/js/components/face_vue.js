@@ -117,10 +117,8 @@ const face = new Vue({
     toggle: function () {
       var myFace = document.getElementById('container')
       if (this.toggle == true) {
-        console.log('true!')
         myFace.style.visibility = 'visible'
       } else {
-        console.log('false')
         myFace.style.visibility = 'hidden'
       }
     }
