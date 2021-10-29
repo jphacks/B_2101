@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
-
 #opening{
   width: 100vw;
   height: 100vh;
@@ -21,18 +19,19 @@
 
     img{
       display: block;
-      width: 13rem;
-      margin: 0 auto 1rem;
+      width: 14rem;
+      margin: 0 auto 2rem;
     }
 
     #openingText{
       width: fit-content;
       display: flex;
-      font-family: 'Gruppo', cursive;
+      font-family: 'Architects Daughter', cursive;
       color: $main-color;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       gap: 0 1rem;
       margin: 0 auto;
+      letter-spacing: 0.05rem;
     }
   }
 }

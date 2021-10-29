@@ -3,7 +3,7 @@ window.onload = function () {
 
   $(openingElement).addClass('is-fadein');
 
-  //setTimeout(fadeout, 2000);
+  setTimeout(fadeout, 2000);
 }
 
 function fadeout() {
