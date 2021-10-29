@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const camera = new THREE.PerspectiveCamera(
     35,
     canvas.clientWidth / canvas.clientHeight,
-    
+
     0.1,
     1000,
   )
@@ -62,6 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
   camera.lookAt(0, 0.85, 0)
 
   // VRMの読み込み
+  var boneNode: any = []
   let mixer: any
   const loader = new GLTFLoader()
   //newLoad()
@@ -80,28 +81,29 @@ window.addEventListener("DOMContentLoaded", () => {
     )
   }*/
   loader.load(modelPass,
-     (gltf) => {
-        VRM.from(gltf).then((vrm: any) => {
-          // シーンへの追加
-          scene.add(vrm.scene)
-          vrm.scene.rotation.y = Math.PI
-          setupAnimation(vrm)
-          makeAnimation(posepass)
-        })
-      }
-    )
+    (gltf) => {
+      VRM.from(gltf).then((vrm: any) => {
+        // シーンへの追加
+        //console.log(vrm.scene)
+        scene.add(vrm.scene)
+        vrm.scene.rotation.y = Math.PI
+        setupAnimation(vrm)
+        makeAnimation(posepass)
+      })
+    }
+  )
 
 
-    //VRM.from(gltf)
+  //VRM.from(gltf)
+  /*
+     const gltf = loader.load('../static/base_model/Miraikomachi.vrm',)
+   // VRMインスタンス生成
+     const vrm = VRM.from(gltf)
+  // シーンに追加
+     scene.add(vrm.scene)
+    vrm.scene.rotation.y = Math.PI
+      */
 
-   const gltf = loader.load('../static/base_model/Miraikomachi.vrm',progress => {},)
-　// VRMインスタンス生成
-   const vrm = VRM.from(gltf)
-// シーンに追加
-   scene.add(vrm.scene)
-  vrm.scene.rotation.y = Math.PI
-    
-    
 
   // http → str
   const http2str = (url: string) => {
@@ -146,7 +148,6 @@ window.addEventListener("DOMContentLoaded", () => {
     return hierarchy
   }
 
-  var boneNode:any = []
   // アニメーションの設定
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
@@ -157,38 +158,39 @@ window.addEventListener("DOMContentLoaded", () => {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
     if (facemode == "normal") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
       vrm.blendShapeProxy.update()
     }
     if (facemode == "a") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.48)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
       vrm.blendShapeProxy.update()
     }
     if (facemode == "i") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.I,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
       vrm.blendShapeProxy.update()
     }
     if (facemode == "u") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy,0.5)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Fun,1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,1.0)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,0.14)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U, 1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
       vrm.blendShapeProxy.update()
     }
     if (facemode == "e") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A,0.2)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
       vrm.blendShapeProxy.update()
     }
     if (facemode == "o") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U,0.05)
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O,1.0)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
+      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
       vrm.blendShapeProxy.update()
     }
+
   }
-  const makeAnimation = (posepass:string) => {
+  const makeAnimation = (posepass: string) => {
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
       hierarchy: csv2hierarchy(http2str(posepass), 200)
@@ -233,22 +235,26 @@ window.addEventListener("DOMContentLoaded", () => {
       console.log("切り替え！")
       //step = 1
     }*/
-    
-    if(Number(step.value) != 0){
+
+    if (Number(step.value) != 0) {
       console.log("計測開始！");
-      console.log("step.value"+step.value)
+      console.log("step.value" + step.value)
       startStep = (new Date()).getTime();
-      stepValue = Number(step.value);      
+      stepValue = Number(step.value);
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
-      console.log("stepValue"+stepValue)
-      if(stepValue == -5){ camera.position.set(0, 1.3, 0.85);camera.lookAt(0, 1.4, 0);stepValue=0}
-      if(stepValue == 1){posepass = pose_a}
-      if(stepValue == 2){posepass = pose_i}
-      if(stepValue == 3){posepass = pose_u}
-      if(stepValue == 4){posepass = pose_e}
-      if(stepValue == 5){posepass = pose_o; stepValue=0}
+      console.log("stepValue" + stepValue)
+      if (stepValue == -5) {
+        camera.position.set(0, 1.3, 0.85);
+        camera.lookAt(0, 1.4, 0);
+        stepValue = 0
+      }
+      if (stepValue == 1) { posepass = pose_a }
+      if (stepValue == 2) { posepass = pose_i }
+      if (stepValue == 3) { posepass = pose_u }
+      if (stepValue == 4) { posepass = pose_e }
+      if (stepValue == 5) { posepass = pose_o; stepValue = 0 }
       //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
-      makeAnimation(posepass)
+      if (mixer != undefined) { makeAnimation(posepass) }
       //elapsedFlag =true
     }
     let step_elapsed = time - startStep
