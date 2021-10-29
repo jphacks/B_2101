@@ -36,6 +36,11 @@ const face = new Vue({
       this.tutorialTitle = 'あいうえお体操'
       this.startBtnMessage = 'やってみる'
       if (this.tutorialCountNum == 0) {
+        var sound = document.getElementById('vueSound').value
+        if (sound == 1) {
+          const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
+          start_voice.play()
+        }
         this.tutorialCountNum += 1
       }
       this.startBtn = false
