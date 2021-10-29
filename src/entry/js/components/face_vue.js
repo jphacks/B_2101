@@ -27,8 +27,8 @@ const face = new Vue({
     beginnerMode: function () {
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
-        const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
-        start_voice.play()
+        const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        cheer_voice.play()
       }
       this.modeChoicePage=false
       this.beginnerPage = true
@@ -36,45 +36,58 @@ const face = new Vue({
     advancedMode: function () {
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
-        const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
-        start_voice.play()
+        const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        cheer_voice.play()
       }
       this.modeChoicePage=false
       this.advancedPage=true
     },
     trainingStart: function () {
+      var sound = document.getElementById('vueSound').value
       this.tutorialTitle = 'あいうえお体操'
       this.startBtnMessage = 'やってみる'
       if (this.tutorialCountNum == 0) {
-        var sound = document.getElementById('vueSound').value
         if (sound == 1) {
           const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
           start_voice.play()
         }
         this.tutorialCountNum += 1
       } else {
+        if (sound == 1) {
+          const try_se = new Audio("./static/sound/sound_effect/try.mp3")
+          try_se.play()
+        }
         this.startBtn = false
         this.nextBtnArea = true
       }
       this.animationFlag = 1 //進んだら一に戻す
     },
     replayBtn: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const replay = new Audio("./static/sound/sound_effect/replay.mp3")
+        replay.play()
+      }
       this.nextBtnArea = false
       this.startBtn = true
       //this.animationFlag = -1 //戻ったらマイナス－1
     },
     nextTraining: function () {
+      var sound = document.getElementById('vueSound').value
       if (this.tutorialCountNum < 5) {
+        if (sound == 1) {
+          const nextPlay = new Audio("./static/sound/sound_effect/nextPlay.mp3")
+          nextPlay.play()
+        }
         this.tutorialCountNum += 1
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = 'おわる'
         }
       } else {
-        var sound = document.getElementById('vueSound').value
         if (sound == 1) {
-          const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
-          start_voice.play()
+          const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+          end_voice.play()
         }
         this.tutorialCountNum = 0
         this.tutorialTitle = 'にこトレの使い方'
