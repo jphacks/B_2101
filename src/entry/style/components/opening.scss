@@ -1,0 +1,53 @@
+#opening{
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 9000;
+
+  #openingContents{
+    opacity: 0;
+    transition: 1500ms;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+
+    &.is-fadein {
+      opacity: 1
+    }
+
+    img{
+      display: block;
+      width: 14rem;
+      margin: 0 auto 2rem;
+    }
+
+    #openingText{
+      width: fit-content;
+      display: flex;
+      font-family: 'Architects Daughter', cursive;
+      color: $main-color;
+      font-size: 1.8rem;
+      gap: 0 1rem;
+      margin: 0 auto;
+      letter-spacing: 0.05rem;
+    }
+  }
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #opening{
+    #openingContents{
+      img{
+        width: 15rem;
+      }
+      #openingText{
+        font-size: 1.3rem;
+        gap: 0 0.8rem;
+      }
+    }
+  }
+}
+/* mobileここまで */

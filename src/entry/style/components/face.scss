@@ -1,22 +1,29 @@
 #face{
   width: fit-content;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 2rem;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding: 3rem 0 0;
+}
+
+#trainingArea{
+  display: flex;
+  flex-direction: column;
 }
 
 #modelArea{
   canvas{
     width: calc(100vw*(2/5));
-    height: calc(100vh*(7/9));
+    height: calc(100vh*(6/9));
   }
 }
 
 .beginnerNextBtnArea{
   width: fit-content;
   display: flex;
+  flex-direction: row;
   gap: 2.5rem;
   margin: 0 auto;
 }
@@ -110,4 +117,53 @@
   border: 10px solid $dark-main-color;
   grid-row: 2 / 3;
   grid-column: 2 / 3;
+}
+
+#toggleArea{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.1rem auto 0;
+  p{
+    margin: 0;
+  }
+}
+
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #face{
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 0 5rem;
+  }
+
+  #modelArea{
+    canvas{
+      width: calc(100vw*(4/5));
+      height: calc(100vh*(2/3));
+    }
+  }
+
+  .beginnerNextBtnArea{
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .note_wrap{
+    width: 20rem;
+  }
+
+  .choiceBtnGrid{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #toggleArea{
+    gap: 0.5rem;
+    margin: 1.4rem auto;
+  }
 }
