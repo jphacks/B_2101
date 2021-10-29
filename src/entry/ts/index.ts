@@ -189,6 +189,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let startStep = 0
   let stepValue = 0
   let elapsedFlag = true
+  //VRM.scene.
+  console.log(scene)
 
 
   // フレーム毎に呼ばれる
