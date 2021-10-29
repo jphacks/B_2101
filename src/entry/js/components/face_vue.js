@@ -70,7 +70,6 @@ const face = new Vue({
         this.startBtn = false
         this.nextBtnArea = true
       }
-      this.animationFlag = 1 //進んだら一に戻す
     },
     replayBtn: function () {
       var sound = document.getElementById('vueSound').value
@@ -81,7 +80,6 @@ const face = new Vue({
       this.modelMessage = '準備はいいですか？'
       this.nextBtnArea = false
       this.startBtn = true
-      //this.animationFlag = -1 //戻ったらマイナス－1
     },
     nextTraining: function () {
       var sound = document.getElementById('vueSound').value
@@ -95,6 +93,7 @@ const face = new Vue({
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = 'おわる'
+          this.animationFlag = 0
         }
       } else {
         if (sound == 1) {
