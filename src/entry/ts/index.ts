@@ -64,9 +64,9 @@ window.addEventListener("DOMContentLoaded", () => {
   // VRMの読み込み
   let mixer: any
   const loader = new GLTFLoader()
-  newLoad()
+  //newLoad()
 
-  function newLoad() {
+  /*function newLoad() {
     loader.load(modelPass,
       (gltf) => {
         VRM.from(gltf).then((vrm: any) => {
@@ -78,7 +78,30 @@ window.addEventListener("DOMContentLoaded", () => {
         })
       }
     )
-  }
+  }*/
+  loader.load(modelPass,
+     (gltf) => {
+        VRM.from(gltf).then((vrm: any) => {
+          // シーンへの追加
+          scene.add(vrm.scene)
+          vrm.scene.rotation.y = Math.PI
+          setupAnimation(vrm)
+          makeAnimation(posepass)
+        })
+      }
+    )
+
+
+    //VRM.from(gltf)
+
+   const gltf = loader.load('../static/base_model/Miraikomachi.vrm',progress => {},)
+　// VRMインスタンス生成
+   const vrm = VRM.from(gltf)
+// シーンに追加
+   scene.add(vrm.scene)
+  vrm.scene.rotation.y = Math.PI
+    
+    
 
   // http → str
   const http2str = (url: string) => {
@@ -189,9 +212,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let startStep = 0
   let stepValue = 0
   let elapsedFlag = true
-  //VRM.scene.
-  console.log(scene)
-
+  //console.log(scene.getObjectByName(VRMSchema.BlendShapePresetName.A))
 
   // フレーム毎に呼ばれる
   const update = () => {
