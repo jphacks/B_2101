@@ -4,13 +4,18 @@
   align-items: center;
   gap: 2rem;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding-top: 3rem;
+}
+
+#trainingArea{
+  display: flex;
+  flex-direction: column;
 }
 
 #modelArea{
   canvas{
     width: calc(100vw*(2/5));
-    height: calc(100vh*(7/9));
+    height: calc(100vh*(6/9));
   }
 }
 

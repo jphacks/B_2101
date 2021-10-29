@@ -7,17 +7,19 @@
 
 <div id="face">
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
-  <!-- 自分の顔を表示 -->
-  <div id="container">
-    <video id="video" width="200" height="150" autoplay></video>
-    <canvas id="faceCanvas" width="200" height="150"></canvas>
-  </div>
-  <!-- モデル表示 -->
-  <div class="modelAndDialogue">
-    <div id="modelArea">
-      <canvas id="canvas"></canvas>
+  <div id="trainingArea">
+    <!-- 自分の顔を表示 -->
+    <div id="container">
+      <video id="video" width="200" height="150" autoplay></video>
+      <canvas id="faceCanvas" width="200" height="150"></canvas>
     </div>
-    <p class="modelMessage">[[ modelMessage ]]</p>
+    <!-- モデル表示 -->
+    <div class="modelAndDialogue">
+      <div id="modelArea">
+        <canvas id="canvas"></canvas>
+      </div>
+      <p class="modelMessage">[[ modelMessage ]]</p>
+    </div>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>

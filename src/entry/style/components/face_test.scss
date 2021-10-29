@@ -1,6 +1,8 @@
 /* video 要素の上に canvas 要素をオーバーレイするための CSS */
 /* コンテナ用の div について */
 #container {
+  width: fit-content;
+  margin: 0 auto;
   position: relative; /* 座標指定を相対値指定にする */
 }
 
