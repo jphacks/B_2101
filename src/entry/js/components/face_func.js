@@ -38,15 +38,15 @@ function drawLoop() {
   */
   // 顔部品の現在位置の取得
   var positions = tracker.getCurrentPosition();
-  
+
     //ここで現在位置と前回位置の計算を行う
     //x方向の値を計算する
   var faceWidth = positions[11][0]-positions[3][0]
   var lipWidth = positions[50][0] - positions[44][0]
   var xMouth = lipWidth/faceWidth
-  
+
   var faceHeight = positions[37][1] - positions[7][1]
-  var lipHeightLeft = positions[44][1] - positions[7][1]  
+  var lipHeightLeft = positions[44][1] - positions[7][1]
   var lipHeightRight = positions[50][1] - positions[7][1]
   var yMouthLeft = lipHeightLeft/faceHeight
   var yMouthRight = lipHeightRight/faceHeight
@@ -79,7 +79,8 @@ function showData(pos) {
   //console.log('x座標：「' + Math.round(pos[11][0] - pos[3][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[3][1] )+ '」');
   console.log('頬：「' + Math.round(pos[11][0] - pos[3][0]) + '」くちびる：「' + Math.round(pos[50][0] - pos[44][0] )+ '」');
   console.log('鼻下: 「'+Math.round(pos[37][1] - pos[7][1]) + '」唇: 「'+Math.round(pos[44][1] - pos[7][1])+'」');
-  
+
+  /*
   // データの文字列を入れる変数
   var str = "";
   // 全ての特徴点（71個）について
@@ -94,4 +95,5 @@ function showData(pos) {
   var dat = document.getElementById("dat");
   // データ文字列の表示
   dat.innerHTML = str;
+  */
 }
