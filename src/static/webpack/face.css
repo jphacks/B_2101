@@ -351,7 +351,7 @@ body {
   background-image: linear-gradient(180deg, rgba(204, 204, 204, 0) 0%, rgba(204, 204, 204, 0) 98.5%, #646464 100%);
   background-repeat: repeat-y;
   background-size: 100% 2.4rem;
-  line-height: 2.4;
+  line-height: 2.3;
 }
 
 .note_text {
@@ -365,7 +365,7 @@ body {
 .text_heading {
   font-weight: bold;
   font-size: 1.4rem;
-  margin: 2.7rem 0 0 1rem;
+  margin: 2.7rem 0 0 0;
 }
 
 .highlighter {
@@ -386,7 +386,7 @@ body {
 }
 
 .logo {
-  width: 9rem;
+  width: 8rem;
 }
 
 .header {
@@ -394,7 +394,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 1rem 3rem;
+  margin: 0 1rem 1.5rem;
   gap: 0;
 }
 
@@ -426,12 +426,13 @@ body {
   .header {
     flex-direction: column-reverse;
     margin: 0 1rem;
-    gap: 2.5rem;
+    gap: 1.2rem;
   }
 }
 #face {
   width: fit-content;
   display: flex;
+  align-items: center;
   gap: 2rem;
   margin: 0 auto;
   padding-top: 5rem;
