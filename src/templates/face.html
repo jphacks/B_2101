@@ -1,0 +1,66 @@
+{% extends "layout.html" %}{% block content %}
+<input id="vueSound" value="{{ sound }}" style="display: none;"></input>
+
+<form class="back2topBtn" action="/top" method="POST">
+  <button type="submit"><span class="material-icons">arrow_back</span></button>
+</form>
+
+<div id="face">
+  <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
+  <!-- モデル表示 -->
+  <div class="modelAndDialogue">
+    <div id="modelArea">
+      <canvas id="canvas"></canvas>
+    </div>
+    <p class="modelMessage">[[ modelMessage ]]</p>
+  </div>
+  <!-- モード選択画面 -->
+  <template v-if='modeChoicePage'>
+    <div class="choiceBtnGrid">
+      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText">初心者<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
+      <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
+    </div>
+  </template>
+  <!-- 初心者モード -->
+  <template v-if='beginnerPage'>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter">[[ tutorialTitle ]]</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+        </div>
+        <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
+        <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">[[ startBtnMessage ]]</button>
+        <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
+          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
+          <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!-- 経験者モード -->
+  <template v-if='advancedPage'>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+        </div>
+        <div class="mainText">
+          <div class="advancedText">
+            <div class="note_text advancedTextShow" v-for="item in advancedText" :key="item.id">
+              <p>[[ item.text ]]</p>
+              <span class="material-icons">[[ item.check ]]</span>
+            </div>
+          </div>
+          <img class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../static/webpack/face.js"></script>
+
+{% endblock %}

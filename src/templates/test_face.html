@@ -1,0 +1,26 @@
+{% extends "layout.html" %}{% block content %}
+
+<!-- video の上に canvas をオーバーレイするための div 要素 -->
+<div id="container">
+  <!-- カメラ映像を流す video -->
+  <video id="video" width="400" height="300" autoplay></video>
+  <!-- 重ねて描画する canvas -->
+  <canvas id="faceCanvas" width="400" height="300"></canvas>
+</div>
+
+<div id="modelArea">
+  <canvas id="canvas"></canvas>
+</div>
+
+<!-- データ表示用 div 要素 -->
+<div id="dat"></div>
+
+<!-- clmtrackr 関連ファイルの読み込み -->
+<!-- clmtrackr のメインライブラリの読み込み -->
+<script src="../static/js/face/clmtrackr.js"></script>
+<!-- 顔モデル（※）の読み込み -->
+<script src="../static/js/face/model_pca_20_svm.js"></script>
+
+<script src="../static/webpack/face_test.js"></script>
+
+{% endblock %}

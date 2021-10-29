@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ff943d">
+  <meta property="og:title" content="にこトレ！">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicotore.herokuapp.com">
+  <meta property="og:image" content="https://nicotore.herokuapp.com/static/images/ogp-min.jpg" />
+  <meta property="og:description" content="表情筋を鍛えて素敵な笑顔を目指しましょう！">
+  <meta property="og:site_name" content="にこトレ！">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static/webpack/{{css}}.css">
+  <title>{{ pageTitle }}</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJK1BK4JBR"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HJK1BK4JBR');
+  </script>
+</head>
+
+<body>
+  {% block content %}
+  {% endblock %}
+</body>
+
+</html>

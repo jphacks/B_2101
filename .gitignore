@@ -1,0 +1,6 @@
+__pycache__
+config.yml
+
+src/static/webpack/*
+.DS_Store
+.venv
