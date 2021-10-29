@@ -110,6 +110,7 @@ const face = new Vue({
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
+        this.toggle = false
       }
     }
   },
