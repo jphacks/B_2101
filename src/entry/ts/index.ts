@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //var modelPass = '../static/base_model/base.vrm';
   //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
+  var pose_hello = '../static/pose/hellomirai.csv';
   var pose_a = '../static/pose/a_face.csv';
   var pose_i = '../static/pose/i_face.csv';
   var pose_u = '../static/pose/u_face.csv';
@@ -231,11 +232,17 @@ window.addEventListener("DOMContentLoaded", () => {
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
       }
-      if (stepValue == 5) { posepass = pose_o; 
+      if (stepValue == 5) {
+        posepass = pose_o; 
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
         faceNode.update()
-        stepValue = 0 }
+        }
+      if (stepValue == 10) {
+        posepass = pose_hello; 
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+        faceNode.update()
+        }
       //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       if (mixer != undefined) { makeAnimation(posepass) }
       //elapsedFlag =true

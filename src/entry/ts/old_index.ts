@@ -169,7 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
     faceNode = VRMSchema.BlendShapePresetName.A
-    console.log("facenode"+faceNode)
+    /*
     if (facemode == "normal") {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
       vrm.blendShapeProxy.update()
@@ -201,7 +201,7 @@ window.addEventListener("DOMContentLoaded", () => {
       vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
       vrm.blendShapeProxy.update()
     }
-
+    */
   }
   const makeAnimation = (posepass: string) => {
     // AnimationClipの生成

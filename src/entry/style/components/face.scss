@@ -115,8 +115,17 @@
 
 .orangeCircleBtn{
   border: 10px solid $dark-main-color;
+  //grid-row: 2 / 3;
+  //grid-column: 2 / 3;
+  z-index: 999;
+}
+
+#plateArea{
   grid-row: 2 / 3;
   grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #toggleArea{
