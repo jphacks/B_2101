@@ -93,12 +93,13 @@ const face = new Vue({
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = 'おわる'
-          this.animationFlag = 0
         }
       } else {
         if (sound == 1) {
           const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+          this.animationFlag = 10
           end_voice.play()
+
         }
         this.tutorialCountNum = 0
         this.tutorialTitle = 'にこトレの使い方'
