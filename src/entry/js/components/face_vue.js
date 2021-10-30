@@ -1,4 +1,6 @@
 import { isThisTypeNode } from "typescript";
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 const face = new Vue({
   el: '#face',
@@ -23,6 +25,7 @@ const face = new Vue({
     tutorialCountNum: 0,
     startBtnMessage: 'はじめる',
     nextBtnMessage: '次へ進む',
+    toggle: false,
     animationFlag: -5 //ページの初期番号 camera位置修正に使う
   },
   methods: {
@@ -37,7 +40,8 @@ const face = new Vue({
       this.beginnerPage = true
     },
     advancedMode: function () {
-      this.modelMessage = 'さっそく始めましょう！'
+      this.modelMessage = 'ただいま準備中です…！'
+      /*
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -45,6 +49,7 @@ const face = new Vue({
       }
       this.modeChoicePage=false
       this.advancedPage=true
+      */
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
@@ -67,7 +72,6 @@ const face = new Vue({
         this.startBtn = false
         this.nextBtnArea = true
       }
-      this.animationFlag = 1 //進んだら一に戻す
     },
     replayBtn: function () {
       var sound = document.getElementById('vueSound').value
@@ -78,7 +82,6 @@ const face = new Vue({
       this.modelMessage = '準備はいいですか？'
       this.nextBtnArea = false
       this.startBtn = true
-      //this.animationFlag = -1 //戻ったらマイナス－1
     },
     nextTraining: function () {
       var sound = document.getElementById('vueSound').value
@@ -96,7 +99,9 @@ const face = new Vue({
       } else {
         if (sound == 1) {
           const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+          this.animationFlag = 10
           end_voice.play()
+
         }
         this.tutorialCountNum = 0
         this.tutorialTitle = 'にこトレの使い方'
@@ -107,6 +112,17 @@ const face = new Vue({
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
+        this.toggle = false
+      }
+    }
+  },
+  watch: {
+    toggle: function () {
+      var myFace = document.getElementById('container')
+      if (this.toggle == true) {
+        myFace.style.visibility = 'visible'
+      } else {
+        myFace.style.visibility = 'hidden'
       }
     }
   }

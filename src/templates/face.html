@@ -1,24 +1,43 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 
+<div id="opening">
+  <div id="openingContents">
+    <img src="../static/images/logo.png" alt="URoidChat">
+    <p id="openingText"><span>Produced</span><span>by</span><span>team</span><span>UDN</span></p>
+  </div>
+</div>
+
 <form class="back2topBtn" action="/top" method="POST">
   <button type="submit"><span class="material-icons">arrow_back</span></button>
 </form>
 
 <div id="face">
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
-  <!-- モデル表示 -->
-  <div class="modelAndDialogue">
-    <div id="modelArea">
-      <canvas id="canvas"></canvas>
+  <div id="trainingArea">
+    <!-- 自分の顔を表示 -->
+    <div id="container" style="visibility: hidden;">
+      <video id="video" width="200" height="150" autoplay></video>
+      <canvas id="faceCanvas" width="200" height="150"></canvas>
     </div>
-    <p class="modelMessage">[[ modelMessage ]]</p>
+    <!-- モデル表示 -->
+    <div class="modelAndDialogue">
+      <div id="modelArea">
+        <canvas id="canvas"></canvas>
+      </div>
+      <p class="modelMessage">[[ modelMessage ]]</p>
+    </div>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
     <div class="choiceBtnGrid">
       <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText">初心者<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
-      <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
+      <div id="plateArea">
+        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
+        <div class="plate" id="navy">
+          <span>準備中</span>
+        </div>
+      </div>
     </div>
   </template>
   <!-- 初心者モード -->
@@ -34,6 +53,10 @@
         <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
           <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
+        </div>
+        <div  id="toggleArea">
+          <p class="note_text">自分の顔を確認する</p>
+          <toggle-button v-model="toggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
         </div>
       </div>
     </div>
@@ -60,7 +83,10 @@
   </template>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../static/js/face/clmtrackr.js"></script>
+<script src="../static/js/face/model_pca_20_svm.js"></script>
 <script src="../static/webpack/face.js"></script>
 
 {% endblock %}

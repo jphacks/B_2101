@@ -325,6 +325,57 @@ body {
   font-size: 35px;
 }
 
+/* checkbox */
+input[type=checkbox] {
+  display: none;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 30px;
+  position: relative;
+  width: auto;
+}
+
+.checkbox::before {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  content: "";
+  display: block;
+  height: 16px;
+  left: 5px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  width: 16px;
+}
+
+.checkbox::after {
+  border-right: 6px solid #ff943d;
+  border-bottom: 3px solid #ff943d;
+  content: "";
+  display: block;
+  height: 20px;
+  left: 11px;
+  margin-top: -16px;
+  opacity: 0;
+  position: absolute;
+  top: 55%;
+  transform: rotate(45deg);
+  width: 9px;
+}
+
+input[type=checkbox]:checked + .checkbox::before {
+  border-color: #9c9c9c;
+}
+
+input[type=checkbox]:checked + .checkbox::after {
+  opacity: 1;
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   body {
@@ -365,7 +416,7 @@ body {
 .text_heading {
   font-weight: bold;
   font-size: 1.4rem;
-  margin: 2.7rem 0 0 0;
+  margin: 3.5rem 0 0 0;
 }
 
 .highlighter {
@@ -442,9 +493,6 @@ body {
 
 #soundCheckbox {
   width: fit-content;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
   margin: 0 auto 1.5rem;
 }
 #soundCheckbox label {
@@ -456,5 +504,12 @@ body {
   #mainArea {
     flex-direction: column;
     padding: 3rem 0 5rem;
+  }
+
+  #soundCheckbox {
+    margin: 2.3rem auto 1.5rem;
+  }
+  #soundCheckbox label {
+    margin: 0;
   }
 }

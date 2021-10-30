@@ -325,6 +325,57 @@ body {
   font-size: 35px;
 }
 
+/* checkbox */
+input[type=checkbox] {
+  display: none;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 30px;
+  position: relative;
+  width: auto;
+}
+
+.checkbox::before {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  content: "";
+  display: block;
+  height: 16px;
+  left: 5px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  width: 16px;
+}
+
+.checkbox::after {
+  border-right: 6px solid #ff943d;
+  border-bottom: 3px solid #ff943d;
+  content: "";
+  display: block;
+  height: 20px;
+  left: 11px;
+  margin-top: -16px;
+  opacity: 0;
+  position: absolute;
+  top: 55%;
+  transform: rotate(45deg);
+  width: 9px;
+}
+
+input[type=checkbox]:checked + .checkbox::before {
+  border-color: #9c9c9c;
+}
+
+input[type=checkbox]:checked + .checkbox::after {
+  opacity: 1;
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   body {
@@ -336,6 +387,74 @@ body {
     height: 75vh;
   }
 }
+#opening {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 9000;
+}
+#opening #openingContents {
+  opacity: 0;
+  transition: 1500ms;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+#opening #openingContents.is-fadein {
+  opacity: 1;
+}
+#opening #openingContents img {
+  display: block;
+  width: 14rem;
+  margin: 0 auto 2rem;
+}
+#opening #openingContents #openingText {
+  width: fit-content;
+  display: flex;
+  font-family: "Architects Daughter", cursive;
+  color: #ff943d;
+  font-size: 1.8rem;
+  gap: 0 1rem;
+  margin: 0 auto;
+  letter-spacing: 0.05rem;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #opening #openingContents img {
+    width: 15rem;
+  }
+  #opening #openingContents #openingText {
+    font-size: 1.3rem;
+    gap: 0 0.8rem;
+  }
+}
+/* mobileここまで */
+#container {
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  /* 座標指定を相対値指定にする */
+}
+
+#video {
+  transform: scaleX(-1);
+  /* 左右反転させる */
+}
+
+#faceCanvas {
+  transform: scaleX(-1);
+  /* 左右反転させる */
+  position: absolute;
+  /* 座標指定を絶対値指定にして */
+  left: 0;
+  /* X座標を0に */
+  top: 0;
+  /* Y座標を0に */
+}
+
 .note_wrap {
   background-color: #fff;
   width: 35rem;
@@ -365,7 +484,7 @@ body {
 .text_heading {
   font-weight: bold;
   font-size: 1.4rem;
-  margin: 2.7rem 0 0 0;
+  margin: 3.5rem 0 0 0;
 }
 
 .highlighter {
@@ -432,20 +551,27 @@ body {
 #face {
   width: fit-content;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 2rem;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding: 3rem 0 0;
+}
+
+#trainingArea {
+  display: flex;
+  flex-direction: column;
 }
 
 #modelArea canvas {
   width: 40vw;
-  height: 77.7777777778vh;
+  height: 66.6666666667vh;
 }
 
 .beginnerNextBtnArea {
   width: fit-content;
   display: flex;
+  flex-direction: row;
   gap: 2.5rem;
   margin: 0 auto;
 }
@@ -539,4 +665,50 @@ body {
   border: 10px solid #f36d00;
   grid-row: 2/3;
   grid-column: 2/3;
+}
+
+#toggleArea {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.1rem auto 0;
+}
+#toggleArea p {
+  margin: 0;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #face {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 0 5rem;
+  }
+
+  #modelArea canvas {
+    width: 80vw;
+    height: 66.6666666667vh;
+  }
+
+  .beginnerNextBtnArea {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .note_wrap {
+    width: 20rem;
+  }
+
+  .choiceBtnGrid {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #toggleArea {
+    gap: 0.5rem;
+    margin: 1.4rem auto;
+  }
 }

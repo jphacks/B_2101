@@ -59,6 +59,52 @@ body {
   }
 }
 
+/* checkbox */
+input[type=checkbox] {
+  display: none;
+}
+.checkbox {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 30px;
+  position: relative;
+  width: auto;
+}
+.checkbox::before {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  height: 16px;
+  left: 5px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  width: 16px;
+}
+.checkbox::after {
+  border-right: 6px solid $main-color;
+  border-bottom: 3px solid $main-color;
+  content: '';
+  display: block;
+  height: 20px;
+  left: 11px;
+  margin-top: -16px;
+  opacity: 0;
+  position: absolute;
+  top: 55%;
+  transform: rotate(45deg);
+  width: 9px;
+}
+input[type=checkbox]:checked + .checkbox::before {
+  border-color: #9c9c9c;
+}
+input[type=checkbox]:checked + .checkbox::after {
+  opacity: 1;
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   body {
