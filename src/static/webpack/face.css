@@ -548,6 +548,57 @@ input[type=checkbox]:checked + .checkbox::after {
     gap: 1.2rem;
   }
 }
+/*看板部分*/
+.plate {
+  width: fit-content;
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  border: 10px solid #f36d00;
+  position: relative;
+}
+
+#navy {
+  background: #fff;
+  box-shadow: 5px 5px 13px #a17a46;
+}
+
+/*文字部分*/
+.plate span {
+  padding: 1.3rem 2.5rem;
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#navy span {
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  color: #494949;
+}
+
+.plate:before,
+.plate:after {
+  content: "";
+  width: 10px;
+  height: 40px;
+  position: absolute;
+  top: -50px;
+}
+
+.plate:before {
+  left: 1.6rem;
+}
+
+.plate:after {
+  right: 1.6rem;
+}
+
+#navy:before,
+#navy:after {
+  background: #fcfcfa;
+}
+
 #face {
   width: fit-content;
   display: flex;
@@ -663,8 +714,15 @@ input[type=checkbox]:checked + .checkbox::after {
 
 .orangeCircleBtn {
   border: 10px solid #f36d00;
+  z-index: 999;
+}
+
+#plateArea {
   grid-row: 2/3;
   grid-column: 2/3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #toggleArea {
