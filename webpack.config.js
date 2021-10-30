@@ -4,6 +4,7 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
   mode: 'development',
+  //mode: 'production',
   entry: {
     'top': './src/entry/js/pages/top.js',
     'face': './src/entry/js/pages/face.js',
