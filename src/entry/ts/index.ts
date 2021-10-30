@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
   var posepass = '../static/pose/hellomirai.csv';
   var pose_hello = '../static/pose/hellomirai.csv';
   var pose_a = '../static/pose/a_face.csv';
-  var pose_i = '../static/pose/i_face.csv';
+  var pose_i = '../static/pose/cats.csv';
   var pose_u = '../static/pose/u_face.csv';
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
@@ -215,6 +215,8 @@ window.addEventListener("DOMContentLoaded", () => {
             }
       if (stepValue == 2) { 
         posepass = pose_i
+        console.log(posepass)
+        console.log(posepass)
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
         faceNode.update()

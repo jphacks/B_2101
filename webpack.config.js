@@ -3,7 +3,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
-  mode: 'development',
+  //mode: 'development',
+  mode: 'production',
   entry: {
     'top': './src/entry/js/pages/top.js',
     'face': './src/entry/js/pages/face.js',
@@ -43,15 +44,15 @@ module.exports = {
               // 1 => postcss-loader;
               // 2 => postcss-loader, sass-loader
               importLoaders: 2,
-              sourceMap: true
-              //sourceMap: false
+              //sourceMap: true
+              sourceMap: false
             }
           },
           {
             loader: "sass-loader",
             options: {
-              sourceMap: true
-              //sourceMap: false
+              //sourceMap: true
+              sourceMap: false
             },
           },
         ],
