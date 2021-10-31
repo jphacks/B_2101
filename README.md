@@ -69,7 +69,7 @@ https://nicotore.herokuapp.com/
 #### &#x1f609; フレームワーク・ライブラリ・モジュール
 * HTML
 * CSS( Sass )
-* JavaScript( jQuery / Three.js / Vue.js )
+* JavaScript( jQuery / Three.js / Vue.js / clmtrackr.js )
 * TypeScript
 * python( Flask )
 * webpack
