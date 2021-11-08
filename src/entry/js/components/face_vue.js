@@ -52,14 +52,17 @@ const face = new Vue({
       this.advancedPage=true
     },
     advancedStart: function () {
+      const advancedMessage = ['まずは「あ」です！', '次は「い」です！', '次は「う」です！', '次は「え」です！', '最後は「お」です！', 'お疲れ様でした！']
       console.log('start!!')
       this.advancedStartBtn = false
       let count = 0;
       this.animationFlag = 1
+      this.modelMessage = advancedMessage[count]
       const countUp = () => {
         this.advancedText[count].check = 'done'
         console.log(count++);
         this.animationFlag += 1
+        this.modelMessage = advancedMessage[count]
       }
       const intervalId = setInterval(() =>{
         countUp();
@@ -67,7 +70,6 @@ const face = new Vue({
           clearInterval(intervalId);
           this.animationFlag = 10
           this.hanamaru = true
-          this.modelMessage = 'お疲れ様でした！'
       }}, 10000);
     },
     trainingStart: function () {
