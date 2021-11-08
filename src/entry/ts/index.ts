@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 //import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
 import { mode } from '../../../webpack.config';
@@ -47,7 +47,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const camera = new THREE.PerspectiveCamera(
     35,
     canvas.clientWidth / canvas.clientHeight,
-
     0.1,
     1000,
   )
@@ -56,11 +55,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // VRMの読み込み
   var boneNode: any = []
-  var faceNode:any = []
+  var faceNode: any = []
   let mixer: any
   const loader = new GLTFLoader()
   newLoad()
-  
+
   function newLoad() {
     loader.load(modelPass,
       (gltf) => {
@@ -72,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
           makeAnimation(posepass);
         })
       },
-      (progress) => console.log('Loading model...', 100.0 * (progress.loaded / progress.total), '%'),
+      (progress) => console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%'),
       (error) => console.error(error)
     )
   }
@@ -151,21 +150,20 @@ window.addEventListener("DOMContentLoaded", () => {
     action.play()
   }
 
-  const resetFaceNode = (faceNode:any) => {
-    faceNode.setValue(VRMSchema.BlendShapePresetName.Angry, 0)   
+  const resetFaceNode = (faceNode: any) => {
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Angry, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.Sorrow, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.I, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.E, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0)
   }
 
   //消えないように変数宣言
   let lastTime = (new Date()).getTime()
-  let cnt = 0
   let stepValue = 0
   let step = <HTMLInputElement>document.getElementById('flag');
   //let step = 0
@@ -184,18 +182,8 @@ window.addEventListener("DOMContentLoaded", () => {
     if (mixer) {
       mixer.update(delta)
     }
-    /*
-    if(cnt==200){
-      //posepass = posepass2
-      console.log("切り替え！")
-      //scene.children[7].
-//      .setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
-      //VRM.from.blendShapeProxy.update()
-      //step = 1
-    }*/
 
     if (Number(step.value) != 0) {
-      console.log("計測開始！");
       console.log("step.value" + step.value)
       //startStep = (new Date()).getTime();
       stepValue = Number(step.value);
@@ -207,44 +195,44 @@ window.addEventListener("DOMContentLoaded", () => {
         camera.lookAt(0, 1.4, 0);
         stepValue = 0
       }
-      if (stepValue == 1) { 
+      if (stepValue == 1) {
         posepass = pose_a
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
-            }
-      if (stepValue == 2) { 
+      }
+      if (stepValue == 2) {
         posepass = pose_i
-        console.log(posepass)
-        console.log(posepass)
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
         faceNode.update()
-             }
-      if (stepValue == 3) { 
+      }
+      if (stepValue == 3) {
         posepass = pose_u
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
         faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 1.0)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
-        faceNode.update() }
-      if (stepValue == 4) { 
-        posepass = pose_e 
+        faceNode.update()
+      }
+      if (stepValue == 4) {
+        posepass = pose_e
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
       }
       if (stepValue == 5) {
-        posepass = pose_o; 
+        posepass = pose_o;
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
         faceNode.update()
-        }
+      }
       if (stepValue == 10) {
-        posepass = pose_hello; 
+        posepass = pose_hello;
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
         faceNode.update()
-        }
+        stepValue = 0
+      }
       //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       if (mixer != undefined) { makeAnimation(posepass) }
       //elapsedFlag =true
@@ -254,11 +242,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 最終更新時間
     lastTime = time;
-    cnt += 1
 
     // レンダリング
     renderer.render(scene, camera)
   }
- update()
+  update()
 })
 
