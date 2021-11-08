@@ -52,14 +52,17 @@ const face = new Vue({
     advancedStart: function () {
       console.log('start!!')
       let count = 0;
+      this.animationFlag = 1
       const countUp = () =>{
         console.log(count++);
+        this.animationFlag += 1
       }
       const intervalId = setInterval(() =>{
         countUp();
         if(count > 4){　
           clearInterval(intervalId);
-      }}, 1000);
+          this.animationFlag = 10
+      }}, 10000);
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
