@@ -30,7 +30,7 @@ const face = new Vue({
   },
   methods: {
     beginnerMode: function () {
-      this.modelMessage = 'さっそく始めましょう！'
+      this.modelMessage = '一緒に頑張りましょう！'
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -40,8 +40,7 @@ const face = new Vue({
       this.beginnerPage = true
     },
     advancedMode: function () {
-      this.modelMessage = 'ただいま準備中です…！'
-      /*
+      this.modelMessage = 'さっそく始めましょう！'
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -49,7 +48,6 @@ const face = new Vue({
       }
       this.modeChoicePage=false
       this.advancedPage=true
-      */
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
