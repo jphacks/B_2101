@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
           makeAnimation(posepass);
         })
       },
-      (progress) => console.log('Loading model...', 100.0 * (progress.loaded / progress.total), '%'),
+      (progress) => console.log('Loading model...',Math.round(100.0 * (progress.loaded / progress.total)), '%'),
       (error) => console.error(error)
     )
   }
@@ -244,6 +244,7 @@ window.addEventListener("DOMContentLoaded", () => {
         posepass = pose_hello; 
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
         faceNode.update()
+        stepValue = 0
         }
       //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
       if (mixer != undefined) { makeAnimation(posepass) }
