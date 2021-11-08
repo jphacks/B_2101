@@ -12,6 +12,7 @@ const face = new Vue({
     advancedPage: false,
     startBtn: true,
     nextBtnArea: false,
+    advancedStartBtn: true,
     hanamaru: false,
     modelMessage: 'どちらのモードにしますか？',
     tutorialTitle: 'にこトレの使い方',
@@ -52,6 +53,7 @@ const face = new Vue({
     },
     advancedStart: function () {
       console.log('start!!')
+      this.advancedStartBtn = false
       let count = 0;
       this.animationFlag = 1
       const countUp = () => {
@@ -65,6 +67,7 @@ const face = new Vue({
           clearInterval(intervalId);
           this.animationFlag = 10
           this.hanamaru = true
+          this.modelMessage = 'お疲れ様でした！'
       }}, 10000);
     },
     trainingStart: function () {
