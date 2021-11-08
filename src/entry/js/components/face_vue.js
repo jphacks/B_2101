@@ -49,6 +49,9 @@ const face = new Vue({
       this.modeChoicePage=false
       this.advancedPage=true
     },
+    advancedStart: function () {
+      console.log('start!!')
+    },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
       this.tutorialTitle = 'あいうえお体操'
