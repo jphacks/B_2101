@@ -16,7 +16,7 @@ const face = new Vue({
     tutorialTitle: 'にこトレの使い方',
     tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
     advancedText: [
-      { id: '0', text: '・「あ」', check: 'done' },
+      { id: '0', text: '・「あ」', check: '' },
       { id: '1', text: '・「い」', check: '' },
       { id: '2', text: '・「う」', check: '' },
       { id: '3', text: '・「え」', check: '' },
@@ -53,7 +53,8 @@ const face = new Vue({
       console.log('start!!')
       let count = 0;
       this.animationFlag = 1
-      const countUp = () =>{
+      const countUp = () => {
+        this.advancedText[count].check = 'done'
         console.log(count++);
         this.animationFlag += 1
       }
