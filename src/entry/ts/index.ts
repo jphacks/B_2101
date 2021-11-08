@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
         })
       },
       (progress) => //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%')
-      (<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total)))+"%" ,
+      (<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total))),
       (error) => console.error(error)
     )
   }
