@@ -12,11 +12,13 @@ const face = new Vue({
     advancedPage: false,
     startBtn: true,
     nextBtnArea: false,
+    advancedStartBtn: true,
+    hanamaru: false,
     modelMessage: 'どちらのモードにしますか？',
     tutorialTitle: 'にこトレの使い方',
     tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
     advancedText: [
-      { id: '0', text: '・「あ」', check: 'done' },
+      { id: '0', text: '・「あ」', check: '' },
       { id: '1', text: '・「い」', check: '' },
       { id: '2', text: '・「う」', check: '' },
       { id: '3', text: '・「え」', check: '' },
@@ -30,7 +32,7 @@ const face = new Vue({
   },
   methods: {
     beginnerMode: function () {
-      this.modelMessage = 'さっそく始めましょう！'
+      this.modelMessage = '一緒に頑張りましょう！'
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -40,8 +42,7 @@ const face = new Vue({
       this.beginnerPage = true
     },
     advancedMode: function () {
-      this.modelMessage = 'ただいま準備中です…！'
-      /*
+      this.modelMessage = 'さっそく始めましょう！'
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -49,7 +50,42 @@ const face = new Vue({
       }
       this.modeChoicePage=false
       this.advancedPage=true
-      */
+    },
+    advancedStart: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const try_se = new Audio("./static/sound/sound_effect/try.mp3")
+        try_se.play()
+      }
+      const advancedMessage = ['まずは「あ」です！', '次は「い」です！', '次は「う」です！', '次は「え」です！', '最後は「お」です！', 'お疲れ様でした！']
+      console.log('start!!')
+      this.advancedStartBtn = false
+      let count = 0;
+      this.animationFlag = 1
+      this.modelMessage = advancedMessage[count]
+      const countUp = () => {
+        this.advancedText[count].check = 'done'
+        if (sound == 1) {
+          if (count != 4) {
+            const nextPlay = new Audio("./static/sound/sound_effect/nextPlay.mp3")
+            nextPlay.play()
+          }
+        }
+        console.log(count++);
+        this.animationFlag += 1
+        this.modelMessage = advancedMessage[count]
+      }
+      const intervalId = setInterval(() =>{
+        countUp();
+        if(count > 4){　
+          clearInterval(intervalId);
+          if (sound == 1) {
+            const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+            end_voice.play()
+          }
+          this.animationFlag = 10
+          this.hanamaru = true
+      }}, 10000);
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
