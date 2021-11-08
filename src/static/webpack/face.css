@@ -646,7 +646,7 @@ input[type=checkbox]:checked + .checkbox::after {
 }
 
 .hanamaru {
-  width: 9rem;
+  width: 7.5rem;
   height: fit-content;
   margin-right: 1rem;
   transform: rotate(15deg);
