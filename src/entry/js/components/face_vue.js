@@ -52,6 +52,11 @@ const face = new Vue({
       this.advancedPage=true
     },
     advancedStart: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const try_se = new Audio("./static/sound/sound_effect/try.mp3")
+        try_se.play()
+      }
       const advancedMessage = ['まずは「あ」です！', '次は「い」です！', '次は「う」です！', '次は「え」です！', '最後は「お」です！', 'お疲れ様でした！']
       console.log('start!!')
       this.advancedStartBtn = false
@@ -60,6 +65,12 @@ const face = new Vue({
       this.modelMessage = advancedMessage[count]
       const countUp = () => {
         this.advancedText[count].check = 'done'
+        if (sound == 1) {
+          if (count != 4) {
+            const nextPlay = new Audio("./static/sound/sound_effect/nextPlay.mp3")
+            nextPlay.play()
+          }
+        }
         console.log(count++);
         this.animationFlag += 1
         this.modelMessage = advancedMessage[count]
@@ -68,6 +79,10 @@ const face = new Vue({
         countUp();
         if(count > 4){　
           clearInterval(intervalId);
+          if (sound == 1) {
+            const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+            end_voice.play()
+          }
           this.animationFlag = 10
           this.hanamaru = true
       }}, 10000);
