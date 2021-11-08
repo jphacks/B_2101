@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", () => {
   var pose_u = '../static/pose/u_face.csv';
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
-  var facemode = 'normal';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -128,11 +127,8 @@ window.addEventListener("DOMContentLoaded", () => {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
     faceNode = vrm.blendShapeProxy //表情読み込む用のやつ
-    if (facemode == "normal") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-
+    vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+    vrm.blendShapeProxy.update()
   }
   const makeAnimation = (posepass: string) => {
     // AnimationClipの生成
