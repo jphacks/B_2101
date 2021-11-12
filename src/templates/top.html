@@ -1,8 +1,18 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
+<!--<input id="loading" type="text" value="0" style="display: none;"></input>-->
 
 <div id="mainArea">
   <div id="modelArea">
+    <div id="loading" class="container">
+      <div id="progressTextArea">
+        <p>Now Loading ...</p>
+        <p id="progressNum"></p>
+      </div>
+      <div id="progressBar">
+        <div id="progressBarFull"></div>
+      </div>
+    </div>
     <canvas id="canvas"></canvas>
     <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
   </div>

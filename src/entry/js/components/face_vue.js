@@ -135,10 +135,9 @@ const face = new Vue({
       } else {
         if (sound == 1) {
           const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
-          this.animationFlag = 10
           end_voice.play()
-
         }
+        this.animationFlag = 10
         this.tutorialCountNum = 0
         this.tutorialTitle = 'にこトレの使い方'
         this.startBtnMessage = 'はじめる'

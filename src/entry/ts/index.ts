@@ -11,8 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // model_pathの取得
   var modelPass = '../static/base_model/Miraikomachi.vrm';
-  //var modelPass = '../static/base_model/base.vrm';
-  //var posepass = '../static/pose/hellovrm.csv';
   var posepass = '../static/pose/hellomirai.csv';
   var pose_hello = '../static/pose/hellomirai.csv';
   var pose_a = '../static/pose/a_face.csv';
@@ -67,10 +65,19 @@ window.addEventListener("DOMContentLoaded", () => {
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
-          makeAnimation(posepass);
+          makeAnimation(pose_hello);
         })
       },
-      (progress) => console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%'),
+      (progress) => //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%')
+      {
+        /*(<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total)));*/
+        console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
+        const progressNum = <HTMLInputElement>document.getElementById('progressNum');
+        progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
+        const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
+        progressBarFull.style.width = Math.round(100.0 * (progress.loaded / progress.total)) + '%';
+        if((Math.round(100.0 * (progress.loaded / progress.total))) == 100) {(<HTMLInputElement>document.getElementById('loading')).style.display = 'none'}
+      },
       (error) => console.error(error)
     )
   }
@@ -117,7 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
     return hierarchy
   }
 
-  // アニメーションの設定
+  // アニメーションの初期設定
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
@@ -130,10 +137,12 @@ window.addEventListener("DOMContentLoaded", () => {
     vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
     vrm.blendShapeProxy.update()
   }
+
+  //アニメーションをセットする
   const makeAnimation = (posepass: string) => {
-    // AnimationClipの生成
-    const clip = THREE.AnimationClip.parseAnimation({
-      hierarchy: csv2hierarchy(http2str(posepass), 200)
+  // AnimationClipの生成
+  const clip = THREE.AnimationClip.parseAnimation({
+    hierarchy: csv2hierarchy(http2str(posepass), 200)
     }, boneNode)
     // トラック名の変更
     clip.tracks.some((track) => {
@@ -162,9 +171,6 @@ window.addEventListener("DOMContentLoaded", () => {
   let lastTime = (new Date()).getTime()
   let stepValue = 0
   let step = <HTMLInputElement>document.getElementById('flag');
-  //let step = 0
-  //let startStep = 0
-  //let elapsedFlag = true
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -178,18 +184,16 @@ window.addEventListener("DOMContentLoaded", () => {
     if (mixer) {
       mixer.update(delta)
     }
-
+    
+    //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
       console.log("step.value" + step.value)
-      //startStep = (new Date()).getTime();
       stepValue = Number(step.value);
-      (<HTMLInputElement>document.getElementById('flag')).value = '0';
       console.log("stepValue" + stepValue)
       if (mixer != null) { resetFaceNode(faceNode) }
       if (stepValue == -5) {
         camera.position.set(0, 1.3, 0.85);
         camera.lookAt(0, 1.4, 0);
-        stepValue = 0
       }
       if (stepValue == 1) {
         posepass = pose_a
@@ -227,15 +231,10 @@ window.addEventListener("DOMContentLoaded", () => {
         posepass = pose_hello;
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
         faceNode.update()
-        stepValue = 0
-        }
-      //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
+      }
       if (mixer != undefined) { makeAnimation(posepass) }
-      //elapsedFlag =true
+      (<HTMLInputElement>document.getElementById('flag')).value = '0';
     }
-    //let step_elapsed = time - startStep
-    //if(step_elapsed > 5000){}
-
     // 最終更新時間
     lastTime = time;
 
