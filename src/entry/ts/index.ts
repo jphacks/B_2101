@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", () => {
         progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
         const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
         progressBarFull.style.width = Math.round(100.0 * (progress.loaded / progress.total)) + '%';
-         /*if((Math.round(100.0 * (progress.loaded / progress.total))) == 100) {(<HTMLInputElement>document.getElementById('loading')).style.display = 'none'}*/
+        if((Math.round(100.0 * (progress.loaded / progress.total))) == 100) {(<HTMLInputElement>document.getElementById('loading')).style.display = 'none'}
       },
       (error) => console.error(error)
     )
