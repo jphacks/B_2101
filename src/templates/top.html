@@ -4,7 +4,11 @@
 
 <div id="mainArea">
   <div id="modelArea">
-    <progress id="loading" type="text" value="0"></progress>
+    <div id="loading" class="container">
+      <div id="progressBar">
+        <div id="progressBarFull"></div>
+      </div>
+    </div>
     <canvas id="canvas"></canvas>
     <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
   </div>
