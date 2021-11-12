@@ -68,7 +68,16 @@ window.addEventListener("DOMContentLoaded", () => {
           makeAnimation(pose_hello);
         })
       },
-      (progress) => console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%'),
+      (progress) => //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%')
+      {
+        /*(<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total)));*/
+        console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
+        const progressNum = <HTMLInputElement>document.getElementById('progressNum');
+        progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
+        const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
+        progressBarFull.style.width = Math.round(100.0 * (progress.loaded / progress.total)) + '%';
+        if((Math.round(100.0 * (progress.loaded / progress.total))) == 100) {(<HTMLInputElement>document.getElementById('loading')).style.display = 'none'}
+      },
       (error) => console.error(error)
     )
   }
