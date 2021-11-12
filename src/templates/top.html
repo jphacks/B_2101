@@ -1,9 +1,10 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
-<input id="loading" type="text" value="0" style="display: none;"></input>
+<!--<input id="loading" type="text" value="0" style="display: none;"></input>-->
 
 <div id="mainArea">
   <div id="modelArea">
+    <progress id="loading" type="text" value="0"></progress>
     <canvas id="canvas"></canvas>
     <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
   </div>
