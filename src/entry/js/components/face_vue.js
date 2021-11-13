@@ -14,6 +14,7 @@ const face = new Vue({
     nextBtnArea: false,
     advancedStartBtn: true,
     hanamaru: false,
+    cameraChangeBtn: false,
     modelMessage: 'どちらのモードにしますか？',
     tutorialTitle: 'にこトレの使い方',
     tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
@@ -27,8 +28,26 @@ const face = new Vue({
     tutorialCountNum: 0,
     startBtnMessage: 'はじめる',
     nextBtnMessage: '次へ進む',
-    toggle: false,
-    animationFlag: -5 //ページの初期番号 camera位置修正に使う
+    faceShowToggle: false,
+    cameraChangeToggle: false,
+    animationFlag: -5, //ページの初期番号 camera位置修正に使う
+    canvasWidth: 0,
+    canvasHeight: 0,
+    canvasRatio: 0,
+    faceCanvasWidth: 0,
+    faceCanvasHeight: 0,
+    faceCanvasRatio: 0,
+    modelAndDialogueFlex: ''
+  },
+  mounted: function () {
+    var canvas = document.getElementById('canvas')
+    this.canvasWidth = canvas.clientWidth
+    this.canvasHeight = canvas.clientHeight
+    this.canvasRatio = this.canvasHeight / this.canvasWidth
+    var faceCanvas = document.getElementById('faceCanvas')
+    this.faceCanvasWidth = faceCanvas.clientWidth
+    this.faceCanvasHeight = faceCanvas.clientHeight
+    this.faceCanvasRatio = this.faceCanvasHeight/this.faceCanvasWidth
   },
   methods: {
     beginnerMode: function () {
@@ -85,6 +104,8 @@ const face = new Vue({
           }
           this.animationFlag = 10
           this.hanamaru = true
+          this.faceShowToggle = false
+          this.cameraChangeToggle = false
       }}, 10000);
     },
     trainingStart: function () {
@@ -147,17 +168,51 @@ const face = new Vue({
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
-        this.toggle = false
+        this.faceShowToggle = false
+        this.cameraChangeToggle = false
       }
+    },
+    cameraChange: function () {
+      console.log('change!')
+      var trainingArea = document.getElementById('trainingArea')
+      trainingArea.style.flexDirection = 'column-reverse'
     }
   },
   watch: {
-    toggle: function () {
+    faceShowToggle: function () {
       var myFace = document.getElementById('container')
-      if (this.toggle == true) {
+      if (this.faceShowToggle == true) {
         myFace.style.visibility = 'visible'
+        this.cameraChangeBtn = true
       } else {
         myFace.style.visibility = 'hidden'
+        this.cameraChangeBtn = false
+        this.cameraChangeToggle = false
+      }
+    },
+    cameraChangeToggle: function () {
+      var trainingArea = document.getElementById('trainingArea')
+      var canvas = document.getElementById('canvas')
+      var video = document.getElementById('video')
+      var faceCanvas = document.getElementById('faceCanvas')
+      if (this.cameraChangeToggle == true) {
+        trainingArea.style.flexDirection = 'column-reverse'
+        canvas.style.width = (this.canvasWidth/3) + 'px'
+        canvas.style.height = (this.canvasWidth / 3) * this.canvasRatio + 'px'
+        video.style.width = this.canvasWidth + 'px'
+        video.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
+        faceCanvas.style.width = this.canvasWidth + 'px'
+        faceCanvas.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
+        this.modelAndDialogueFlex = 'modelAndDialogueFlex'
+      } else {
+        trainingArea.style.flexDirection = 'column'
+        canvas.style.width = this.canvasWidth + 'px'
+        canvas.style.height = this.canvasHeight + 'px'
+        video.style.width = this.faceCanvasWidth + 'px'
+        video.style.height = this.faceCanvasHeight + 'px'
+        faceCanvas.style.width = this.faceCanvasWidth + 'px'
+        faceCanvas.style.height = this.faceCanvasHeight + 'px'
+        this.modelAndDialogueFlex = ''
       }
     }
   }
