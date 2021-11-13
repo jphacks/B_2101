@@ -30,7 +30,16 @@ const face = new Vue({
     nextBtnMessage: '次へ進む',
     faceShowToggle: false,
     cameraChangeToggle: false,
-    animationFlag: -5 //ページの初期番号 camera位置修正に使う
+    animationFlag: -5, //ページの初期番号 camera位置修正に使う
+    canvasWidth: 0,
+    canvasHeight: 0,
+    canvasRatio: 0
+  },
+  mounted: function () {
+    var canvas = document.getElementById('canvas')
+    this.canvasWidth = canvas.clientWidth
+    this.canvasHeight = canvas.clientHeight
+    this.canvasRatio = this.canvasHeight/this.canvasWidth
   },
   methods: {
     beginnerMode: function () {
@@ -172,10 +181,15 @@ const face = new Vue({
     },
     cameraChangeToggle: function () {
       var trainingArea = document.getElementById('trainingArea')
+      var canvas = document.getElementById('canvas')
       if (this.cameraChangeToggle == true) {
         trainingArea.style.flexDirection = 'column-reverse'
+        canvas.style.width = (this.canvasWidth/3) + 'px'
+        canvas.style.height = (this.canvasWidth/3)*this.canvasRatio+ 'px'
       } else {
         trainingArea.style.flexDirection = 'column'
+        canvas.style.width = this.canvasWidth + 'px'
+        canvas.style.height = this.canvasHeight + 'px'
       }
     }
   }
