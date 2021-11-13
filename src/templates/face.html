@@ -2,6 +2,16 @@
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 <input id="loading" type="text" value="0" style="display: none;"></input>
 
+<div id="loading" class="container" style="display:none;">
+  <div id="progressTextArea">
+    <p>Now Loading ...</p>
+    <p id="progressNum"></p>
+  </div>
+  <div id="progressBar">
+    <div id="progressBarFull"></div>
+  </div>
+</div>
+
 <!-- localStorage test -->
 <button id="test">count up</button>
 <button id="test2">reset</button>
