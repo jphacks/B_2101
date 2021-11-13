@@ -36,7 +36,8 @@ const face = new Vue({
     canvasRatio: 0,
     faceCanvasWidth: 0,
     faceCanvasHeight: 0,
-    faceCanvasRatio: 0
+    faceCanvasRatio: 0,
+    modelAndDialogueFlex: ''
   },
   mounted: function () {
     var canvas = document.getElementById('canvas')
@@ -199,6 +200,7 @@ const face = new Vue({
         video.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
         faceCanvas.style.width = this.canvasWidth + 'px'
         faceCanvas.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
+        this.modelAndDialogueFlex = 'modelAndDialogueFlex'
       } else {
         trainingArea.style.flexDirection = 'column'
         canvas.style.width = this.canvasWidth + 'px'
@@ -207,6 +209,7 @@ const face = new Vue({
         video.style.height = this.faceCanvasHeight + 'px'
         faceCanvas.style.width = this.faceCanvasWidth + 'px'
         faceCanvas.style.height = this.faceCanvasHeight + 'px'
+        this.modelAndDialogueFlex = ''
       }
     }
   }
