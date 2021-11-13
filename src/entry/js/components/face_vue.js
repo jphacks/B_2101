@@ -104,6 +104,8 @@ const face = new Vue({
           }
           this.animationFlag = 10
           this.hanamaru = true
+          this.faceShowToggle = false
+          this.cameraChangeToggle = false
       }}, 10000);
     },
     trainingStart: function () {
@@ -166,7 +168,8 @@ const face = new Vue({
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
-        this.toggle = false
+        this.faceShowToggle = false
+        this.cameraChangeToggle = false
       }
     },
     cameraChange: function () {
