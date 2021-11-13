@@ -33,13 +33,20 @@ const face = new Vue({
     animationFlag: -5, //ページの初期番号 camera位置修正に使う
     canvasWidth: 0,
     canvasHeight: 0,
-    canvasRatio: 0
+    canvasRatio: 0,
+    faceCanvasWidth: 0,
+    faceCanvasHeight: 0,
+    faceCanvasRatio: 0
   },
   mounted: function () {
     var canvas = document.getElementById('canvas')
     this.canvasWidth = canvas.clientWidth
     this.canvasHeight = canvas.clientHeight
-    this.canvasRatio = this.canvasHeight/this.canvasWidth
+    this.canvasRatio = this.canvasHeight / this.canvasWidth
+    var faceCanvas = document.getElementById('faceCanvas')
+    this.faceCanvasWidth = faceCanvas.clientWidth
+    this.faceCanvasHeight = faceCanvas.clientHeight
+    this.faceCanvasRatio = this.faceCanvasHeight/this.faceCanvasWidth
   },
   methods: {
     beginnerMode: function () {
@@ -182,14 +189,24 @@ const face = new Vue({
     cameraChangeToggle: function () {
       var trainingArea = document.getElementById('trainingArea')
       var canvas = document.getElementById('canvas')
+      var video = document.getElementById('video')
+      var faceCanvas = document.getElementById('faceCanvas')
       if (this.cameraChangeToggle == true) {
         trainingArea.style.flexDirection = 'column-reverse'
         canvas.style.width = (this.canvasWidth/3) + 'px'
-        canvas.style.height = (this.canvasWidth/3)*this.canvasRatio+ 'px'
+        canvas.style.height = (this.canvasWidth / 3) * this.canvasRatio + 'px'
+        video.style.width = this.canvasWidth + 'px'
+        video.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
+        faceCanvas.style.width = this.canvasWidth + 'px'
+        faceCanvas.style.height = this.canvasWidth * this.faceCanvasRatio + 'px'
       } else {
         trainingArea.style.flexDirection = 'column'
         canvas.style.width = this.canvasWidth + 'px'
         canvas.style.height = this.canvasHeight + 'px'
+        video.style.width = this.faceCanvasWidth + 'px'
+        video.style.height = this.faceCanvasHeight + 'px'
+        faceCanvas.style.width = this.faceCanvasWidth + 'px'
+        faceCanvas.style.height = this.faceCanvasHeight + 'px'
       }
     }
   }
