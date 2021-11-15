@@ -21,7 +21,7 @@
       <!-- localStorage remove btn -->
       <button @click="localStorageRemove">reset</button>
       <!-- inquiry form link -->
-      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="material-icons">open_in_new</span></a>
+      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer" v-if="info">[[ info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
       <div id="multilingualArea">
         <span class="material-icons">language</span>
         <select v-model="selected">
@@ -52,6 +52,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="../static/webpack/top.js"></script>
 
 {% endblock %}
