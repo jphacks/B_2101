@@ -6,3 +6,7 @@ document.getElementById("sound").onclick = function () {
     helloVoice.play();
   }
 }
+
+document.getElementById("localStorageRemove").onclick = function reset() {
+  localStorage.removeItem('key')
+}
