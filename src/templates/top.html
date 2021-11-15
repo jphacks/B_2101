@@ -1,6 +1,5 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
-<!--<input id="loading" type="text" value="0" style="display: none;"></input>-->
 
 <div id="mainArea">
   <div id="modelArea">
@@ -17,21 +16,26 @@
     <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
   </div>
 
-  <div class="note_wrap">
-    <div class="note">
-      <div class="header">
-        <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
-        <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
-      </div>
-      <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
-      <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
-      <form action="/face" method="POST">
-        <div id="soundCheckbox">
-          <input type="checkbox" id="sound" class="checkbox" name="sound" value="1">
-          <label for="sound" class="checkbox note_text">音声再生を許可します</label>
+  <div id="rightArea">
+    <div id="headerArea">
+      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="material-icons">open_in_new</span></a>
+    </div>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
-        <button class="btn-handWritte" type="submit">はじめる</button>
-      </form>
+        <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
+        <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
+        <form action="/face" method="POST">
+          <div id="soundCheckbox">
+            <input type="checkbox" id="sound" class="checkbox" name="sound" value="1">
+            <label for="sound" class="checkbox note_text">音声再生を許可します</label>
+          </div>
+          <button class="btn-handWritte" type="submit">はじめる</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
