@@ -8,7 +8,7 @@ const top = new Vue({
   },
   mounted() {
     axios
-      .get('./static/json/multilingual.json')
+      .get('./static/json/multilingual_top.json')
       .then(response => { this.info = response.data })
   },
   methods: {
