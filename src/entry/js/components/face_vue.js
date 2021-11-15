@@ -106,6 +106,7 @@ const face = new Vue({
           this.hanamaru = true
           this.faceShowToggle = false
           this.cameraChangeToggle = false
+          this.localStorageCount()
       }}, 10000);
     },
     trainingStart: function () {
@@ -170,12 +171,28 @@ const face = new Vue({
         this.nextBtnArea = false
         this.faceShowToggle = false
         this.cameraChangeToggle = false
+        this.localStorageCount()
       }
     },
     cameraChange: function () {
       console.log('change!')
       var trainingArea = document.getElementById('trainingArea')
       trainingArea.style.flexDirection = 'column-reverse'
+    },
+    localStorageCount: function () {
+      if (localStorage.length == 0) {
+        localStorage.setItem('key', 1)
+        console.log('localStorage create!')
+      } else {
+        var value = localStorage.getItem('key')
+        var int = parseInt(value)
+        console.log(int)
+        int += 1
+        localStorage.removeItem('key')
+        localStorage.setItem('key', int)
+        value = localStorage.getItem('key')
+        console.log(value)
+      }
     }
   },
   watch: {
