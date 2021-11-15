@@ -13,12 +13,14 @@
       </div>
     </div>
     <canvas id="canvas"></canvas>
-    <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
+    <input id="flag" type="text" style="display:none;" value="0">
   </div>
 
   <div id="rightArea">
     <div id="headerArea">
-      <button id="localStorageRemove">reset</button>
+      <!-- localStorage remove btn -->
+      <button @click="localStorageRemove">reset</button>
+      <!-- inquiry form link -->
       <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="material-icons">open_in_new</span></a>
     </div>
     <div class="note_wrap">
@@ -41,6 +43,7 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="../static/webpack/top.js"></script>
 
 {% endblock %}

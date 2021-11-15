@@ -7,6 +7,16 @@ document.getElementById("sound").onclick = function () {
   }
 }
 
-document.getElementById("localStorageRemove").onclick = function reset() {
-  localStorage.removeItem('key')
-}
+const top = new Vue({
+  el: '#mainArea',
+  // FlaskとVueを共存させるためにDelimiterを変更する
+  delimiters: ["[[", "]]"],
+  data: {
+  },
+  methods: {
+    localStorageRemove: function () {
+      localStorage.removeItem('key')
+      console.log('localStorageRemove!')
+    }
+  }
+});
