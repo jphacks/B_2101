@@ -13,11 +13,14 @@
       </div>
     </div>
     <canvas id="canvas"></canvas>
-    <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
+    <input id="flag" type="text" style="display:none;" value="0">
   </div>
 
   <div id="rightArea">
     <div id="headerArea">
+      <!-- localStorage remove btn -->
+      <button @click="localStorageRemove">reset</button>
+      <!-- inquiry form link -->
       <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="material-icons">open_in_new</span></a>
     </div>
     <div class="note_wrap">
@@ -30,7 +33,7 @@
         <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
         <form action="/face" method="POST">
           <div id="soundCheckbox">
-            <input type="checkbox" id="sound" class="checkbox" name="sound" value="1">
+            <input type="checkbox" id="sound" class="checkbox" name="sound" value="1" @click="hello">
             <label for="sound" class="checkbox note_text">音声再生を許可します</label>
           </div>
           <button class="btn-handWritte" type="submit">はじめる</button>
@@ -40,6 +43,7 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="../static/webpack/top.js"></script>
 
 {% endblock %}
