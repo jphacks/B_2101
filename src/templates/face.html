@@ -1,5 +1,6 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
+<input id="vueLanguage" value="{{ language }}" style="display: none;"></input>
 <input id="loading" type="text" value="0" style="display: none;"></input>
 
 <div id="loading" class="container" style="display:none;">
@@ -24,6 +25,7 @@
 </form>
 
 <div id="face">
+  <p v-if="info">[[ info[language].test ]]</p>
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
   <div id="trainingArea">
     <!-- 自分の顔を表示 -->
@@ -113,6 +115,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="../static/js/face/clmtrackr.js"></script>
 <script src="../static/js/face/model_pca_20_svm.js"></script>
 <script src="../static/webpack/face.js"></script>

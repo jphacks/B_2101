@@ -44,6 +44,7 @@
             <input type="checkbox" id="sound" class="checkbox" name="sound" value="1" @click="hello">
             <label for="sound" class="checkbox note_text" v-if="info">[[ info[selected].soundPermission ]]</label>
           </div>
+          <input type=text name="language" :value="selected" style="display:none;">
           <button class="btn-handWritte" type="submit" v-if="info">[[ info[selected].start ]]</button>
         </form>
       </div>

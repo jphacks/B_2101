@@ -7,6 +7,8 @@ const face = new Vue({
   // FlaskとVueを共存させるためにDelimiterを変更する
   delimiters: ["[[", "]]"],
   data: {
+    info: null,
+    language: '',
     modeChoicePage: true,
     beginnerPage: false,
     advancedPage: false,
@@ -40,6 +42,11 @@ const face = new Vue({
     modelAndDialogueFlex: ''
   },
   mounted: function () {
+    this.language = document.getElementById('vueLanguage').value
+    console.log(this.language)
+    axios
+      .get('./static/json/multilingual_face.json')
+      .then(response => { this.info = response.data})
     var canvas = document.getElementById('canvas')
     this.canvasWidth = canvas.clientWidth
     this.canvasHeight = canvas.clientHeight
@@ -47,7 +54,7 @@ const face = new Vue({
     var faceCanvas = document.getElementById('faceCanvas')
     this.faceCanvasWidth = faceCanvas.clientWidth
     this.faceCanvasHeight = faceCanvas.clientHeight
-    this.faceCanvasRatio = this.faceCanvasHeight/this.faceCanvasWidth
+    this.faceCanvasRatio = this.faceCanvasHeight / this.faceCanvasWidth
   },
   methods: {
     beginnerMode: function () {
