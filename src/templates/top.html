@@ -22,6 +22,14 @@
       <button @click="localStorageRemove">reset</button>
       <!-- inquiry form link -->
       <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer">お問い合わせ<span class="material-icons">open_in_new</span></a>
+      <div id="multilingualArea">
+        <span class="material-icons">language</span>
+        <select v-model="selected">
+          <option value="Japanese" selected>日本語</option>
+          <option value="English">英語｜English</option>
+          <option value="Hiragana">ひらがな</option>
+        </select>
+      </div>
     </div>
     <div class="note_wrap">
       <div class="note">
