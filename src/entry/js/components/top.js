@@ -6,8 +6,11 @@ const top = new Vue({
   },
   methods: {
     localStorageRemove: function () {
-      localStorage.removeItem('key')
-      console.log('localStorageRemove!')
+      var result = window.confirm('本当にスタンプカードをリセットしてもよろしいですか？');
+      if( result ) {
+        localStorage.removeItem('key')
+        console.log('localStorageRemove!')
+      }
     },
     hello: function () {
       const helloVoice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_01.wav");
