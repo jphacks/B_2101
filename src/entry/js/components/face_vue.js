@@ -30,8 +30,8 @@ const face = new Vue({
       { id: '4', text: '・「お」', check: '' }
     ],
     tutorialCountNum: 0,
-    startBtnMessage: 'はじめる',
-    nextBtnMessage: '次へ進む',
+    startBtnMessage: '',
+    nextBtnMessage: '',
     faceShowToggle: false,
     cameraChangeToggle: false,
     animationFlag: -5, //ページの初期番号 camera位置修正に使う
@@ -65,6 +65,7 @@ const face = new Vue({
       this.firstDialogue = false
       this.multipleTimesDialogue = true
       this.modelMessage = this.info[this.language].komatiBeginnerModeChoice
+      this.startBtnMessage = this.info[this.language].start
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -126,10 +127,10 @@ const face = new Vue({
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
-      this.tutorialTitle = 'あいうえお体操'
-      this.startBtnMessage = 'やってみる'
+      this.tutorialTitle = this.info[this.language].aiueoGymnastics
+      this.startBtnMessage = this.info[this.language].try
       if (this.tutorialCountNum == 0) {
-        this.modelMessage = '準備はいいですか？'
+        this.modelMessage = this.info[this.language].areYouReady
         if (sound == 1) {
           const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
           start_voice.play()
@@ -137,11 +138,12 @@ const face = new Vue({
         this.tutorialCountNum += 1
         this.animationFlag = 1
       } else {
-        this.modelMessage = '私のまねをしてください！'
+        this.modelMessage = this.info[this.language].imitation
         if (sound == 1) {
           const try_se = new Audio("./static/sound/sound_effect/try.mp3")
           try_se.play()
         }
+        this.nextBtnMessage = this.info[this.language].go2next
         this.startBtn = false
         this.nextBtnArea = true
       }
@@ -152,7 +154,7 @@ const face = new Vue({
         const replay = new Audio("./static/sound/sound_effect/replay.mp3")
         replay.play()
       }
-      this.modelMessage = '準備はいいですか？'
+      this.modelMessage = this.info[this.language].areYouReady
       this.nextBtnArea = false
       this.startBtn = true
     },
@@ -167,7 +169,7 @@ const face = new Vue({
         this.animationFlag = this.tutorialCountNum
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
-          this.nextBtnMessage = 'おわる'
+          this.nextBtnMessage = this.info[this.language].finishText
         }
       } else {
         if (sound == 1) {
@@ -176,10 +178,10 @@ const face = new Vue({
         }
         this.animationFlag = 10
         this.tutorialCountNum = 0
-        this.tutorialTitle = 'にこトレの使い方'
-        this.startBtnMessage = 'はじめる'
-        this.nextBtnMessage = '次へ進む'
-        this.modelMessage = 'どちらのモードにしますか？'
+        this.tutorialTitle = this.info[this.language].tutorialTitle
+        this.startBtnMessage = this.info[this.language].start
+        this.nextBtnMessage = this.info[this.language].go2next
+        this.modelMessage = this.info[this.language].komatiModeChoice
         this.modeChoicePage = true
         this.beginnerPage = false
         this.startBtn = true

@@ -9,7 +9,13 @@
     "checkMyFaceToggle": "自分の顔を確認する",
     "myFaceBiggerToggle": "自分の顔を大きくする",
     "start": "はじめる",
-    "aiueoGymnastics": "あいうえお体操"
+    "aiueoGymnastics": "あいうえお体操",
+    "go2next": "次へ進む",
+    "finishText": "おわる",
+    "areYouReady": "準備はいいですか？",
+    "try": "やってみる",
+    "imitation": "私のまねをしてください！",
+    "replay": "もう1回"
   },
   "English": {
     "komatiModeChoice": "Which mode do you want?",
@@ -20,8 +26,14 @@
     "tutorialTitle": "How to use Nicotore",
     "checkMyFaceToggle": "Check your face",
     "myFaceBiggerToggle": "Make your face bigger",
-    "start": "start",
-    "aiueoGymnastics": "Aiueo gymnastics"
+    "start": "Start",
+    "aiueoGymnastics": "Aiueo gymnastics",
+    "go2next": "Go to next",
+    "finishText": "Finish",
+    "areYouReady": "Are you ready?",
+    "try": "Try",
+    "imitation": "Please imitate me!",
+    "replay": "Replay"
   },
   "Hiragana":{
     "komatiModeChoice": "どちらのもーどにしますか？",
@@ -33,6 +45,12 @@
     "checkMyFaceToggle": "じぶんのかおをかくにんする",
     "myFaceBiggerToggle": "じぶんのかおをおおきくする",
     "start": "はじめる",
-    "aiueoGymnastics": "あいうえおたいそう"
+    "aiueoGymnastics": "あいうえおたいそう",
+    "go2next": "つぎへすすむ",
+    "finishText": "おわる",
+    "areYouReady": "じゅんびはいいかな？",
+    "try": "やってみる",
+    "imitation": "わたしのまねをしてね！",
+    "replay": "もういっかい"
   }
 }

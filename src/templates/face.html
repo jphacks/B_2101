@@ -64,7 +64,7 @@
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
         <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">[[ startBtnMessage ]]</button>
         <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
-          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
+          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()" v-if="info">[[ info[language].replay ]]</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
         </div>
         <div class="allToggleArea">
