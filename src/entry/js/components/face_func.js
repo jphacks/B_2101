@@ -79,9 +79,9 @@ function drawLoop() {
   }
 
   //う 応援フラグ
-  if (abs_x<350){
+  if (abs_x<360){
     ouen_flag_u=3 //がんばった
-  }else if (abs_x<370){
+  }else if (abs_x<375){
     ouen_flag_u=2 //あとちょっと
   }else{
     ouen_flag_u=1 //もっと頑張れ
