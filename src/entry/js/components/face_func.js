@@ -59,6 +59,17 @@ function drawLoop() {
   console.log('正規化後の口角の座標');
   console.log('相対x座標(50-44)：「' + abs_x + '」');
 
+  
+  if (abs_x>420){
+    ouen_flag=3 //がんばった
+  }else if (abs_x>400){
+    ouen_flag=2 //あとちょっと
+  }else if (abs_x>380){
+    ouen_flag=1 //もっと頑張れ
+  }
+
+  console.log('応援フラグ:「' + ouen_flag + '」')
+
 
 
   
@@ -82,13 +93,6 @@ function drawLoop() {
   // context.strokeRect(四角のx座標, 四角のy座標, 四角の横幅, 四角の縦幅);
   context.strokeRect(120, 75, 150, 150);
 
-  if (abs_x>410){
-    ouen_flag=3 //がんばった
-  }else if (abs_x>390){
-    ouen_flag=2 //あとちょっと
-  }else if (abs_x>380){
-    ouen_flag=1 //もっと頑張れ
-  }
 
 }
 // drawLoop関数の初回実行
