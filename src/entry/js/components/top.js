@@ -3,6 +3,13 @@ const top = new Vue({
   // FlaskとVueを共存させるためにDelimiterを変更する
   delimiters: ["[[", "]]"],
   data: {
+    info: null,
+    selected: 'Japanese'
+  },
+  mounted() {
+    axios
+      .get('./static/json/multilingual_top.json')
+      .then(response => { this.info = response.data })
   },
   methods: {
     localStorageRemove: function () {
@@ -18,6 +25,12 @@ const top = new Vue({
       if (soundCheck == true) {
         helloVoice.play();
       }
+    }
+  },
+  watch: {
+    selected: function () {
+      console.log(this.selected)
+      console.log(this.info[this.selected].inquiry)
     }
   }
 });
