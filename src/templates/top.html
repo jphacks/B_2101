@@ -21,12 +21,14 @@
       <!-- localStorage remove btn -->
       <button @click="localStorageRemove">reset</button>
       <!-- inquiry form link -->
-      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer" v-if="info">[[ info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
+      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer"
+        v-if="info">[[ info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
       <div id="multilingualArea">
         <span class="material-icons">language</span>
         <select v-model="selected">
           <option value="Japanese" selected>日本語</option>
           <option value="English">英語｜English</option>
+          <option value="Chinese">中国｜Chinese</option>
           <option value="Hiragana">ひらがな</option>
         </select>
       </div>
@@ -34,7 +36,8 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[selected].titleFacialMuscle ]]</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[selected].titleFacialMuscle
+              ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text" v-if="info">[[ info[selected].text1 ]]</p>
