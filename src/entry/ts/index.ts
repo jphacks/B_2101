@@ -186,6 +186,7 @@ window.addEventListener("DOMContentLoaded", () => {
       mixer.update(delta)
     }
 
+
     //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
       console.log("step.value" + step.value)
@@ -246,6 +247,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // レンダリング
     renderer.render(scene, camera)
+
+    */
+   
   }
   update()
 })
