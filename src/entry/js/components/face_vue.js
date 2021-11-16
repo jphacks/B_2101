@@ -7,6 +7,10 @@ const face = new Vue({
   // FlaskとVueを共存させるためにDelimiterを変更する
   delimiters: ["[[", "]]"],
   data: {
+    info: null,
+    language: '',
+    firstDialogue: true,
+    multipleTimesDialogue: false,
     modeChoicePage: true,
     beginnerPage: false,
     advancedPage: false,
@@ -15,9 +19,9 @@ const face = new Vue({
     advancedStartBtn: true,
     hanamaru: false,
     cameraChangeBtn: false,
-    modelMessage: 'どちらのモードにしますか？',
-    tutorialTitle: 'にこトレの使い方',
-    tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
+    modelMessage: '',
+    tutorialTitle: '',
+    tutorialText: null,
     advancedText: [
       { id: '0', text: '・「あ」', check: '' },
       { id: '1', text: '・「い」', check: '' },
@@ -26,8 +30,8 @@ const face = new Vue({
       { id: '4', text: '・「お」', check: '' }
     ],
     tutorialCountNum: 0,
-    startBtnMessage: 'はじめる',
-    nextBtnMessage: '次へ進む',
+    startBtnMessage: '',
+    nextBtnMessage: '',
     faceShowToggle: false,
     cameraChangeToggle: false,
     animationFlag: -5, //ページの初期番号 camera位置修正に使う
@@ -37,9 +41,16 @@ const face = new Vue({
     faceCanvasWidth: 0,
     faceCanvasHeight: 0,
     faceCanvasRatio: 0,
-    modelAndDialogueFlex: ''
+    modelAndDialogueFlex: '',
+    circleBtnTextBeginner: '',
+    circleBtnTextAdvanced: ''
   },
   mounted: function () {
+    this.language = document.getElementById('vueLanguage').value
+    console.log(this.language)
+    axios
+      .get('./static/json/multilingual_face.json')
+      .then(response => { this.info = response.data })
     var canvas = document.getElementById('canvas')
     this.canvasWidth = canvas.clientWidth
     this.canvasHeight = canvas.clientHeight
@@ -47,11 +58,15 @@ const face = new Vue({
     var faceCanvas = document.getElementById('faceCanvas')
     this.faceCanvasWidth = faceCanvas.clientWidth
     this.faceCanvasHeight = faceCanvas.clientHeight
-    this.faceCanvasRatio = this.faceCanvasHeight/this.faceCanvasWidth
+    this.faceCanvasRatio = this.faceCanvasHeight / this.faceCanvasWidth
   },
   methods: {
     beginnerMode: function () {
-      this.modelMessage = '一緒に頑張りましょう！'
+      this.firstDialogue = false
+      this.multipleTimesDialogue = true
+      this.modelMessage = this.info[this.language].komatiBeginnerModeChoice
+      this.startBtnMessage = this.info[this.language].start
+      this.tutorialText = this.info[this.language].tutorialText
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -61,7 +76,9 @@ const face = new Vue({
       this.beginnerPage = true
     },
     advancedMode: function () {
-      this.modelMessage = 'さっそく始めましょう！'
+      this.firstDialogue = false
+      this.multipleTimesDialogue = true
+      this.modelMessage = this.info[this.language].komatiAdvancedModeChoice
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -76,7 +93,7 @@ const face = new Vue({
         const try_se = new Audio("./static/sound/sound_effect/try.mp3")
         try_se.play()
       }
-      const advancedMessage = ['まずは「あ」です！', '次は「い」です！', '次は「う」です！', '次は「え」です！', '最後は「お」です！', 'お疲れ様でした！']
+      const advancedMessage = this.info[this.language].advancedMessage
       console.log('start!!')
       this.advancedStartBtn = false
       let count = 0;
@@ -106,14 +123,15 @@ const face = new Vue({
           this.hanamaru = true
           this.faceShowToggle = false
           this.cameraChangeToggle = false
+          this.localStorageCount()
       }}, 10000);
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
-      this.tutorialTitle = 'あいうえお体操'
-      this.startBtnMessage = 'やってみる'
+      this.tutorialTitle = this.info[this.language].aiueoGymnastics
+      this.startBtnMessage = this.info[this.language].try
       if (this.tutorialCountNum == 0) {
-        this.modelMessage = '準備はいいですか？'
+        this.modelMessage = this.info[this.language].areYouReady
         if (sound == 1) {
           const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
           start_voice.play()
@@ -121,11 +139,12 @@ const face = new Vue({
         this.tutorialCountNum += 1
         this.animationFlag = 1
       } else {
-        this.modelMessage = '私のまねをしてください！'
+        this.modelMessage = this.info[this.language].imitation
         if (sound == 1) {
           const try_se = new Audio("./static/sound/sound_effect/try.mp3")
           try_se.play()
         }
+        this.nextBtnMessage = this.info[this.language].go2next
         this.startBtn = false
         this.nextBtnArea = true
       }
@@ -136,7 +155,7 @@ const face = new Vue({
         const replay = new Audio("./static/sound/sound_effect/replay.mp3")
         replay.play()
       }
-      this.modelMessage = '準備はいいですか？'
+      this.modelMessage = this.info[this.language].areYouReady
       this.nextBtnArea = false
       this.startBtn = true
     },
@@ -151,7 +170,7 @@ const face = new Vue({
         this.animationFlag = this.tutorialCountNum
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
-          this.nextBtnMessage = 'おわる'
+          this.nextBtnMessage = this.info[this.language].finishText
         }
       } else {
         if (sound == 1) {
@@ -160,22 +179,38 @@ const face = new Vue({
         }
         this.animationFlag = 10
         this.tutorialCountNum = 0
-        this.tutorialTitle = 'にこトレの使い方'
-        this.startBtnMessage = 'はじめる'
-        this.nextBtnMessage = '次へ進む'
-        this.modelMessage = 'どちらのモードにしますか？'
+        this.tutorialTitle = this.info[this.language].tutorialTitle
+        this.startBtnMessage = this.info[this.language].start
+        this.nextBtnMessage = this.info[this.language].go2next
+        this.modelMessage = this.info[this.language].komatiModeChoice
         this.modeChoicePage = true
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
         this.faceShowToggle = false
         this.cameraChangeToggle = false
+        this.localStorageCount()
       }
     },
     cameraChange: function () {
       console.log('change!')
       var trainingArea = document.getElementById('trainingArea')
       trainingArea.style.flexDirection = 'column-reverse'
+    },
+    localStorageCount: function () {
+      if (localStorage.length == 0) {
+        localStorage.setItem('key', 1)
+        console.log('localStorage create!')
+      } else {
+        var value = localStorage.getItem('key')
+        var int = parseInt(value)
+        console.log(int)
+        int += 1
+        localStorage.removeItem('key')
+        localStorage.setItem('key', int)
+        value = localStorage.getItem('key')
+        console.log(value)
+      }
     }
   },
   watch: {

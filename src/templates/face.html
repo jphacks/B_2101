@@ -1,5 +1,6 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
+<input id="vueLanguage" value="{{ language }}" style="display: none;"></input>
 <input id="loading" type="text" value="0" style="display: none;"></input>
 
 <div id="loading" class="container" style="display:none;">
@@ -11,10 +12,6 @@
     <div id="progressBarFull"></div>
   </div>
 </div>
-
-<!-- localStorage test -->
-<button id="test">count up</button>
-<button id="test2">reset</button>
 
 <div id="opening">
   <div id="openingContents">
@@ -40,15 +37,16 @@
       <div id="modelArea">
         <canvas id="canvas"></canvas>
       </div>
-      <p class="modelMessage">[[ modelMessage ]]</p>
+      <p class="modelMessage" v-if="info && firstDialogue">[[ info[language].komatiModeChoice ]]</p>
+      <p class="modelMessage" v-if="info && multipleTimesDialogue">[[ modelMessage ]]</p>
     </div>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
     <div class="choiceBtnGrid">
-      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText">初心者<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
+      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextBeginner ]]<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
       <div id="plateArea">
-        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
+        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextAdvanced ]]<span class="material-icons star_icon">star</span></span></button>
         <!--<div class="plate" id="navy">
           <span>準備中</span>
         </div>-->
@@ -60,22 +58,22 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">[[ tutorialTitle ]]</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].tutorialTitle ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
         <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">[[ startBtnMessage ]]</button>
         <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
-          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
+          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()" v-if="info">[[ info[language].replay ]]</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
         </div>
         <div class="allToggleArea">
           <div class="toggleArea">
-            <p class="note_text">自分の顔を確認する</p>
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
           <div class="toggleArea" v-if="cameraChangeBtn">
-            <p class="note_text">自分の顔を大きくする</p>
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
             <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
         </div>
@@ -87,7 +85,7 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].aiueoGymnastics ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <div class="mainText">
@@ -99,14 +97,14 @@
           </div>
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
-        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart">はじめる</button>
+        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart" v-if="info">[[ info[language].start ]]</button>
         <div class="allToggleArea">
           <div class="toggleArea">
-            <p class="note_text">自分の顔を確認する</p>
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
           <div class="toggleArea" v-if="cameraChangeBtn">
-            <p class="note_text">自分の顔を大きくする</p>
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
             <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
         </div>
@@ -117,6 +115,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="../static/js/face/clmtrackr.js"></script>
 <script src="../static/js/face/model_pca_20_svm.js"></script>
 <script src="../static/webpack/face.js"></script>

@@ -17,6 +17,20 @@
   }
 }
 
+#headerArea{
+  font-family: 'Zen Kurenaido', sans-serif;
+  color: #000000;
+}
+
+#inquiryLink{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  span{
+    font-size: 1.3rem;
+  }
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   #mainArea{
