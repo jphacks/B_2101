@@ -248,7 +248,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // レンダリング
     renderer.render(scene, camera)
 
-    */
+    
    
   }
   update()
