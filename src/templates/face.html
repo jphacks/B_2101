@@ -44,9 +44,9 @@
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
     <div class="choiceBtnGrid">
-      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText">初心者<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
+      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextBeginner ]]<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
       <div id="plateArea">
-        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
+        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextAdvanced ]]<span class="material-icons star_icon">star</span></span></button>
         <!--<div class="plate" id="navy">
           <span>準備中</span>
         </div>-->
@@ -58,7 +58,7 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">[[ tutorialTitle ]]</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].tutorialTitle ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
