@@ -69,20 +69,32 @@ drawLoop();
 
 // 顔部品（特徴点）の位置データを表示する showData 関数
 function showData(pos) {
-  /*
+  
   //test
-  console.log('右口角の座標');
-  console.log('x座標：「'+pos[44][0]+'」y座標：「' + pos[44][1] + '」');
-  console.log('左口角の座標');
-  console.log('x座標：「' + pos[50][0] + '」y座標：「' + pos[50][1] + '」');
-  */
-  //console.log('Xの2点');
-  //console.log('x座標：「' + Math.round(pos[50][0] - pos[44][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[44][1] )+ '」');
-  //console.log('x座標：「' + Math.round(pos[11][0] - pos[3][0]) + '」y座標：「' + Math.round(pos[50][1] - pos[3][1] )+ '」');
+  //console.log('右口角の座標');
+  //console.log('x座標：「'+pos[44][0]+'」y座標：「' + pos[44][1] + '」');
+  //console.log('左口角の座標');
+  //console.log('x座標：「' + pos[50][0] + '」y座標：「' + pos[50][1] + '」');
+
+  //距離の基底
+  var abs_dis_x = pos[14][0]-pos[0][0]
+  var abs_dis_y = pos[0][1]-pos[1][1]
+
+  //console.log('abs_dis:'+abs_dis_x);
+  
+  
+  console.log('正規化後の口角の座標');
+  console.log('相対x座標(50-44)：「' + Math.round(1000*(pos[50][0] - pos[44][0])/abs_dis_x) + '」');
+
+  //console.log('相対x座標(50-44)：「' + Math.round(1000*(pos[50][0] - pos[44][0])/abs_dis_x) + '」y座標：「' + Math.round(-1*(pos[44][1] - pos[2][1])+(pos[50][1] - pos[12][1])/abs_dis_y*2)+ '」');
+  //console.log('x座標(11-3)：「' + Math.round(100*(pos[11][0] - pos[3][0])/abs_dis) + '」y座標：「' + Math.round(pos[50][1] - pos[3][1] )+ '」');
   //console.log('頬：「' + Math.round(pos[11][0] - pos[3][0]) + '」くちびる：「' + Math.round(pos[50][0] - pos[44][0] )+ '」');
   //console.log('鼻下: 「'+Math.round(pos[37][1] - pos[7][1]) + '」唇: 「'+Math.round(pos[44][1] - pos[7][1])+'」');
 
-  /*
+
+
+
+  
   // データの文字列を入れる変数
   var str = "";
   // 全ての特徴点（71個）について
@@ -97,5 +109,5 @@ function showData(pos) {
   var dat = document.getElementById("dat");
   // データ文字列の表示
   dat.innerHTML = str;
-  */
+  
 }
