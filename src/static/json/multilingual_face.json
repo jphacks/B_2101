@@ -1,11 +1,17 @@
 {
   "Japanese":{
-    "test": "Japanese"
+    "komatiModeChoice": "どちらのモードにしますか？",
+    "komatiBeginnerModeChoice": "一緒に頑張りましょう！",
+    "komatiAdvancedModeChoice": "さっそく始めましょう！"
   },
   "English": {
-    "test": "English"
+    "komatiModeChoice": "Which mode do you want?",
+    "komatiBeginnerModeChoice": "Let's work hard together!",
+    "komatiAdvancedModeChoice": "Let's get started!"
   },
   "Hiragana":{
-    "test": "Hiragana"
+    "komatiModeChoice": "どちらのもーどにしますか？",
+    "komatiBeginnerModeChoice": "いっしょにがんばろうね！",
+    "komatiAdvancedModeChoice": "さっそくはじめましょう！"
   }
 }

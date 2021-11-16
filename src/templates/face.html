@@ -25,7 +25,6 @@
 </form>
 
 <div id="face">
-  <p v-if="info">[[ info[language].test ]]</p>
   <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="">
   <div id="trainingArea">
     <!-- 自分の顔を表示 -->
@@ -38,7 +37,8 @@
       <div id="modelArea">
         <canvas id="canvas"></canvas>
       </div>
-      <p class="modelMessage">[[ modelMessage ]]</p>
+      <p class="modelMessage" v-if="info && firstDialogue">[[ info[language].komatiModeChoice ]]</p>
+      <p class="modelMessage" v-if="info && multipleTimesDialogue">[[ modelMessage ]]</p>
     </div>
   </div>
   <!-- モード選択画面 -->

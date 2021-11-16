@@ -9,6 +9,8 @@ const face = new Vue({
   data: {
     info: null,
     language: '',
+    firstDialogue: true,
+    multipleTimesDialogue: false,
     modeChoicePage: true,
     beginnerPage: false,
     advancedPage: false,
@@ -17,7 +19,7 @@ const face = new Vue({
     advancedStartBtn: true,
     hanamaru: false,
     cameraChangeBtn: false,
-    modelMessage: 'どちらのモードにしますか？',
+    modelMessage: '',
     tutorialTitle: 'にこトレの使い方',
     tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
     advancedText: [
@@ -46,7 +48,7 @@ const face = new Vue({
     console.log(this.language)
     axios
       .get('./static/json/multilingual_face.json')
-      .then(response => { this.info = response.data})
+      .then(response => { this.info = response.data })
     var canvas = document.getElementById('canvas')
     this.canvasWidth = canvas.clientWidth
     this.canvasHeight = canvas.clientHeight
@@ -58,7 +60,9 @@ const face = new Vue({
   },
   methods: {
     beginnerMode: function () {
-      this.modelMessage = '一緒に頑張りましょう！'
+      this.firstDialogue = false
+      this.multipleTimesDialogue = true
+      this.modelMessage = this.info[this.language].komatiBeginnerModeChoice
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -68,7 +72,9 @@ const face = new Vue({
       this.beginnerPage = true
     },
     advancedMode: function () {
-      this.modelMessage = 'さっそく始めましょう！'
+      this.firstDialogue = false
+      this.multipleTimesDialogue = true
+      this.modelMessage = this.info[this.language].komatiAdvancedModeChoice
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
