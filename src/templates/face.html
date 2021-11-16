@@ -69,11 +69,11 @@
         </div>
         <div class="allToggleArea">
           <div class="toggleArea">
-            <p class="note_text">自分の顔を確認する</p>
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
           <div class="toggleArea" v-if="cameraChangeBtn">
-            <p class="note_text">自分の顔を大きくする</p>
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
             <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
         </div>
@@ -85,7 +85,7 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].aiueoGymnastics ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <div class="mainText">
@@ -97,14 +97,14 @@
           </div>
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
-        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart">はじめる</button>
+        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart" v-if="info">[[ info[language].start ]]</button>
         <div class="allToggleArea">
           <div class="toggleArea">
-            <p class="note_text">自分の顔を確認する</p>
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
           <div class="toggleArea" v-if="cameraChangeBtn">
-            <p class="note_text">自分の顔を大きくする</p>
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
             <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
           </div>
         </div>

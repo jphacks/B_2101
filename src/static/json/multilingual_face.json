@@ -5,7 +5,11 @@
     "komatiAdvancedModeChoice": "さっそく始めましょう！",
     "circleBtnTextBeginner": "初心者",
     "circleBtnTextAdvanced": "経験者",
-    "tutorialTitle": "にこトレの使い方"
+    "tutorialTitle": "にこトレの使い方",
+    "checkMyFaceToggle": "自分の顔を確認する",
+    "myFaceBiggerToggle": "自分の顔を大きくする",
+    "start": "はじめる",
+    "aiueoGymnastics": "あいうえお体操"
   },
   "English": {
     "komatiModeChoice": "Which mode do you want?",
@@ -13,7 +17,11 @@
     "komatiAdvancedModeChoice": "Let's get started!",
     "circleBtnTextBeginner": "Beginner",
     "circleBtnTextAdvanced": "Advanced",
-    "tutorialTitle": "How to use Nicotore"
+    "tutorialTitle": "How to use Nicotore",
+    "checkMyFaceToggle": "Check your face",
+    "myFaceBiggerToggle": "Make your face bigger",
+    "start": "start",
+    "aiueoGymnastics": "Aiueo gymnastics"
   },
   "Hiragana":{
     "komatiModeChoice": "どちらのもーどにしますか？",
@@ -21,6 +29,10 @@
     "komatiAdvancedModeChoice": "さっそくはじめましょう！",
     "circleBtnTextBeginner": "しょしんしゃ",
     "circleBtnTextAdvanced": "けいけんしゃ",
-    "tutorialTitle": "にこトレのつかいかた"
+    "tutorialTitle": "にこトレのつかいかた",
+    "checkMyFaceToggle": "じぶんのかおをかくにんする",
+    "myFaceBiggerToggle": "じぶんのかおをおおきくする",
+    "start": "はじめる",
+    "aiueoGymnastics": "あいうえおたいそう"
   }
 }
