@@ -193,7 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
       //VRM.from.blendShapeProxy.update()
       //step = 1
     }*/
-
+    /*
     if (Number(step.value) != 0) {
       console.log("計測開始！");
       console.log("step.value" + step.value)
@@ -253,9 +253,12 @@ window.addEventListener("DOMContentLoaded", () => {
     // 最終更新時間
     lastTime = time;
     cnt += 1
-
+    
     // レンダリング
     renderer.render(scene, camera)
+
+    */
+   
   }
  update()
 })
