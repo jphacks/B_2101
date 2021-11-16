@@ -15,7 +15,9 @@
     "areYouReady": "準備はいいですか？",
     "try": "やってみる",
     "imitation": "私のまねをしてください！",
-    "replay": "もう1回"
+    "replay": "もう1回",
+    "tutorialText": ["初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。", "口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。", "口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。", "口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。", "口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。", "口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。"],
+    "advancedMessage": ["まずは「あ」です！", "次は「い」です！", "次は「う」です！", "次は「え」です！", "最後は「お」です！", "お疲れ様でした！"]
   },
   "English": {
     "komatiModeChoice": "Which mode do you want?",
@@ -33,7 +35,9 @@
     "areYouReady": "Are you ready?",
     "try": "Try",
     "imitation": "Please imitate me!",
-    "replay": "Replay"
+    "replay": "Replay",
+    "tutorialText": ["In the beginner mode, we will proceed with Mirai Komachi while checking the method of「aiueo gymnastics」one by one.", "Open your mouth wide, open your eyes as wide as possible, and raise your eyebrows as high as possible.", "Open your mouth wide to the side and put all your strength into it with the consciousness of pulling the entire face sideways.", "Squeeze your mouth as much as possible, close your eyes tightly, and focus on all parts of your face.", "Open your mouth wide to the side, open your eyes wide, and keep the corner of your mouth raised.", "Open your mouth wide vertically, open your eyes wide as if you were surprised, and focus on pulling your entire face vertically."],
+    "advancedMessage": ["First is「 a 」!", "Next is「 i 」!", "Next is「 u 」!", "Next is「 e 」!", "The last is「 o 」!", "good job!"]
   },
   "Hiragana":{
     "komatiModeChoice": "どちらのもーどにしますか？",
@@ -46,11 +50,13 @@
     "myFaceBiggerToggle": "じぶんのかおをおおきくする",
     "start": "はじめる",
     "aiueoGymnastics": "あいうえおたいそう",
-    "go2next": "つぎへすすむ",
+    "go2next": "つぎへ",
     "finishText": "おわる",
     "areYouReady": "じゅんびはいいかな？",
     "try": "やってみる",
     "imitation": "わたしのまねをしてね！",
-    "replay": "もういっかい"
+    "replay": "もういちど",
+    "tutorialText": ["しょしんしゃもーどでは、みらいこまちちゃんといっしょに「あいうえおたいそう」のやりかたをひとつずつかくにんしていくよ。", "くちをおおきく「あ」のかたちにあけ、めをおおきくひらき、まゆげをできるだけうえにあげます。", "くちをよこにおおきく「い」のかたちにあけ、かおをよこにひっぱるようにちからをいれます。", "くちをできるだけすぼめて「う」のかたちをつくり、めはぎゅっととじ、かおのすべてのぱーつをちゅうしんにあつめます。", "くちをよこにおおきく「え」のかたちにあけ、めはおおきくひらき、こうかくをひきあげたいちできーぷします。", "くちをたてにおおきく「お」のかたちにあけ、めをおおきくひらき、かおぜんたいをたてにひっぱるようにちからをいれます。"],
+    "advancedMessage": ["まずは「あ」です！", "つぎは「い」です！", "つぎは「う」です！", "つぎは「え」です！", "さいごは「お」です！", "おつかれさまでした！"]
   }
 }

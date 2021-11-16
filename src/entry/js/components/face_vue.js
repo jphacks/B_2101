@@ -21,7 +21,7 @@ const face = new Vue({
     cameraChangeBtn: false,
     modelMessage: '',
     tutorialTitle: '',
-    tutorialText: ['初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。', '口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。', '口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。', '口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。', '口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。', '口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。'],
+    tutorialText: null,
     advancedText: [
       { id: '0', text: '・「あ」', check: '' },
       { id: '1', text: '・「い」', check: '' },
@@ -66,6 +66,7 @@ const face = new Vue({
       this.multipleTimesDialogue = true
       this.modelMessage = this.info[this.language].komatiBeginnerModeChoice
       this.startBtnMessage = this.info[this.language].start
+      this.tutorialText = this.info[this.language].tutorialText
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
@@ -92,7 +93,7 @@ const face = new Vue({
         const try_se = new Audio("./static/sound/sound_effect/try.mp3")
         try_se.play()
       }
-      const advancedMessage = ['まずは「あ」です！', '次は「い」です！', '次は「う」です！', '次は「え」です！', '最後は「お」です！', 'お疲れ様でした！']
+      const advancedMessage = this.info[this.language].advancedMessage
       console.log('start!!')
       this.advancedStartBtn = false
       let count = 0;
