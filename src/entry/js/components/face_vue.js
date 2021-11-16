@@ -43,7 +43,8 @@ const face = new Vue({
     faceCanvasRatio: 0,
     modelAndDialogueFlex: '',
     circleBtnTextBeginner: '',
-    circleBtnTextAdvanced: ''
+    circleBtnTextAdvanced: '',
+    stampCard: false
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -126,6 +127,10 @@ const face = new Vue({
           this.localStorageCount()
       }}, 10000);
     },
+    advancedEnd: function () {
+      this.advancedPage = false
+      this.stampCard = true
+    },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
       this.tutorialTitle = this.info[this.language].aiueoGymnastics
@@ -186,7 +191,8 @@ const face = new Vue({
         this.startBtnMessage = this.info[this.language].start
         this.nextBtnMessage = this.info[this.language].go2next
         this.modelMessage = this.info[this.language].komatiModeChoice
-        this.modeChoicePage = true
+        //this.modeChoicePage = true
+        this.stampCard = true
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
@@ -214,6 +220,10 @@ const face = new Vue({
         value = localStorage.getItem('key')
         console.log(value)
       }
+    },
+    back2top: function () {
+      this.stampCard = false
+      this.modeChoicePage = true
     }
   },
   watch: {

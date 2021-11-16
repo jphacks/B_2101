@@ -98,6 +98,8 @@
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
         <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart" v-if="info">[[ info[language].start ]]</button>
+        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedEnd" v-if="info">[[ info[language].finishText
+          ]]</button>
         <div class="allToggleArea">
           <div class="toggleArea">
             <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
@@ -110,6 +112,10 @@
         </div>
       </div>
     </div>
+  </template>
+  <template v-if='stampCard'>
+    <p>stamp card</p>
+    <button type="submit" @click="back2top">もどる</button>
   </template>
 </div>
 
