@@ -144,7 +144,9 @@ const face = new Vue({
           const try_se = new Audio("./static/sound/sound_effect/try.mp3")
           try_se.play()
         }
-        this.nextBtnMessage = this.info[this.language].go2next
+        if (this.tutorialCountNum != 5) {
+          this.nextBtnMessage = this.info[this.language].go2next
+        }
         this.startBtn = false
         this.nextBtnArea = true
       }
@@ -171,6 +173,7 @@ const face = new Vue({
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = this.info[this.language].finishText
+          console.log('finish')
         }
       } else {
         if (sound == 1) {
