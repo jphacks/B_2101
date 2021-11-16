@@ -1,0 +1,34 @@
+{
+  "Japanese": {
+    "inquiry": "お問い合わせ",
+    "titleFacialMuscle": "表情筋トレーニング",
+    "text1": "私と一緒に「あいうえお体操」を行ないます。",
+    "text2": "表情筋をしっかり鍛えて、豊かな表情を目指しましょう！",
+    "soundPermission": "音声再生を許可します",
+    "start": "はじめる"
+  },
+  "English": {
+    "inquiry": "inquiry",
+    "titleFacialMuscle": "Facial muscle training",
+    "text1": "I will do 「aiueo gymnastics」 with me.",
+    "text2": "Train your facial muscles and aim for a rich facial expression!",
+    "soundPermission": "Allow audio playback",
+    "start": "start"
+  },
+  "Hiragana": {
+    "inquiry": "おといあわせ",
+    "titleFacialMuscle": "ひょうじょうきんとれーにんぐ",
+    "text1": "わたしといっしょに「あいうえおたいそう」をします。",
+    "text2": "ひょうじょうきんをしっかりきたえましょう！",
+    "soundPermission": "おんせいさいせいをきょかする",
+    "start": "はじめる"
+  },
+  "Chinese": {
+    "inquiry": "询问",
+    "titleFacialMuscle": "面部肌肉训练",
+    "text1": "我将和我一起做 '爱悦体操'。",
+    "text2": "训练你的面部肌肉，以丰富的面部表情为目标!",
+    "soundPermission": "允许音频播放",
+    "start": "开始"
+  }
+}

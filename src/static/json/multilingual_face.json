@@ -1,0 +1,138 @@
+{
+  "Japanese": {
+    "komatiModeChoice": "どちらのモードにしますか？",
+    "komatiBeginnerModeChoice": "一緒に頑張りましょう！",
+    "komatiAdvancedModeChoice": "さっそく始めましょう！",
+    "circleBtnTextBeginner": "初心者",
+    "circleBtnTextAdvanced": "経験者",
+    "tutorialTitle": "にこトレの使い方",
+    "checkMyFaceToggle": "自分の顔を確認する",
+    "myFaceBiggerToggle": "自分の顔を大きくする",
+    "start": "はじめる",
+    "aiueoGymnastics": "あいうえお体操",
+    "go2next": "次へ進む",
+    "finishText": "おわる",
+    "areYouReady": "準備はいいですか？",
+    "try": "やってみる",
+    "imitation": "私のまねをしてください！",
+    "replay": "もう1回",
+    "tutorialText": [
+      "初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。",
+      "口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。",
+      "口を横に大きく「い」の形に開け、顔全体を横に引っ張る意識で思い切り力を入れます。",
+      "口をできるだけすぼめて「う」の形を作り、目はギュッと閉じ、顔のすべてのパーツを中心に集めるつもりで力を入れます。",
+      "口を横に大きく「え」の形に開け、目は大きく見開き、口角を引き上げた位置でキープします。",
+      "口を縦に大きく「お」の形に開け、目は驚いたときのように大きく見開き、顔全体を縦に引っ張る意識で力を入れます。"
+    ],
+    "advancedMessage": [
+      "まずは「あ」です！",
+      "次は「い」です！",
+      "次は「う」です！",
+      "次は「え」です！",
+      "最後は「お」です！",
+      "お疲れ様でした！"
+    ]
+  },
+  "English": {
+    "komatiModeChoice": "Which mode do you want to use?",
+    "komatiBeginnerModeChoice": "Let's work hard together!",
+    "komatiAdvancedModeChoice": "Let's get started!",
+    "circleBtnTextBeginner": "Beginner",
+    "circleBtnTextAdvanced": "Advanced",
+    "tutorialTitle": "How to use Nicotore",
+    "checkMyFaceToggle": "Check your face",
+    "myFaceBiggerToggle": "Make your face bigger",
+    "start": "Start",
+    "aiueoGymnastics": "Aiueo gymnastics",
+    "go2next": "Go to next",
+    "finishText": "Finish",
+    "areYouReady": "Are you ready?",
+    "try": "Try",
+    "imitation": "Please imitate me!",
+    "replay": "Replay",
+    "tutorialText": [
+      "In the beginner mode, you and Mirai Komachi-chan will go through the 'Aiueo Gymnastics' one by one.",
+      "Open your mouth wide, open your eyes as wide as possible, and raise your eyebrows as high as possible.",
+      "Open your mouth wide to the side and put all your strength into it with the consciousness of pulling the entire face sideways.",
+      "Squeeze your mouth as much as possible, close your eyes tightly, and focus on all parts of your face.",
+      "Open your mouth wide to the side, open your eyes wide, and keep the corner of your mouth raised.",
+      "Open your mouth wide vertically, open your eyes wide as if you were surprised, and focus on pulling your entire face vertically."
+    ],
+    "advancedMessage": [
+      "First is「 a 」!",
+      "Next is「 i 」!",
+      "Next is「 u 」!",
+      "Next is「 e 」!",
+      "The last is「 o 」!",
+      "good job!"
+    ]
+  },
+  "Hiragana": {
+    "komatiModeChoice": "どちらのもーどにしますか？",
+    "komatiBeginnerModeChoice": "いっしょにがんばろうね！",
+    "komatiAdvancedModeChoice": "さっそくはじめましょう！",
+    "circleBtnTextBeginner": "しょしんしゃ",
+    "circleBtnTextAdvanced": "けいけんしゃ",
+    "tutorialTitle": "にこトレのつかいかた",
+    "checkMyFaceToggle": "じぶんのかおをかくにんする",
+    "myFaceBiggerToggle": "じぶんのかおをおおきくする",
+    "start": "はじめる",
+    "aiueoGymnastics": "あいうえおたいそう",
+    "go2next": "つぎへ",
+    "finishText": "おわる",
+    "areYouReady": "じゅんびはいいかな？",
+    "try": "やってみる",
+    "imitation": "わたしのまねをしてね！",
+    "replay": "もういちど",
+    "tutorialText": [
+      "しょしんしゃもーどでは、みらいこまちちゃんといっしょに「あいうえおたいそう」のやりかたをひとつずつかくにんしていくよ。",
+      "くちをおおきく「あ」のかたちにあけ、めをおおきくひらき、まゆげをできるだけうえにあげます。",
+      "くちをよこにおおきく「い」のかたちにあけ、かおをよこにひっぱるようにちからをいれます。",
+      "くちをできるだけすぼめて「う」のかたちをつくり、めはぎゅっととじ、かおのすべてのぱーつをちゅうしんにあつめます。",
+      "くちをよこにおおきく「え」のかたちにあけ、めはおおきくひらき、こうかくをひきあげたいちできーぷします。",
+      "くちをたてにおおきく「お」のかたちにあけ、めをおおきくひらき、かおぜんたいをたてにひっぱるようにちからをいれます。"
+    ],
+    "advancedMessage": [
+      "まずは「あ」です！",
+      "つぎは「い」です！",
+      "つぎは「う」です！",
+      "つぎは「え」です！",
+      "さいごは「お」です！",
+      "おつかれさまでした！"
+    ]
+  },
+  "Chinese": {
+    "komatiModeChoice": "你想使用哪种模式？",
+    "komatiBeginnerModeChoice": "让我们一起努力工作吧!",
+    "komatiAdvancedModeChoice": "让我们开始吧!",
+    "circleBtnTextBeginner": "初学者",
+    "circleBtnTextAdvanced": "高级",
+    "tutorialTitle": "如何使用尼科托雷",
+    "checkMyFaceToggle": "检查你的脸",
+    "myFaceBiggerToggle": "让你的脸变大",
+    "start": "开始",
+    "aiueoGymnastics": "爱越体操",
+    "go2next": "转到下一个",
+    "finishText": "完成",
+    "areYouReady": "你准备好了吗？",
+    "try": "尝试",
+    "imitation": "请模仿我吧!",
+    "replay": "回放",
+    "tutorialText": [
+      "在初学者模式中，你和米莱-小町子将逐一完成 '爱悦体操'。",
+      "张大嘴巴，尽可能地睁大眼睛，并尽可能地抬高眉毛。",
+      "向侧面张大嘴，把所有的力量都用在上面，有意识地把整个脸拉向侧面。",
+      "尽可能地挤压你的嘴，紧闭你的眼睛，把注意力集中在你脸部的所有部位。",
+      "向侧面张大嘴，睁大眼睛，并保持嘴角上扬。",
+      "垂直地张大嘴巴，睁大眼睛，就像你很惊讶一样，集中精力把你的整个脸垂直地拉起来。"
+    ],
+    "advancedMessage": [
+      "首先是「a」!",
+      "接下来是「i」!",
+      "接下来是「u」!",
+      "接下来是「e」!",
+      "最后是「o」!",
+      "好样的"
+    ]
+  }
+}

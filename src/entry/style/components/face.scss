@@ -11,6 +11,7 @@
 #trainingArea{
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 #modelArea{
@@ -47,7 +48,7 @@
 }
 
 .hanamaru{
-  width: 9rem;
+  width: 7.5rem;
   height: fit-content;
   margin-right: 1rem;
   transform: rotate(15deg);
@@ -115,21 +116,36 @@
 
 .orangeCircleBtn{
   border: 10px solid $dark-main-color;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
+  //grid-row: 2 / 3;
+  //grid-column: 2 / 3;
+  z-index: 999;
 }
 
-#toggleArea{
+#plateArea{
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* toggle design */
+.allToggleArea{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto 0;
+}
+.toggleArea{
   width: fit-content;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 1.1rem auto 0;
   p{
     margin: 0;
   }
 }
-
 
 /* mobileここから */
 @media screen and (max-width: 950px) {

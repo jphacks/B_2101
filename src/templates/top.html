@@ -3,29 +3,60 @@
 
 <div id="mainArea">
   <div id="modelArea">
+    <div id="loading" class="container">
+      <div id="progressTextArea">
+        <p>Now Loading ...</p>
+        <p id="progressNum"></p>
+      </div>
+      <div id="progressBar">
+        <div id="progressBarFull"></div>
+      </div>
+    </div>
     <canvas id="canvas"></canvas>
-    <input id="flag" type="text" v-model="animationFlag" style="display:none;"　value="0">
+    <input id="flag" type="text" style="display:none;" value="0">
   </div>
 
-  <div class="note_wrap">
-    <div class="note">
-      <div class="header">
-        <p class="note_text text_heading"><span class="highlighter">表情筋トレーニング</span></p>
-        <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+  <div id="rightArea">
+    <div id="headerArea">
+      <!-- localStorage remove btn -->
+      <button @click="localStorageRemove">reset</button>
+      <!-- inquiry form link -->
+      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer"
+        v-if="info">[[ info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
+      <div id="multilingualArea">
+        <span class="material-icons">language</span>
+        <select v-model="selected">
+          <option value="Japanese" selected>日本語</option>
+          <option value="English">英語｜English</option>
+          <option value="Chinese">中国｜Chinese</option>
+          <option value="Hiragana">ひらがな</option>
+        </select>
       </div>
-      <p class="note_text">私と一緒に「あいうえお体操」を行ないます。</p>
-      <p class="note_text">表情筋をしっかり鍛えて、豊かな表情を目指しましょう！</p>
-      <form action="/face" method="POST">
-        <div id="soundCheckbox">
-          <input type="checkbox" id="sound" class="checkbox" name="sound" value="1">
-          <label for="sound" class="checkbox note_text">音声再生を許可します</label>
+    </div>
+    <div class="note_wrap">
+      <div class="note">
+        <div class="header">
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[selected].titleFacialMuscle
+              ]]</span></p>
+          <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
-        <button class="btn-handWritte" type="submit">はじめる</button>
-      </form>
+        <p class="note_text" v-if="info">[[ info[selected].text1 ]]</p>
+        <p class="note_text" v-if="info">[[ info[selected].text2 ]]</p>
+        <form action="/face" method="POST">
+          <div id="soundCheckbox">
+            <input type="checkbox" id="sound" class="checkbox" name="sound" value="1" @click="hello">
+            <label for="sound" class="checkbox note_text" v-if="info">[[ info[selected].soundPermission ]]</label>
+          </div>
+          <input type=text name="language" :value="selected" style="display:none;">
+          <button class="btn-handWritte" type="submit" v-if="info">[[ info[selected].start ]]</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="../static/webpack/top.js"></script>
 
 {% endblock %}
