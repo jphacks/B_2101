@@ -51,7 +51,7 @@ function drawLoop() {
   var lipHeightRight = positions[50][1] - positions[7][1]
   var yMouthLeft = lipHeightLeft/faceHeight
   var yMouthRight = lipHeightRight/faceHeight
-  
+
   // 顔部品の現在位置を比較用変数に代入して値を更新する
   var positionStorage = positions
   //console.log(positionStorage[3][0]);
@@ -61,6 +61,13 @@ function drawLoop() {
   showData(positions);
   // canvas をクリア
   context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 四角を表示
+  context.beginPath();
+  // https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/fillRect
+  // context.strokeRect(四角のx座標, 四角のy座標, 四角の横幅, 四角の縦幅);
+  context.strokeRect(120, 75, 150, 150);
+
   // canvas にトラッキング結果を描画
   tracker.draw(canvas);
 }
@@ -69,7 +76,7 @@ drawLoop();
 
 // 顔部品（特徴点）の位置データを表示する showData 関数
 function showData(pos) {
-  
+
   //test
   //console.log('右口角の座標');
   //console.log('x座標：「'+pos[44][0]+'」y座標：「' + pos[44][1] + '」');
@@ -81,8 +88,8 @@ function showData(pos) {
   var abs_dis_y = pos[0][1]-pos[1][1]
 
   //console.log('abs_dis:'+abs_dis_x);
-  
-  
+
+
   console.log('正規化後の口角の座標');
   console.log('相対x座標(50-44)：「' + Math.round(1000*(pos[50][0] - pos[44][0])/abs_dis_x) + '」');
 
@@ -94,7 +101,7 @@ function showData(pos) {
 
 
 
-  
+
   // データの文字列を入れる変数
   var str = "";
   // 全ての特徴点（71個）について
@@ -109,5 +116,5 @@ function showData(pos) {
   var dat = document.getElementById("dat");
   // データ文字列の表示
   dat.innerHTML = str;
-  
+
 }
