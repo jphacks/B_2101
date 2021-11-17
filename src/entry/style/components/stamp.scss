@@ -1,26 +1,53 @@
 #visit-stamp {
-	/* スタンプが横にはみ出ないように */
-	overflow: hidden;
-	/* スタンプが縦にはみ出るように */
-	margin: -200px 0;
-	padding: 200px 0;
+	width: fit-content;
+	height: fit-content;
+	background-color: #fff;
+	border: 8px solid $sub-color;
+	border-radius: 10px;
+	font-family: 'Zen Kurenaido', sans-serif;
+	color: $text-color;
+	letter-spacing: 0.2rem;
+	table{
+		width: 27rem;
+		height: 33rem;
+		border-collapse: collapse;
+	}
+	th, td{
+		text-align: center;
+		border: 3px solid $sub-color;
+	}
+	tr{
+		height: 6.5rem;
+	}
 }
-#visit-stamp table {
-	width: 100%;
-	max-width: 600px;
-	margin: 20px auto;
-	border-collapse: collapse;
+#stampCardTitle{
+	width: fit-content;
+	margin: 1rem auto;
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.6rem;
+	font-weight: bold;
+	img{
+		width: 7rem;
+	}
 }
-#visit-stamp th, #visit-stamp td {
-	text-align: center;
-	border: 1px solid #fc0;
-	padding: 15px 10px;
+#stampCardFooter{
+	width: fit-content;
+	margin: 1.8rem auto;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2rem;
+	button{
+		margin: 0;
+		padding: 0.8rem 1.5rem;
+	}
 }
-#visit-stamp th {
-	background: #ff9;
-	color: #c00;
-}
-#visit-stamp td span {
+.stamp {
 	display: inline-block;
 	color: #c00;
 	font-size: 28px;
@@ -28,13 +55,14 @@
 	line-height: 1.0;
 	border: 1px solid #c00;
 	border-radius: 50%;
+	margin: 2rem 0;
 	padding: 4px;
 	/* スタンプアニメーションのための初期値 */
 	visibility: hidden;
 	opacity: 0.0;
 	transform: scale(10.0) rotate(-30deg);
 }
-#visit-stamp td span.visited {
+.stamp.visited {
 	visibility: visible;
 	opacity: 1.0;
 	transform: scale(1.0) rotate(0deg);

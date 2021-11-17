@@ -113,33 +113,40 @@
     </div>
   </template>
   <template v-if='stampCard'>
-    <p>stamp card</p>
-    <button type="submit" @click="localStorageCount">add localStorage</button>
-    <button type="submit" @click="back2top">もどる</button>
     <div id="visit-stamp">
       <table>
         <thead>
           <tr>
-            <th colspan="5">スタンプカード</th>
+            <td colspan="5">
+              <span id="stampCardTitle">
+              スタンプカード
+              <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+              </span>
+            </td>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
           </tr>
           <tr>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
-            <td><span>訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
+            <td><span class="stamp">訪</span></td>
           </tr>
           <tr>
-            <td colspan="5">[[ stampCardText ]]</td>
+            <td rowspan="2" colspan="5">
+              <span id="stampCardFooter">
+              [[ stampCardText ]]
+              <button class="btn-handWritte" type="submit" @click="back2top">もどる</button>
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
