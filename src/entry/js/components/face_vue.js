@@ -251,6 +251,8 @@ const face = new Vue({
           var ovar10 = visitCount % 10
           if (ovar10 != 0) {
             visitCount = ovar10
+          } else {
+            visitCount = 10
           }
           console.log(visitCount)
         }
