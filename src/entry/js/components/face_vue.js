@@ -45,7 +45,8 @@ const face = new Vue({
     circleBtnTextBeginner: '',
     circleBtnTextAdvanced: '',
     stampCard: false,
-    advancedFinish: false
+    advancedFinish: false,
+    stampCardText: ''
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -239,12 +240,16 @@ const face = new Vue({
       this.modeChoicePage = true
     },
     stamp: function () {
-      $(function(){
-        var visitCount = (localStorage.getItem('key')) - 1
+      var self = this
+      $(function () {
+        var getVisitCount = (localStorage.getItem('key'))
+        var visitCount = getVisitCount - 1
         if (visitCount >= 10) {
           visitCount = visitCount % 10
           console.log(visitCount)
         }
+        var sheetNum = Math.floor(getVisitCount / 10) + 1
+        self.stampCardText = self.info[self.language].stampCardText1 + sheetNum + self.info[self.language].stampCardText2 + getVisitCount + self.info[self.language].stampCardText3
         //スタンプの処理
         if($('#visit-stamp td:eq('+visitCount+') span').length){ //指定のtd要素があるか判定
           //過去に訪問したぶんのスタンプを表示
