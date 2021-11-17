@@ -1,24 +1,20 @@
 #visit-stamp {
-	/* スタンプが横にはみ出ないように */
-	overflow: hidden;
-	/* スタンプが縦にはみ出るように */
-	margin: -200px 0;
-	padding: 200px 0;
-}
-#visit-stamp table {
-	width: 100%;
-	max-width: 600px;
-	margin: 20px auto;
-	border-collapse: collapse;
-}
-#visit-stamp th, #visit-stamp td {
-	text-align: center;
-	border: 1px solid #fc0;
-	padding: 15px 10px;
-}
-#visit-stamp th {
-	background: #ff9;
-	color: #c00;
+	width: fit-content;
+	height: fit-content;
+	background-color: #fff;
+	border: 8px solid $sub-color;
+	border-radius: 10px;
+	font-family: 'Zen Kurenaido', sans-serif;
+	color: $text-color;
+	table{
+		width: 27rem;
+		height: 33rem;
+		border-collapse: collapse;
+	}
+	th, td{
+		text-align: center;
+		border: 3px solid $sub-color;
+	}
 }
 #visit-stamp td span {
 	display: inline-block;
