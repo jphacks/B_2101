@@ -140,6 +140,7 @@ const face = new Vue({
       }
       this.modelMessage = this.info[this.language].stampMessage
       // show stamp card
+      this.animationFlag = 6
       this.advancedPage = false
       this.stampCard = true
       this.stamp()
@@ -205,6 +206,7 @@ const face = new Vue({
         this.nextBtnMessage = this.info[this.language].go2next
         this.modelMessage = this.info[this.language].stampMessage
         this.stampCard = true
+        this.animationFlag = 6
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
@@ -238,6 +240,7 @@ const face = new Vue({
       this.modelMessage = this.info[this.language].komatiModeChoice
       this.stampCard = false
       this.modeChoicePage = true
+      this.animationFlag = 10
     },
     stamp: function () {
       var self = this
