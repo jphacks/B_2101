@@ -246,9 +246,12 @@ const face = new Vue({
       var self = this
       $(function () {
         var getVisitCount = (localStorage.getItem('key'))
-        var visitCount = getVisitCount - 1
+        var visitCount = getVisitCount
         if (visitCount >= 10) {
-          visitCount = visitCount % 10
+          var ovar10 = visitCount % 10
+          if (ovar10 != 0) {
+            visitCount = ovar10
+          }
           console.log(visitCount)
         }
         var sheetNum = Math.floor(getVisitCount / 10) + 1
