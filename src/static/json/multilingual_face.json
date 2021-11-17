@@ -54,9 +54,9 @@
     "try": "Try",
     "imitation": "Please imitate me!",
     "replay": "Replay",
-    "stampMessage": "Let's do our best again next time!",
+    "stampMessage": "Let's try again next time!",
     "stampCardText1": "Stamp card：",
-    "stampCardText2": "st・total：",
+    "stampCardText2": "th・total：",
     "stampCardText3": "piece",
     "tutorialText": [
       "In the beginner mode, you and Mirai Komachi-chan will go through the 'Aiueo Gymnastics' one by one.",
@@ -130,6 +130,10 @@
     "try": "尝试",
     "imitation": "请模仿我吧!",
     "replay": "回放",
+    "stampMessage": "让我们下次再来试试吧!",
+    "stampCardText1": "印章卡:第",
+    "stampCardText2": "届・共计",
+    "stampCardText3": "件",
     "tutorialText": [
       "在初学者模式中，你和米莱-小町子将逐一完成 '爱悦体操'。",
       "张大嘴巴，尽可能地睁大眼睛，并尽可能地抬高眉毛。",
