@@ -44,7 +44,8 @@ const face = new Vue({
     modelAndDialogueFlex: '',
     circleBtnTextBeginner: '',
     circleBtnTextAdvanced: '',
-    stampCard: false
+    stampCard: false,
+    advancedFinish: false
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -124,10 +125,20 @@ const face = new Vue({
           this.hanamaru = true
           this.faceShowToggle = false
           this.cameraChangeToggle = false
+          this.advancedFinish = true
           this.localStorageCount()
       }}, 10000);
     },
     advancedEnd: function () {
+      // reset
+      this.advancedStartBtn = true
+      this.advancedFinish = false
+      this.hanamaru = false
+      for( let i=0; i<5; i++){
+        this.advancedText[i].check = ''
+      }
+      this.modelMessage = this.info[this.language].stampMessage
+      // show stamp card
       this.advancedPage = false
       this.stampCard = true
     },
@@ -190,8 +201,7 @@ const face = new Vue({
         this.tutorialTitle = this.info[this.language].tutorialTitle
         this.startBtnMessage = this.info[this.language].start
         this.nextBtnMessage = this.info[this.language].go2next
-        this.modelMessage = this.info[this.language].komatiModeChoice
-        //this.modeChoicePage = true
+        this.modelMessage = this.info[this.language].stampMessage
         this.stampCard = true
         this.beginnerPage = false
         this.startBtn = true
@@ -222,6 +232,7 @@ const face = new Vue({
       }
     },
     back2top: function () {
+      this.modelMessage = this.info[this.language].komatiModeChoice
       this.stampCard = false
       this.modeChoicePage = true
     }
