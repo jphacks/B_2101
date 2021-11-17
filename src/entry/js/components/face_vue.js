@@ -255,6 +255,9 @@ const face = new Vue({
           console.log(visitCount)
         }
         var sheetNum = Math.floor(getVisitCount / 10) + 1
+        if (getVisitCount % 10 == 0) {
+          sheetNum -= 1
+        }
         self.stampCardText = self.info[self.language].stampCardText1 + sheetNum + self.info[self.language].stampCardText2 + getVisitCount + self.info[self.language].stampCardText3
         //スタンプの処理
         if($('#visit-stamp td:eq('+visitCount+') .stamp').length){ //指定のtd要素があるか判定
