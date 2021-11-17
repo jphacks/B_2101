@@ -11,8 +11,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // model_pathの取得
   var modelPass = '../static/base_model/Miraikomachi.vrm';
-  var posepass = '../static/pose/hellomirai.csv';
-  var pose_hello = '../static/pose/hellomirai.csv';
+  var posepass = '../static/pose/hellovrm.csv';
+  var pose_hello = '../static/pose/hellovrm.csv';
   var pose_a = '../static/pose/a_face.csv';
   var pose_i = '../static/pose/cats.csv';
   var pose_u = '../static/pose/u_face.csv';
@@ -106,13 +106,13 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let j = 0; j < lines.length; j++) {
       data[j] = []
       let strs = lines[j].split(',')
-      for (let i = 0; i < 17 * 4; i++) {
+      for (let i = 0; i < 55 * 4; i++) {
         data[j][i] = Number(strs[i])
       }
     }
     // 配列 → hierarchy
     let hierarchy = []
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < 55; i++) {
       let keys = []
       for (let j = 0; j < data.length; j++) {
         keys[j] = {
@@ -122,6 +122,11 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       hierarchy[i] = { 'keys': keys }
     }
+    //小町ちゃん用のsplice
+    hierarchy.splice(54, 1)    
+    hierarchy.splice(23, 1)
+    hierarchy.splice(22, 1)
+    hierarchy.splice(21, 1)
     return hierarchy
   }
 
@@ -129,8 +134,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
+    //顎目胸抜き
+    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal"]
+
     //最低限bone
-    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
+    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
