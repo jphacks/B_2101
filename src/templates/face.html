@@ -113,14 +113,14 @@
     </div>
   </template>
   <template v-if='stampCard'>
-    <p>stamp card</p>
-    <button type="submit" @click="localStorageCount">add localStorage</button>
-    <button type="submit" @click="back2top">もどる</button>
     <div id="visit-stamp">
       <table>
         <thead>
           <tr>
-            <th colspan="5">スタンプカード</th>
+            <th colspan="5">
+              スタンプカード
+              <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -139,7 +139,10 @@
             <td><span>訪</span></td>
           </tr>
           <tr>
-            <td colspan="5">[[ stampCardText ]]</td>
+            <td rowspan="2" colspan="5">
+              [[ stampCardText ]]
+              <button class="btn-handWritte" type="submit" @click="back2top">もどる</button>
+            </td>
           </tr>
         </tbody>
       </table>
