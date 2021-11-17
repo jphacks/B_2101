@@ -16,7 +16,7 @@
 		border: 3px solid $sub-color;
 	}
 }
-#visit-stamp td span {
+.stamp {
 	display: inline-block;
 	color: #c00;
 	font-size: 28px;
@@ -30,7 +30,7 @@
 	opacity: 0.0;
 	transform: scale(10.0) rotate(-30deg);
 }
-#visit-stamp td span.visited {
+.stamp.visited {
 	visibility: visible;
 	opacity: 1.0;
 	transform: scale(1.0) rotate(0deg);

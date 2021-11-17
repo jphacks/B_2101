@@ -257,20 +257,20 @@ const face = new Vue({
         var sheetNum = Math.floor(getVisitCount / 10) + 1
         self.stampCardText = self.info[self.language].stampCardText1 + sheetNum + self.info[self.language].stampCardText2 + getVisitCount + self.info[self.language].stampCardText3
         //スタンプの処理
-        if($('#visit-stamp td:eq('+visitCount+') span').length){ //指定のtd要素があるか判定
+        if($('#visit-stamp td:eq('+visitCount+') .stamp').length){ //指定のtd要素があるか判定
           //過去に訪問したぶんのスタンプを表示
-          if($('#visit-stamp td:lt('+visitCount+') span').length){
-            $('#visit-stamp td:lt('+visitCount+') span').addClass('visited');
+          if($('#visit-stamp td:lt('+visitCount+') .stamp').length){
+            $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
           }
           //今回訪問したぶんのスタンプをアニメーションで表示
           setTimeout(function(){
-            $('#visit-stamp td:eq('+visitCount+') span')
+            $('#visit-stamp td:eq('+visitCount+') .stamp')
               .css('transition','all 0.5s ease-in')
               .addClass('visited');
           },300);
         }else{
           //訪問回数がtd要素の数を超えたらすべて表示
-          $('#visit-stamp td:lt('+visitCount+') span').addClass('visited');
+          $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
         }
       });
     }
