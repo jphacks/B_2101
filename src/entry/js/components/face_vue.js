@@ -241,6 +241,10 @@ const face = new Vue({
     stamp: function () {
       $(function(){
         var visitCount = (localStorage.getItem('key')) - 1
+        if (visitCount >= 10) {
+          visitCount = visitCount % 10
+          console.log(visitCount)
+        }
         //スタンプの処理
         if($('#visit-stamp td:eq('+visitCount+') span').length){ //指定のtd要素があるか判定
           //過去に訪問したぶんのスタンプを表示

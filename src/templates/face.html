@@ -114,12 +114,13 @@
   </template>
   <template v-if='stampCard'>
     <p>stamp card</p>
+    <button type="submit" @click="localStorageCount">add localStorage</button>
     <button type="submit" @click="back2top">もどる</button>
     <div id="visit-stamp">
       <table>
         <thead>
           <tr>
-            <th colspan="5">アクセスして訪問スタンプを集めよう</th>
+            <th colspan="5">スタンプカード</th>
           </tr>
         </thead>
         <tbody>
@@ -136,6 +137,9 @@
             <td><span>訪</span></td>
             <td><span>訪</span></td>
             <td><span>訪</span></td>
+          </tr>
+          <tr>
+            <td colspan="5">スタンプカード枚目・合計個</td>
           </tr>
         </tbody>
       </table>
