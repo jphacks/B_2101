@@ -16,6 +16,10 @@
     "try": "やってみる",
     "imitation": "私のまねをしてください！",
     "replay": "もう1回",
+    "stampMessage": "また次回も頑張りましょうね！",
+    "stampCardText1": "スタンプカード",
+    "stampCardText2": "枚目・合計",
+    "stampCardText3": "個"
     "tutorialText": [
       "初心者モードでは、ミライ小町ちゃんと一緒に「あいうえお体操」のやり方を1つずつ確認しながら進めていきます。",
       "口を全体に大きく「あ」の形に開け、目を最大限に大きく見開き、眉毛をできるだけ上に上げます。",
@@ -50,6 +54,10 @@
     "try": "Try",
     "imitation": "Please imitate me!",
     "replay": "Replay",
+    "stampMessage": "Let's do our best again next time!",
+    "stampCardText1": "Stamp card：",
+    "stampCardText2": "st・total：",
+    "stampCardText3": "piece"
     "tutorialText": [
       "In the beginner mode, you and Mirai Komachi-chan will go through the 'Aiueo Gymnastics' one by one.",
       "Open your mouth wide, open your eyes as wide as possible, and raise your eyebrows as high as possible.",
@@ -84,6 +92,10 @@
     "try": "やってみる",
     "imitation": "わたしのまねをしてね！",
     "replay": "もういちど",
+    "stampMessage": "またじかいもがんばろうね！",
+    "stampCardText1": "すたんぷかーど",
+    "stampCardText2": "まいめ・ごうけい",
+    "stampCardText3": "こ"
     "tutorialText": [
       "しょしんしゃもーどでは、みらいこまちちゃんといっしょに「あいうえおたいそう」のやりかたをひとつずつかくにんしていくよ。",
       "くちをおおきく「あ」のかたちにあけ、めをおおきくひらき、まゆげをできるだけうえにあげます。",

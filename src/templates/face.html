@@ -97,7 +97,8 @@
           </div>
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
-        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart" v-if="info">[[ info[language].start ]]</button>
+        <button v-if="info && advancedStartBtn" class="btn-handWritte" @click="advancedStart">[[ info[language].start ]]</button>
+        <button v-if="info && advancedFinish" class="btn-handWritte" @click="advancedEnd">[[ info[language].finishText ]]</button>
         <div class="allToggleArea">
           <div class="toggleArea">
             <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
@@ -109,6 +110,39 @@
           </div>
         </div>
       </div>
+    </div>
+  </template>
+  <template v-if='stampCard'>
+    <p>stamp card</p>
+    <button type="submit" @click="localStorageCount">add localStorage</button>
+    <button type="submit" @click="back2top">もどる</button>
+    <div id="visit-stamp">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="5">スタンプカード</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+          </tr>
+          <tr>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+            <td><span>訪</span></td>
+          </tr>
+          <tr>
+            <td colspan="5">[[ stampCardText ]]</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </template>
 </div>
