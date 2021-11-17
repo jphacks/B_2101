@@ -141,6 +141,7 @@ const face = new Vue({
       // show stamp card
       this.advancedPage = false
       this.stampCard = true
+      this.stamp()
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
@@ -209,6 +210,7 @@ const face = new Vue({
         this.faceShowToggle = false
         this.cameraChangeToggle = false
         this.localStorageCount()
+        this.stamp()
       }
     },
     cameraChange: function () {
@@ -235,6 +237,27 @@ const face = new Vue({
       this.modelMessage = this.info[this.language].komatiModeChoice
       this.stampCard = false
       this.modeChoicePage = true
+    },
+    stamp: function () {
+      $(function(){
+        var visitCount = (localStorage.getItem('key')) - 1
+        //スタンプの処理
+        if($('#visit-stamp td:eq('+visitCount+') span').length){ //指定のtd要素があるか判定
+          //過去に訪問したぶんのスタンプを表示
+          if($('#visit-stamp td:lt('+visitCount+') span').length){
+            $('#visit-stamp td:lt('+visitCount+') span').addClass('visited');
+          }
+          //今回訪問したぶんのスタンプをアニメーションで表示
+          setTimeout(function(){
+            $('#visit-stamp td:eq('+visitCount+') span')
+              .css('transition','all 0.5s ease-in')
+              .addClass('visited');
+          },300);
+        }else{
+          //訪問回数がtd要素の数を超えたらすべて表示
+          $('#visit-stamp td:lt('+visitCount+') span').addClass('visited');
+        }
+      });
     }
   },
   watch: {
