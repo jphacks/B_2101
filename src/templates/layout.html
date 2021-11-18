@@ -37,11 +37,11 @@
   <link rel="apple-touch-icon" href="../static/images/icon512.png">
   <!-- ウェブアプリマニフェストの読み込み -->
 
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="../static/json/">
   <!-- ServiceWorkerの登録 -->
   <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
+    navigator.serviceWorker.register('../entry/js/components/sw.js')
       .then((reg) => {
         console.log('Service worker registered.', reg);
       }); 
