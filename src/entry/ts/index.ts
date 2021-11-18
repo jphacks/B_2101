@@ -231,7 +231,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       else if (stepValue == 6) {
         posepass = pose_hanko;
-        faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
         faceNode.update()
       }
       else if (stepValue == 10) {
