@@ -46,7 +46,8 @@ const face = new Vue({
     circleBtnTextAdvanced: '',
     stampCard: false,
     advancedFinish: false,
-    stampCardText: ''
+    stampCardText: '',
+    animationFrame: 0
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -75,7 +76,7 @@ const face = new Vue({
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
         cheer_voice.play()
       }
-      this.modeChoicePage=false
+      this.modeChoicePage = false
       this.beginnerPage = true
     },
     advancedMode: function () {
@@ -87,8 +88,8 @@ const face = new Vue({
         const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
         cheer_voice.play()
       }
-      this.modeChoicePage=false
-      this.advancedPage=true
+      this.modeChoicePage = false
+      this.advancedPage = true
     },
     advancedStart: function () {
       var sound = document.getElementById('vueSound').value
@@ -114,9 +115,9 @@ const face = new Vue({
         this.animationFlag += 1
         this.modelMessage = advancedMessage[count]
       }
-      const intervalId = setInterval(() =>{
+      const intervalId = setInterval(() => {
         countUp();
-        if(count > 4){　
+        if (count > 4) {
           clearInterval(intervalId);
           if (sound == 1) {
             const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
@@ -128,14 +129,15 @@ const face = new Vue({
           this.cameraChangeToggle = false
           this.advancedFinish = true
           this.localStorageCount()
-      }}, 10000);
+        }
+      }, 10000);
     },
     advancedEnd: function () {
       // reset
       this.advancedStartBtn = true
       this.advancedFinish = false
       this.hanamaru = false
-      for( let i=0; i<5; i++){
+      for (let i = 0; i < 5; i++) {
         this.advancedText[i].check = ''
       }
       this.modelMessage = this.info[this.language].stampMessage
@@ -262,22 +264,129 @@ const face = new Vue({
         }
         self.stampCardText = self.info[self.language].stampCardText1 + sheetNum + self.info[self.language].stampCardText2 + getVisitCount + self.info[self.language].stampCardText3
         //スタンプの処理
-        if($('#visit-stamp td:eq('+visitCount+') .stamp').length){ //指定のtd要素があるか判定
+        if ($('#visit-stamp td:eq(' + visitCount + ') .stamp').length) { //指定のtd要素があるか判定
           //過去に訪問したぶんのスタンプを表示
-          if($('#visit-stamp td:lt('+visitCount+') .stamp').length){
-            $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
+          if ($('#visit-stamp td:lt(' + visitCount + ') .stamp').length) {
+            $('#visit-stamp td:lt(' + visitCount + ') .stamp').addClass('visited');
           }
           //今回訪問したぶんのスタンプをアニメーションで表示
-          setTimeout(function(){
-            $('#visit-stamp td:eq('+visitCount+') .stamp')
-              .css('transition','all 0.5s ease-in')
+          setTimeout(function () {
+            $('#visit-stamp td:eq(' + visitCount + ') .stamp')
+              .css('transition', 'all 0.5s ease-in')
               .addClass('visited');
-          },300);
-        }else{
+          }, 300);
+        } else {
           //訪問回数がtd要素の数を超えたらすべて表示
-          $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
+          $('#visit-stamp td:lt(' + visitCount + ') .stamp').addClass('visited');
         }
       });
+    },
+    faceFuncStart: function () {
+      var video = document.getElementById("video");
+      var canvas = document.getElementById("faceCanvas");
+      var context = canvas.getContext("2d");
+
+      var positionStorage = null;
+
+      // getUserMedia によるカメラ映像の取得
+      // メディアデバイスを取得
+      var media = navigator.mediaDevices.getUserMedia({
+        // カメラの映像を使う（スマホならインカメラ）
+        video: { facingMode: "user" },
+        // マイクの音声は使わない
+        audio: false
+      });
+
+      // メディアデバイスが取得できたら
+      media.then((stream) => {
+        // video 要素にストリームを渡す
+        video.srcObject = stream;
+      });
+
+      // clmtrackr の開始
+      // tracker オブジェクトを作成
+      var tracker = new clm.tracker();
+      // tracker を所定のフェイスモデル（※）で初期化
+      tracker.init(pModel);
+      // video 要素内でフェイストラッキング開始
+      tracker.start(video);
+
+      var ouen_flag_ao = 0;
+      var ouen_flag_u = 0;
+      var ouen_flag_ie = 0;
+
+      var self = this;
+
+      this.$nextTick(() => {
+        // 描画ループ
+        (function drawLoop() {
+          // drawLoop 関数を繰り返し実行
+          self.animationFrame = requestAnimationFrame(drawLoop);
+
+          // 顔部品の現在位置の取得
+          var positions = tracker.getCurrentPosition();
+
+          //ここで現在位置と前回位置の計算を行う
+          //x方向の値を計算する
+          if (positions != false) {
+            //距離基底
+            var abs_dis_x = positions[14][0] - positions[0][0];
+
+            var abs_x = Math.round(1000 * (positions[50][0] - positions[44][0]) / abs_dis_x);
+            var abs_y = Math.round(1000 * (positions[53][1] - positions[47][1]) / abs_dis_x);
+
+            console.log('正規化後の口角の座標');
+            console.log('相対x座標(50-44)：「' + abs_x + '」');
+            console.log('相対y座標(53-47)：「' + abs_y + '」');
+
+            //あ，お 応援フラグ
+            if (abs_y > 190) {
+              ouen_flag_ao = 3 //がんばった
+            } else if (abs_y > 170) {
+              ouen_flag_ao = 2 //あとちょっと
+            } else {
+              ouen_flag_ao = 1 //もっと頑張れ
+            };
+
+            //う 応援フラグ
+            if (abs_x < 370) {
+              ouen_flag_u = 3 //がんばった
+            } else if (abs_x < 380) {
+              ouen_flag_u = 2 //あとちょっと
+            } else {
+              ouen_flag_u = 1 //もっと頑張れ
+            };
+
+            //い，え 応援フラグ
+            if (abs_x > 420) {
+              ouen_flag_ie = 3 //がんばった
+            } else if (abs_x > 400) {
+              ouen_flag_ie = 2 //あとちょっと
+            } else {
+              ouen_flag_ie = 1 //もっと頑張れ
+            };
+
+            console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」');
+            console.log('う　応援フラグ:「' + ouen_flag_u + '」');
+            console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」');
+
+            // canvas をクリア
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            // canvas にトラッキング結果を描画
+            tracker.draw(canvas);
+          }else {
+            // canvas をクリア
+            context.clearRect(0, 0, canvas.width, canvas.height);
+          }
+        })();
+      });
+    },
+    faceFuncStop: function () {
+      cancelAnimationFrame(this.animationFrame);
+      console.log('stop!')
+      var canvas = document.getElementById("faceCanvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
     }
   },
   watch: {
