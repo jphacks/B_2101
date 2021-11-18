@@ -354,7 +354,7 @@ const face = new Vue({
                 console.log("flag")
                 console.log(flag)
                 if (flag==3){
-                  console.log("FLAG3!!!!!!!!!!!!!!!!!!!!")
+                  console.log("FLAG3!!!!!!!!!!!!!!!!!!!!!!")
                   self.modelMessage = self.info[self.language].faceTrainingMsgOK
                 }
                 else if (flag==2){
