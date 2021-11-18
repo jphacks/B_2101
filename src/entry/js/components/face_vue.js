@@ -314,6 +314,11 @@ const face = new Vue({
       var ouen_flag_ao = 0;
       var ouen_flag_u = 0;
       var ouen_flag_ie = 0;
+      var flag = 0;
+      let flag_ao = [];
+      let flag_u = [];
+      let flag_ie = [];
+
       var self = this;
       this.$nextTick(() => {
         // 描画ループ
@@ -334,40 +339,85 @@ const face = new Vue({
             console.log('相対y座標(53-47)：「' + abs_y + '」');
             if(self.animationFlag == 1 || self.animationFlag == 5){
               //あ，お 応援フラグ
-              if (abs_y > 190) {
+              if (abs_y > 200) {
                 ouen_flag_ao = 3 //がんばった
-                self.modelMessage = self.info[self.language].faceTrainingMsgOK
-              } else if (abs_y > 170) {
+              } else if (abs_y > 180) {
                 ouen_flag_ao = 2 //あとちょっと
-                self.modelMessage = self.info[self.language].faceTrainingMsgAO2
               } else {
                 ouen_flag_ao = 1 //もっと頑張れ
-                self.modelMessage = self.info[self.language].faceTrainingMsgAO1
                 };
+
+              flag_ao.push(ouen_flag_ao)
+              console.log(flag_ao)
+              if (flag_ao.length>=100){
+                flag=Math.max(...flag_ao)
+                console.log("flag")
+                console.log(flag)
+                if (flag==3){
+                  console.log("FLAG3!!!!!!!!!!!!!!!!!!!!!!")
+                  self.modelMessage = self.info[self.language].faceTrainingMsgOK
+                }
+                else if (flag==2){
+                  self.modelMessage = self.info[self.language].faceTrainingMsgAO2
+                }else{
+                  self.modelMessage = self.info[self.language].faceTrainingMsgAO1
+                };
+                flag_ao=[]
+              };
+
               }else if(self.animationFlag == 3){
               //う 応援フラグ
               if (abs_x < 370) {
                 ouen_flag_u = 3 //がんばった
-                self.modelMessage = self.info[self.language].faceTrainingMsgOK
-              } else if (abs_x < 380) {
+               
+              } else if (abs_x < 375) {
                 ouen_flag_u = 2 //あとちょっと
-                self.modelMessage = self.info[self.language].faceTrainingMsgU2
+                
               } else {
                 ouen_flag_u = 1 //もっと頑張れ
-                self.modelMessage = self.info[self.language].faceTrainingMsgU1
+               
+              };
+
+              flag_u.push(ouen_flag_u)
+              if (flag_u.length>=100){
+                flag=Math.max(...flag_u)
+                console.log("flag")
+                console.log(flag)
+                if (flag==3){
+                  self.modelMessage = self.info[self.language].faceTrainingMsgOK
+                }
+                else if (flag==2){
+                  self.modelMessage = self.info[self.language].faceTrainingMsgU2
+                }else{
+                  self.modelMessage = self.info[self.language].faceTrainingMsgU1
+                };
+                flag_u=[]
                 };
               }else{
               //い，え 応援フラグ
-              if (abs_x > 420) {
+              if (abs_x > 390) {
                 ouen_flag_ie = 3 //がんばった
-                self.modelMessage = self.info[self.language].faceTrainingMsgOK
-              } else if (abs_x > 400) {
+              } else if (abs_x > 380) {
                 ouen_flag_ie = 2 //あとちょっと
-                self.modelMessage = self.info[self.language].faceTrainingMsgIE2
               } else {
                 ouen_flag_ie = 1 //もっと頑張れ
-                self.modelMessage = self.info[self.language].faceTrainingMsgIE1
               };
+              
+              flag_ie.push(ouen_flag_ie)
+              if (flag_ie.length>=100){
+                flag=Math.max(...flag_ie)
+                console.log("flag")
+                console.log(flag)
+                if (flag==3){
+                  self.modelMessage = self.info[self.language].faceTrainingMsgOK
+                }
+                else if (flag==2){
+                  self.modelMessage = self.info[self.language].faceTrainingMsgIE2
+                }else{
+                  self.modelMessage = self.info[self.language].faceTrainingMsgIE1
+                };
+                flag_ie=[]
+                };
             }
             console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」');
             console.log('う　応援フラグ:「' + ouen_flag_u + '」');
