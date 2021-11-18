@@ -66,3 +66,35 @@
 	opacity: 1.0;
 	transform: scale(1.0) rotate(0deg);
 }
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+	#visit-stamp {
+		border: 7px solid $sub-color;
+		border-radius: 6px;
+		letter-spacing: 0.1rem;
+		table{
+			width: 20.5rem;
+		}
+		th, td{
+			text-align: center;
+			border: 3px solid $sub-color;
+		}
+		tr{
+			height: 6.5rem;
+		}
+	}
+	#stampCardTitle{
+		gap: 1rem;
+		font-size: 1.3rem;
+		img{
+			width: 6rem;
+		}
+	}
+	#stampCardFooter{
+		font-size: 1.1rem;
+	}
+	.stamp {
+		font-size: 2.5rem;
+	}
+}

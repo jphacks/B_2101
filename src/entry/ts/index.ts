@@ -187,12 +187,6 @@ window.addEventListener("DOMContentLoaded", () => {
     let time = (new Date()).getTime()
     let delta = time - lastTime;
 
-    // アニメーションの定期処理
-    if (mixer) {
-      mixer.update(delta)
-    }
-
-
     //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
       console.log("step.value" + step.value)
@@ -237,7 +231,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       else if (stepValue == 6) {
         posepass = pose_hanko;
-        faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
         faceNode.update()
       }
       else if (stepValue == 10) {
@@ -248,6 +242,11 @@ window.addEventListener("DOMContentLoaded", () => {
       if (mixer != undefined) { makeAnimation(posepass) }
       (<HTMLInputElement>document.getElementById('flag')).value = '0';
     }
+
+    // アニメーションの定期処理
+    if (mixer) {
+          mixer.update(delta)
+        }
     // 最終更新時間
     lastTime = time;
 

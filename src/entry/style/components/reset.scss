@@ -117,7 +117,7 @@ embed,object,iframe {
   vertical-align: bottom;
 }
 
-button,optgroup,select,textarea {
+button,optgroup,textarea {
   -webkit-appearance: none;
   appearance: none;
   vertical-align: middle;
@@ -144,11 +144,14 @@ button,optgroup,select,textarea {
 
 button {
   overflow: visible;
-}
-
-button,select {
   text-transform: none;
 }
+
+/*
+button {
+  text-transform: none;
+}
+*/
 
 button,
 [type="button"],
@@ -179,14 +182,6 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
-}
-
-select::-ms-expand {
-  display: none;
-}
-
-option {
-  padding: 0;
 }
 
 fieldset {

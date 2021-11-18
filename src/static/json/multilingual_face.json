@@ -35,7 +35,14 @@
       "次は「え」です！",
       "最後は「お」です！",
       "お疲れ様でした！"
-    ]
+    ],
+    "faceTrainingMsgAO1": "もっと口を開けましょう！",
+    "faceTrainingMsgAO2": "もうちょっと開けてみましょう！",
+    "faceTrainingMsgU1": "もっと口をすぼめてみましょう！",
+    "faceTrainingMsgU2": "もうちょっとすぼめてみましょう！",
+    "faceTrainingMsgIE1": "もっと笑ってください！！",
+    "faceTrainingMsgIE2": "もうちょっと口を横に引っ張りましょう！",
+    "faceTrainingMsgOK": "いい調子！そのままキープです！"
   },
   "English": {
     "komatiModeChoice": "Which mode do you want to use?",
@@ -73,7 +80,14 @@
       "Next is「 e 」!",
       "The last is「 o 」!",
       "good job!"
-    ]
+    ],
+    "faceTrainingMsgAO1": "Let's open our mouth more!",
+    "faceTrainingMsgAO2": "Let's open it a little more!",
+    "faceTrainingMsgU1": "Let's squeeze more!",
+    "faceTrainingMsgU2": "Let's squeeze a little more!",
+    "faceTrainingMsgIE1": "Please laugh more!!",
+    "faceTrainingMsgIE2": "Let's pull the mouth a little more sideways!",
+    "faceTrainingMsgOK": "Good condition! Keep it as it is!"
   },
   "Hiragana": {
     "komatiModeChoice": "どちらのもーどにしますか？",
@@ -111,7 +125,14 @@
       "つぎは「え」です！",
       "さいごは「お」です！",
       "おつかれさまでした！"
-    ]
+    ],
+    "faceTrainingMsgAO1": "もっとくちをあけてみよう！",
+    "faceTrainingMsgAO2": "もうちょっとあけてみよう！",
+    "faceTrainingMsgU1": "もっとくちをすぼめてみよう！",
+    "faceTrainingMsgU2": "もうちょっとすぼめてみよう！",
+    "faceTrainingMsgIE1": "もっとわらってください！！",
+    "faceTrainingMsgIE2": "もうちょっとくちをよこにひっぱろう！",
+    "faceTrainingMsgOK": "いいですね！そのままきーぷです！"
   },
   "Chinese": {
     "komatiModeChoice": "你想使用哪种模式？",
@@ -149,6 +170,13 @@
       "接下来是「e」!",
       "最后是「o」!",
       "好样的"
-    ]
+    ],
+    "faceTrainingMsgAO1": "让我们更多地张开嘴吧!",
+    "faceTrainingMsgAO2": "让我们把它再打开一点!",
+    "faceTrainingMsgU1": "让我们多挤一挤",
+    "faceTrainingMsgU2": "让我们再挤一挤吧!",
+    "faceTrainingMsgIE1": "请多笑一笑吧",
+    "faceTrainingMsgIE2": "让我们把嘴巴再往旁边拉一拉!",
+    "faceTrainingMsgOK": "状况良好! 保持原样!"
   }
 }
