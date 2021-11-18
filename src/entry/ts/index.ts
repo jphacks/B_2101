@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   var posepass = '../static/pose/hellovrm.csv';
   var pose_hello = '../static/pose/hellovrm.csv';
   var pose_a = '../static/pose/a_face.csv';
-  var pose_i = '../static/pose/cats.csv';
+  var pose_i = '../static/pose/i_face.csv';
   var pose_u = '../static/pose/u_face.csv';
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
@@ -69,9 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
           makeAnimation(pose_hello);
         })
       },
-      (progress) => //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%')
-      {
-        /*(<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total)));*/
+      (progress) => {
         console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
         const progressNum = <HTMLInputElement>document.getElementById('progressNum');
         progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
@@ -123,7 +121,7 @@ window.addEventListener("DOMContentLoaded", () => {
       hierarchy[i] = { 'keys': keys }
     }
     //小町ちゃん用のsplice
-    hierarchy.splice(54, 1)    
+    hierarchy.splice(54, 1)
     hierarchy.splice(23, 1)
     hierarchy.splice(22, 1)
     hierarchy.splice(21, 1)
@@ -255,9 +253,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // レンダリング
     renderer.render(scene, camera)
-
-    
-   
   }
   update()
 })
