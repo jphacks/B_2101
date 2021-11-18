@@ -332,30 +332,43 @@ const face = new Vue({
             console.log('正規化後の口角の座標');
             console.log('相対x座標(50-44)：「' + abs_x + '」');
             console.log('相対y座標(53-47)：「' + abs_y + '」');
-            //あ，お 応援フラグ
-            if (abs_y > 190) {
-              ouen_flag_ao = 3 //がんばった
-            } else if (abs_y > 170) {
-              ouen_flag_ao = 2 //あとちょっと
-            } else {
-              ouen_flag_ao = 1 //もっと頑張れ
-            };
-            //う 応援フラグ
-            if (abs_x < 370) {
-              ouen_flag_u = 3 //がんばった
-            } else if (abs_x < 380) {
-              ouen_flag_u = 2 //あとちょっと
-            } else {
-              ouen_flag_u = 1 //もっと頑張れ
-            };
-            //い，え 応援フラグ
-            if (abs_x > 420) {
-              ouen_flag_ie = 3 //がんばった
-            } else if (abs_x > 400) {
-              ouen_flag_ie = 2 //あとちょっと
-            } else {
-              ouen_flag_ie = 1 //もっと頑張れ
-            };
+            if(self.animationFlag == 1 || self.animationFlag == 5){
+              //あ，お 応援フラグ
+              if (abs_y > 190) {
+                ouen_flag_ao = 3 //がんばった
+                self.modelMessage = self.info[self.language].faceTrainingMsgOK
+              } else if (abs_y > 170) {
+                ouen_flag_ao = 2 //あとちょっと
+                self.modelMessage = self.info[self.language].faceTrainingMsgAO2
+              } else {
+                ouen_flag_ao = 1 //もっと頑張れ
+                self.modelMessage = self.info[self.language].faceTrainingMsgAO1
+                };
+              }else if(self.animationFlag == 3){
+              //う 応援フラグ
+              if (abs_x < 370) {
+                ouen_flag_u = 3 //がんばった
+                self.modelMessage = self.info[self.language].faceTrainingMsgOK
+              } else if (abs_x < 380) {
+                ouen_flag_u = 2 //あとちょっと
+                self.modelMessage = self.info[self.language].faceTrainingMsgU2
+              } else {
+                ouen_flag_u = 1 //もっと頑張れ
+                self.modelMessage = self.info[self.language].faceTrainingMsgU1
+                };
+              }else{
+              //い，え 応援フラグ
+              if (abs_x > 420) {
+                ouen_flag_ie = 3 //がんばった
+                self.modelMessage = self.info[self.language].faceTrainingMsgOK
+              } else if (abs_x > 400) {
+                ouen_flag_ie = 2 //あとちょっと
+                self.modelMessage = self.info[self.language].faceTrainingMsgIE2
+              } else {
+                ouen_flag_ie = 1 //もっと頑張れ
+                self.modelMessage = self.info[self.language].faceTrainingMsgIE1
+              };
+            }
             console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」');
             console.log('う　応援フラグ:「' + ouen_flag_u + '」');
             console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」');
