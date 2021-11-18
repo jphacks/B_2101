@@ -18,11 +18,21 @@
 }
 
 #headerArea{
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin: 0 auto 0.5rem auto;
   font-family: 'Zen Kurenaido', sans-serif;
   color: #000000;
 }
 
+#stampRemoveBtn{
+  height: fit-content;
+}
+
 #inquiryLink{
+  height: fit-content;
   display: flex;
   align-items: center;
   gap: 0.3rem;

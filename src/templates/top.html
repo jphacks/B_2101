@@ -19,10 +19,8 @@
   <div id="rightArea">
     <div id="headerArea">
       <!-- localStorage remove btn -->
-      <button @click="localStorageRemove"><span class="material-icons">delete</span></button>
-      <!-- inquiry form link -->
-      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer"
-        v-if="info">[[ info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
+      <button id="stampRemoveBtn" @click="localStorageRemove"><span class="material-icons">delete</span></button>
+      <!-- multilingual -->
       <div id="multilingualArea" class="cp_ipselect cp_sl01">
         <span class="material-icons">language</span>
         <select v-model="selected">
@@ -32,6 +30,9 @@
           <option value="Hiragana">ひらがな</option>
         </select>
       </div>
+      <!-- inquiry form link -->
+      <a id="inquiryLink" href="https://forms.gle/LUJQiqvmvzGKHmFw5" target="_blank" rel="noopener noreferrer" v-if="info">[[
+        info[selected].inquiry ]]<span class="material-icons">open_in_new</span></a>
     </div>
     <div class="note_wrap">
       <div class="note">
