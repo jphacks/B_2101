@@ -92,6 +92,7 @@ const face = new Vue({
       this.advancedPage = true
     },
     advancedStart: function () {
+      this.faceFuncStart()
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const try_se = new Audio("./static/sound/sound_effect/try.mp3")
@@ -118,6 +119,8 @@ const face = new Vue({
       const intervalId = setInterval(() => {
         countUp();
         if (count > 4) {
+          // 終了時の処理
+          this.faceFuncStop()
           clearInterval(intervalId);
           if (sound == 1) {
             const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
@@ -152,6 +155,7 @@ const face = new Vue({
       this.tutorialTitle = this.info[this.language].aiueoGymnastics
       this.startBtnMessage = this.info[this.language].try
       if (this.tutorialCountNum == 0) {
+        this.faceFuncStart()
         this.modelMessage = this.info[this.language].areYouReady
         if (sound == 1) {
           const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
@@ -197,6 +201,8 @@ const face = new Vue({
           console.log('finish')
         }
       } else {
+        // 終わるボタンを押したときの処理
+        this.faceFuncStop()
         if (sound == 1) {
           const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
           end_voice.play()
