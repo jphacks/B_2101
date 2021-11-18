@@ -97,7 +97,8 @@
           </div>
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
-        <button v-if="advancedStartBtn" class="btn-handWritte" @click="advancedStart" v-if="info">[[ info[language].start ]]</button>
+        <button v-if="info && advancedStartBtn" class="btn-handWritte" @click="advancedStart">[[ info[language].start ]]</button>
+        <button v-if="info && advancedFinish" class="btn-handWritte" @click="advancedEnd">[[ info[language].finishText ]]</button>
         <div class="allToggleArea">
           <div class="toggleArea">
             <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
@@ -109,6 +110,46 @@
           </div>
         </div>
       </div>
+    </div>
+  </template>
+  <template v-if='stampCard'>
+    <div id="visit-stamp">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="5">
+              <span id="stampCardTitle">
+              スタンプカード
+              <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+              </span>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stamp material-icons">insert_emoticon</span></td>
+            <td><span class="stamp material-icons">star</span></td>
+            <td><span class="stamp material-icons">local_florist</span></td>
+            <td><span class="stamp material-icons">cruelty_free</span></td>
+            <td><img class=" stamp hanamaruStamp" src="../static/images/yokudekimashita.png" alt="よくできましたの画像"></span></td>
+          </tr>
+          <tr>
+            <td><span class="stamp material-icons">auto_awesome</span></td>
+            <td><span class="stamp material-icons">pets</span></td>
+            <td><span class="stamp material-icons">sentiment_satisfied_alt</span></td>
+            <td><span class="stamp material-icons">favorite</span></td>
+            <td><img class="stamp hanamaruStamp" src="../static/images/hanamaru.png" alt="はなまるの画像"></span></td>
+          </tr>
+          <tr>
+            <td rowspan="2" colspan="5">
+              <span id="stampCardFooter">
+              [[ stampCardText ]]
+              <button class="btn-handWritte" type="submit" @click="back2top">もどる</button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </template>
 </div>

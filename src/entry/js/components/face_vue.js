@@ -43,7 +43,10 @@ const face = new Vue({
     faceCanvasRatio: 0,
     modelAndDialogueFlex: '',
     circleBtnTextBeginner: '',
-    circleBtnTextAdvanced: ''
+    circleBtnTextAdvanced: '',
+    stampCard: false,
+    advancedFinish: false,
+    stampCardText: ''
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -123,8 +126,24 @@ const face = new Vue({
           this.hanamaru = true
           this.faceShowToggle = false
           this.cameraChangeToggle = false
+          this.advancedFinish = true
           this.localStorageCount()
       }}, 10000);
+    },
+    advancedEnd: function () {
+      // reset
+      this.advancedStartBtn = true
+      this.advancedFinish = false
+      this.hanamaru = false
+      for( let i=0; i<5; i++){
+        this.advancedText[i].check = ''
+      }
+      this.modelMessage = this.info[this.language].stampMessage
+      // show stamp card
+      this.animationFlag = 6
+      this.advancedPage = false
+      this.stampCard = true
+      this.stamp()
     },
     trainingStart: function () {
       var sound = document.getElementById('vueSound').value
@@ -144,7 +163,9 @@ const face = new Vue({
           const try_se = new Audio("./static/sound/sound_effect/try.mp3")
           try_se.play()
         }
-        this.nextBtnMessage = this.info[this.language].go2next
+        if (this.tutorialCountNum != 5) {
+          this.nextBtnMessage = this.info[this.language].go2next
+        }
         this.startBtn = false
         this.nextBtnArea = true
       }
@@ -171,6 +192,7 @@ const face = new Vue({
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = this.info[this.language].finishText
+          console.log('finish')
         }
       } else {
         if (sound == 1) {
@@ -182,14 +204,16 @@ const face = new Vue({
         this.tutorialTitle = this.info[this.language].tutorialTitle
         this.startBtnMessage = this.info[this.language].start
         this.nextBtnMessage = this.info[this.language].go2next
-        this.modelMessage = this.info[this.language].komatiModeChoice
-        this.modeChoicePage = true
+        this.modelMessage = this.info[this.language].stampMessage
+        this.stampCard = true
+        this.animationFlag = 6
         this.beginnerPage = false
         this.startBtn = true
         this.nextBtnArea = false
         this.faceShowToggle = false
         this.cameraChangeToggle = false
         this.localStorageCount()
+        this.stamp()
       }
     },
     cameraChange: function () {
@@ -211,6 +235,49 @@ const face = new Vue({
         value = localStorage.getItem('key')
         console.log(value)
       }
+    },
+    back2top: function () {
+      this.modelMessage = this.info[this.language].komatiModeChoice
+      this.stampCard = false
+      this.modeChoicePage = true
+      this.animationFlag = 10
+    },
+    stamp: function () {
+      var self = this
+      $(function () {
+        var getVisitCount = (localStorage.getItem('key'))
+        var visitCount = getVisitCount
+        if (visitCount >= 10) {
+          var ovar10 = visitCount % 10
+          if (ovar10 != 0) {
+            visitCount = ovar10
+          } else {
+            visitCount = 10
+          }
+          console.log(visitCount)
+        }
+        var sheetNum = Math.floor(getVisitCount / 10) + 1
+        if (getVisitCount % 10 == 0) {
+          sheetNum -= 1
+        }
+        self.stampCardText = self.info[self.language].stampCardText1 + sheetNum + self.info[self.language].stampCardText2 + getVisitCount + self.info[self.language].stampCardText3
+        //スタンプの処理
+        if($('#visit-stamp td:eq('+visitCount+') .stamp').length){ //指定のtd要素があるか判定
+          //過去に訪問したぶんのスタンプを表示
+          if($('#visit-stamp td:lt('+visitCount+') .stamp').length){
+            $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
+          }
+          //今回訪問したぶんのスタンプをアニメーションで表示
+          setTimeout(function(){
+            $('#visit-stamp td:eq('+visitCount+') .stamp')
+              .css('transition','all 0.5s ease-in')
+              .addClass('visited');
+          },300);
+        }else{
+          //訪問回数がtd要素の数を超えたらすべて表示
+          $('#visit-stamp td:lt('+visitCount+') .stamp').addClass('visited');
+        }
+      });
     }
   },
   watch: {

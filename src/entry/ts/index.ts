@@ -11,13 +11,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // model_pathの取得
   var modelPass = '../static/base_model/Miraikomachi.vrm';
-  var posepass = '../static/pose/hellomirai.csv';
-  var pose_hello = '../static/pose/hellomirai.csv';
+  var posepass = '../static/pose/hellovrm.csv';
+  var pose_hello = '../static/pose/hellovrm.csv';
   var pose_a = '../static/pose/a_face.csv';
-  var pose_i = '../static/pose/cats.csv';
+  var pose_i = '../static/pose/i_face.csv';
   var pose_u = '../static/pose/u_face.csv';
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
+  var pose_hanko = '../static/pose/hanko.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -68,15 +69,13 @@ window.addEventListener("DOMContentLoaded", () => {
           makeAnimation(pose_hello);
         })
       },
-      (progress) => //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%')
-      {
-        /*(<HTMLInputElement>document.getElementById('loading')).value = String(Math.round(100.0 * (progress.loaded / progress.total)));*/
+      (progress) => {
         console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
         const progressNum = <HTMLInputElement>document.getElementById('progressNum');
         progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
         const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
         progressBarFull.style.width = Math.round(100.0 * (progress.loaded / progress.total)) + '%';
-        if((Math.round(100.0 * (progress.loaded / progress.total))) == 100) {(<HTMLInputElement>document.getElementById('loading')).style.display = 'none'}
+        if ((Math.round(100.0 * (progress.loaded / progress.total))) == 100) { (<HTMLInputElement>document.getElementById('loading')).style.display = 'none' }
       },
       (error) => console.error(error)
     )
@@ -105,13 +104,13 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let j = 0; j < lines.length; j++) {
       data[j] = []
       let strs = lines[j].split(',')
-      for (let i = 0; i < 17 * 4; i++) {
+      for (let i = 0; i < 55 * 4; i++) {
         data[j][i] = Number(strs[i])
       }
     }
     // 配列 → hierarchy
     let hierarchy = []
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < 55; i++) {
       let keys = []
       for (let j = 0; j < data.length; j++) {
         keys[j] = {
@@ -121,6 +120,11 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       hierarchy[i] = { 'keys': keys }
     }
+    //小町ちゃん用のsplice
+    hierarchy.splice(54, 1)
+    hierarchy.splice(23, 1)
+    hierarchy.splice(22, 1)
+    hierarchy.splice(21, 1)
     return hierarchy
   }
 
@@ -128,8 +132,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
+    //顎目胸抜き
+    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal"]
+
     //最低限bone
-    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
+    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
@@ -140,9 +147,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //アニメーションをセットする
   const makeAnimation = (posepass: string) => {
-  // AnimationClipの生成
-  const clip = THREE.AnimationClip.parseAnimation({
-    hierarchy: csv2hierarchy(http2str(posepass), 200)
+    // AnimationClipの生成
+    const clip = THREE.AnimationClip.parseAnimation({
+      hierarchy: csv2hierarchy(http2str(posepass), 200)
     }, boneNode)
     // トラック名の変更
     clip.tracks.some((track) => {
@@ -184,7 +191,8 @@ window.addEventListener("DOMContentLoaded", () => {
     if (mixer) {
       mixer.update(delta)
     }
-    
+
+
     //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
       console.log("step.value" + step.value)
@@ -195,19 +203,19 @@ window.addEventListener("DOMContentLoaded", () => {
         camera.position.set(0, 1.3, 0.85);
         camera.lookAt(0, 1.4, 0);
       }
-      if (stepValue == 1) {
+      else if (stepValue == 1) {
         posepass = pose_a
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
       }
-      if (stepValue == 2) {
+      else if (stepValue == 2) {
         posepass = pose_i
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
         faceNode.update()
       }
-      if (stepValue == 3) {
+      else if (stepValue == 3) {
         posepass = pose_u
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
         faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
@@ -215,19 +223,24 @@ window.addEventListener("DOMContentLoaded", () => {
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
         faceNode.update()
       }
-      if (stepValue == 4) {
+      else if (stepValue == 4) {
         posepass = pose_e
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
       }
-      if (stepValue == 5) {
+      else if (stepValue == 5) {
         posepass = pose_o;
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
         faceNode.update()
       }
-      if (stepValue == 10) {
+      else if (stepValue == 6) {
+        posepass = pose_hanko;
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+        faceNode.update()
+      }
+      else if (stepValue == 10) {
         posepass = pose_hello;
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
         faceNode.update()
