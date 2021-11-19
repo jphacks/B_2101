@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
   var pose_hanko = '../static/pose/hanko.csv';
+  var pose_888 = '../static/pose/888.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -230,7 +231,9 @@ window.addEventListener("DOMContentLoaded", () => {
         faceNode.update()
       }
       else if (stepValue == 6) {
-        posepass = pose_hanko;
+        if (getRandomInt(2) == 1) {
+          posepass = pose_hanko;
+        } else { posepass = pose_888; }
         faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
         faceNode.update()
       }
@@ -245,8 +248,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // アニメーションの定期処理
     if (mixer) {
-          mixer.update(delta)
-        }
+      mixer.update(delta)
+    }
     // 最終更新時間
     lastTime = time;
 
@@ -256,3 +259,6 @@ window.addEventListener("DOMContentLoaded", () => {
   update()
 })
 
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
+}
