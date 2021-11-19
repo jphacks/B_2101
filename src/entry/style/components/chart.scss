@@ -14,3 +14,10 @@
     white
   );
 }
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  .pie {
+    margin: 0 0 0.5rem 0;
+  }
+}

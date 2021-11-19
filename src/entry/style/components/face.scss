@@ -56,6 +56,7 @@
 
 .mainText{
   display: flex;
+  flex-direction: row;
   align-items: end;
   justify-content: space-between;
 }
@@ -169,6 +170,21 @@
 
   .note_wrap{
     width: 20rem;
+  }
+
+  .mainText{
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .advancedTextShow{
+    margin: 0 auto 0.13rem 0;
+  }
+
+  .hanamaru{
+    margin-right: 0;
+    transform: rotate(0deg);
   }
 
   .choiceBtnGrid{
