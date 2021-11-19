@@ -6,7 +6,7 @@
   align-items: center;
   gap: 1rem;
   margin: 0 auto;
-  padding: 5rem 0 0;
+  padding: 7rem 0 0;
 }
 
 #soundCheckbox{
@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  font-size: 1rem;
   span{
     font-size: 1.3rem;
   }
@@ -44,14 +45,25 @@
 /* mobileここから */
 @media screen and (max-width: 950px) {
   #mainArea{
+    gap: 2rem;
     flex-direction: column;
     padding: 3rem 0 5rem;
   }
-
   #soundCheckbox{
     margin: 2.3rem auto 1.5rem;
     label{
       margin: 0;
+    }
+  }
+  #headerArea{
+    gap: 1rem;
+    margin: 0 auto 2rem auto;
+  }
+  #inquiryLink{
+    gap: 0.1rem;
+    font-size: 0.9rem;
+    span{
+      font-size: 1.1rem;
     }
   }
 }

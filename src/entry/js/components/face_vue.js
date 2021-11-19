@@ -104,6 +104,7 @@ const face = new Vue({
       let count = 0;
       this.animationFlag = 1
       this.modelMessage = advancedMessage[count]
+      this.advancedText[count].check = 'local_fire_department'
       const countUp = () => {
         this.advancedText[count].check = 'done'
         if (sound == 1) {
@@ -132,6 +133,8 @@ const face = new Vue({
           this.cameraChangeToggle = false
           this.advancedFinish = true
           this.localStorageCount()
+        } else {
+          this.advancedText[count].check = 'local_fire_department'
         }
       }, 10000);
     },
@@ -204,7 +207,7 @@ const face = new Vue({
         // 終わるボタンを押したときの処理
         this.faceFuncStop()
         if (sound == 1) {
-          const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+          const end_voice = new Audio("./static/sound/sound_effect/stamp.mp3")
           end_voice.play()
         }
         this.animationFlag = 10
@@ -245,6 +248,11 @@ const face = new Vue({
       }
     },
     back2top: function () {
+      var sound = document.getElementById('vueSound').value
+      if (sound == 1) {
+        const end_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_07.wav")
+        end_voice.play()
+      }
       this.modelMessage = this.info[this.language].komatiModeChoice
       this.stampCard = false
       this.modeChoicePage = true
@@ -318,7 +326,6 @@ const face = new Vue({
       let flag_ao = [];
       let flag_u = [];
       let flag_ie = [];
-
       var self = this;
       this.$nextTick(() => {
         // 描画ループ
@@ -346,7 +353,6 @@ const face = new Vue({
               } else {
                 ouen_flag_ao = 1 //もっと頑張れ
                 };
-
               flag_ao.push(ouen_flag_ao)
               console.log(flag_ao)
               if (flag_ao.length>=100){
@@ -364,20 +370,15 @@ const face = new Vue({
                 };
                 flag_ao=[]
               };
-
               }else if(self.animationFlag == 3){
               //う 応援フラグ
               if (abs_x < 370) {
                 ouen_flag_u = 3 //がんばった
-               
               } else if (abs_x < 375) {
                 ouen_flag_u = 2 //あとちょっと
-                
               } else {
                 ouen_flag_u = 1 //もっと頑張れ
-               
               };
-
               flag_u.push(ouen_flag_u)
               if (flag_u.length>=100){
                 flag=Math.max(...flag_u)
@@ -402,7 +403,6 @@ const face = new Vue({
               } else {
                 ouen_flag_ie = 1 //もっと頑張れ
               };
-              
               flag_ie.push(ouen_flag_ie)
               if (flag_ie.length>=100){
                 flag=Math.max(...flag_ie)
