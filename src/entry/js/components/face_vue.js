@@ -49,7 +49,8 @@ const face = new Vue({
     advancedFinish: false,
     stampCardText: '',
     animationFrame: 0,
-    pieChartColor: 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
+    pieChartColor: 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)',
+    allToggleArea: false
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -95,6 +96,7 @@ const face = new Vue({
     },
     advancedStart: function () {
       this.faceFuncStart()
+      this.allToggleArea = true
       this.pieChart = true
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
@@ -152,6 +154,7 @@ const face = new Vue({
         this.advancedText[i].check = ''
       }
       this.modelMessage = this.info[this.language].stampMessage
+      this.allToggleArea = false
       // show stamp card
       this.animationFlag = 6
       this.advancedPage = false
@@ -164,6 +167,7 @@ const face = new Vue({
       this.startBtnMessage = this.info[this.language].try
       if (this.tutorialCountNum == 0) {
         this.faceFuncStart()
+        this.allToggleArea = true
         this.modelMessage = this.info[this.language].areYouReady
         if (sound == 1) {
           const start_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_22.wav")
@@ -228,6 +232,7 @@ const face = new Vue({
         this.nextBtnArea = false
         this.faceShowToggle = false
         this.cameraChangeToggle = false
+        this.allToggleArea = false
         this.localStorageCount()
         this.stamp()
       }
