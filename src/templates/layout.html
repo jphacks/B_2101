@@ -36,16 +36,16 @@
   <meta name="apple-mobile-web-app-title" content="にこトレ！">
   <!-- ホーム画面に表示されるアプリアイコン -->
   <link rel="apple-touch-icon" href="../static/images/icon512.png">
-  
+
   <link rel="manifest" href="../static/json/manifest.json">
   <!-- ServiceWorkerの登録 -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('../entry/js/components/sw.js')
+      navigator.serviceWorker.register('../static/js/face/sw.js')
         .then((reg) => {
           console.log('Service worker registered.', reg);
         });
-  }</script>
+    }</script>
 </head>
 
 <body>
