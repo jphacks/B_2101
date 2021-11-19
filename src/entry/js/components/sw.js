@@ -1,3 +1,3 @@
 self.addEventListener('fetch', function(e) {
-    // ここは空でもOK
-  })
+  // ここは空でもOK
+})
