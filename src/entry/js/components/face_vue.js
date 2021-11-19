@@ -76,7 +76,13 @@ const face = new Vue({
       this.tutorialText = this.info[this.language].tutorialText
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
-        const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        var rndm = Math.floor(Math.random() * 2);
+        var cheer_voice;
+        if (rndm == 0) {
+          cheer_voice = new Audio("./static/sound/voice/miraikomachi_voice_11_ganba.wav")
+        } else {
+          cheer_voice = new Audio("./static/sound/voice/miraikomachi_voice_11_ouen.wav")
+        }
         cheer_voice.play()
       }
       this.modeChoicePage = false
@@ -88,7 +94,13 @@ const face = new Vue({
       this.modelMessage = this.info[this.language].komatiAdvancedModeChoice
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
-        const cheer_voice = new Audio("./static/sound/voice/Voices_miraikomachi_voice_11.wav")
+        var rndm = Math.floor(Math.random() * 2);
+        var cheer_voice;
+        if (rndm == 0) {
+          cheer_voice = new Audio("./static/sound/voice/miraikomachi_voice_11_ganba.wav");
+        } else {
+          cheer_voice = new Audio("./static/sound/voice/miraikomachi_voice_11_ouen.wav");
+        }
         cheer_voice.play()
       }
       this.modeChoicePage = false
