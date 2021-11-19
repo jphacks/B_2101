@@ -20,12 +20,15 @@ body {
 }
 
 #modelArea{
-  width: calc(100vw*(2/7));
-  height: calc(100vh*(5/7));
   canvas{
     width: calc(100vw*(2/7));
     height: calc(100vh*(5/7));
   }
+}
+
+.topModelArea{
+  width: calc(100vw*(2/7));
+  height: calc(100vh*(5/7));
 }
 
 /* model & dialog */
@@ -180,12 +183,15 @@ input[type=checkbox]:checked + .checkbox::after {
   }
 
   #modelArea{
-    width: calc(100vw*(3/4));
-    height: calc(100vh*(3/4));
     canvas{
       width: calc(100vw*(3/4));
       height: calc(100vh*(3/4));
     }
+  }
+
+  .topModelArea{
+    width: calc(100vw*(3/4));
+    height: calc(100vh*(3/4));
   }
 
   .cp_ipselect {
