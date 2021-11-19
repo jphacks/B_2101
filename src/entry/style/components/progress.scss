@@ -1,0 +1,40 @@
+#loading{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 18rem auto 0;
+  align-items: center;
+}
+
+#progressTextArea{
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 auto;
+  color: $text-color;
+}
+
+#progressBar {
+  width: 13rem;
+  height: 1rem;
+  border: 0.15rem solid $border-progress;
+  background-color: $bg-progress;
+  border-radius: 25px;
+}
+
+#progressBarFull {
+  height: 0.7rem;
+  background-color: $dark-main-color;
+  width: 0%;
+  border-radius: 25px;
+  margin-top: -0.02rem;
+  margin-left: 0.005rem;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #loading{
+    margin: 11rem auto 0;
+  }
+}

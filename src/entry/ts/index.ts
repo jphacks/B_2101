@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 //import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRM, VRMSchema, VRMUnlitMaterial } from '@pixiv/three-vrm'
 import { convertToObject } from 'typescript';
 import { mode } from '../../../webpack.config';
@@ -11,16 +11,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // model_pathの取得
   var modelPass = '../static/base_model/Miraikomachi.vrm';
-  //var modelPass = '../static/base_model/base.vrm';
-  //var posepass = '../static/pose/hellovrm.csv';
-  var posepass = '../static/pose/hellomirai.csv';
-  var pose_hello = '../static/pose/hellomirai.csv';
+  var posepass = '../static/pose/hellovrm.csv';
+  var pose_hello = '../static/pose/hellovrm.csv';
   var pose_a = '../static/pose/a_face.csv';
-  var pose_i = '../static/pose/cats.csv';
+  var pose_i = '../static/pose/i_face.csv';
   var pose_u = '../static/pose/u_face.csv';
   var pose_e = '../static/pose/e_face.csv';
   var pose_o = '../static/pose/o_face.csv';
-  var facemode = 'normal';
+  var pose_hanko = '../static/pose/hanko.csv';
+  var pose_888 = '../static/pose/888.csv';
 
   // シーンの設定
   const scene = new THREE.Scene()
@@ -47,7 +46,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const camera = new THREE.PerspectiveCamera(
     35,
     canvas.clientWidth / canvas.clientHeight,
-
     0.1,
     1000,
   )
@@ -56,11 +54,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // VRMの読み込み
   var boneNode: any = []
-  var faceNode:any = []
+  var faceNode: any = []
   let mixer: any
   const loader = new GLTFLoader()
   newLoad()
-  
+
   function newLoad() {
     loader.load(modelPass,
       (gltf) => {
@@ -69,10 +67,17 @@ window.addEventListener("DOMContentLoaded", () => {
           scene.add(vrm.scene)
           vrm.scene.rotation.y = Math.PI
           setupAnimation(vrm)
-          makeAnimation(posepass);
+          makeAnimation(pose_hello);
         })
       },
-      (progress) => console.log('Loading model...', 100.0 * (progress.loaded / progress.total), '%'),
+      (progress) => {
+        console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
+        const progressNum = <HTMLInputElement>document.getElementById('progressNum');
+        progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
+        const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
+        progressBarFull.style.width = Math.round(100.0 * (progress.loaded / progress.total)) + '%';
+        if ((Math.round(100.0 * (progress.loaded / progress.total))) == 100) { (<HTMLInputElement>document.getElementById('loading')).style.display = 'none' }
+      },
       (error) => console.error(error)
     )
   }
@@ -100,13 +105,13 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let j = 0; j < lines.length; j++) {
       data[j] = []
       let strs = lines[j].split(',')
-      for (let i = 0; i < 17 * 4; i++) {
+      for (let i = 0; i < 55 * 4; i++) {
         data[j][i] = Number(strs[i])
       }
     }
     // 配列 → hierarchy
     let hierarchy = []
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < 55; i++) {
       let keys = []
       for (let j = 0; j < data.length; j++) {
         keys[j] = {
@@ -116,25 +121,32 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       hierarchy[i] = { 'keys': keys }
     }
+    //小町ちゃん用のsplice
+    hierarchy.splice(54, 1)
+    hierarchy.splice(23, 1)
+    hierarchy.splice(22, 1)
+    hierarchy.splice(21, 1)
     return hierarchy
   }
 
-  // アニメーションの設定
+  // アニメーションの初期設定
   const setupAnimation = (vrm: any) => {
     mixer = new THREE.AnimationMixer(vrm.scene)
     // ボーンリストの生成 boneの数を変更した場合、csv2hierarchyの中身を変更すること
+    //顎目胸抜き
+    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftShoulder", "rightShoulder", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand", "leftToes", "rightToes", "leftThumbProximal", "leftThumbIntermediate", "leftThumbDistal", "leftIndexProximal", "leftIndexIntermediate", "leftIndexDistal", "leftMiddleProximal", "leftMiddleIntermediate", "leftMiddleDistal", "leftRingProximal", "leftRingIntermediate", "leftRingDistal", "leftLittleProximal", "leftLittleIntermediate", "leftLittleDistal", "rightThumbProximal", "rightThumbIntermediate", "rightThumbDistal", "rightIndexProximal", "rightIndexIntermediate", "rightIndexDistal", "rightMiddleProximal", "rightMiddleIntermediate", "rightMiddleDistal", "rightRingProximal", "rightRingIntermediate", "rightRingDistal", "rightLittleProximal", "rightLittleIntermediate", "rightLittleDistal"]
+
     //最低限bone
-    const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
+    //const bones = ["hips", "leftUpperLeg", "rightUpperLeg", "leftLowerLeg", "rightLowerLeg", "leftFoot", "rightFoot", "spine", "chest", "neck", "head", "leftUpperArm", "rightUpperArm", "leftLowerArm", "rightLowerArm", "leftHand", "rightHand"]
     for (let i = 0; i < bones.length; i++) {
       boneNode[i] = vrm.humanoid.getBoneNode(bones[i])
     }
     faceNode = vrm.blendShapeProxy //表情読み込む用のやつ
-    if (facemode == "normal") {
-      vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
-      vrm.blendShapeProxy.update()
-    }
-
+    vrm.blendShapeProxy.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
+    vrm.blendShapeProxy.update()
   }
+
+  //アニメーションをセットする
   const makeAnimation = (posepass: string) => {
     // AnimationClipの生成
     const clip = THREE.AnimationClip.parseAnimation({
@@ -151,26 +163,22 @@ window.addEventListener("DOMContentLoaded", () => {
     action.play()
   }
 
-  const resetFaceNode = (faceNode:any) => {
-    faceNode.setValue(VRMSchema.BlendShapePresetName.Angry, 0)   
+  const resetFaceNode = (faceNode: any) => {
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Angry, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.Sorrow, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.I, 0)
-    faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0)   
+    faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.E, 0)
     faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0)
   }
 
   //消えないように変数宣言
   let lastTime = (new Date()).getTime()
-  let cnt = 0
   let stepValue = 0
   let step = <HTMLInputElement>document.getElementById('flag');
-  //let step = 0
-  //let startStep = 0
-  //let elapsedFlag = true
 
   // フレーム毎に呼ばれる
   const update = () => {
@@ -180,85 +188,77 @@ window.addEventListener("DOMContentLoaded", () => {
     let time = (new Date()).getTime()
     let delta = time - lastTime;
 
-    // アニメーションの定期処理
-    if (mixer) {
-      mixer.update(delta)
-    }
-    /*
-    if(cnt==200){
-      //posepass = posepass2
-      console.log("切り替え！")
-      //scene.children[7].
-//      .setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
-      //VRM.from.blendShapeProxy.update()
-      //step = 1
-    }*/
-
+    //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
-      console.log("計測開始！");
       console.log("step.value" + step.value)
-      //startStep = (new Date()).getTime();
       stepValue = Number(step.value);
-      (<HTMLInputElement>document.getElementById('flag')).value = '0';
       console.log("stepValue" + stepValue)
       if (mixer != null) { resetFaceNode(faceNode) }
       if (stepValue == -5) {
         camera.position.set(0, 1.3, 0.85);
         camera.lookAt(0, 1.4, 0);
-        stepValue = 0
       }
-      if (stepValue == 1) { 
+      else if (stepValue == 1) {
         posepass = pose_a
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.48)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
-            }
-      if (stepValue == 2) { 
+      }
+      else if (stepValue == 2) {
         posepass = pose_i
-        console.log(posepass)
-        console.log(posepass)
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.I, 1.0)
         faceNode.update()
-             }
-      if (stepValue == 3) { 
+      }
+      else if (stepValue == 3) {
         posepass = pose_u
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 0.5)
         faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 1.0)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 0.14)
-        faceNode.update() }
-      if (stepValue == 4) { 
-        posepass = pose_e 
+        faceNode.update()
+      }
+      else if (stepValue == 4) {
+        posepass = pose_e
         faceNode.setValue(VRMSchema.BlendShapePresetName.A, 0.2)
         faceNode.setValue(VRMSchema.BlendShapePresetName.E, 1.0)
         faceNode.update()
       }
-      if (stepValue == 5) {
-        posepass = pose_o; 
+      else if (stepValue == 5) {
+        posepass = pose_o;
         faceNode.setValue(VRMSchema.BlendShapePresetName.U, 0.05)
         faceNode.setValue(VRMSchema.BlendShapePresetName.O, 1.0)
         faceNode.update()
-        }
-      if (stepValue == 10) {
-        posepass = pose_hello; 
+      }
+      else if (stepValue == 6) {
+        if (getRandomInt(2) == 1) {
+          posepass = pose_hanko;
+        } else { posepass = pose_888; }
+        faceNode.setValue(VRMSchema.BlendShapePresetName.Fun, 1.0)
+        faceNode.update()
+      }
+      else if (stepValue == 10) {
+        posepass = pose_hello;
         faceNode.setValue(VRMSchema.BlendShapePresetName.Joy, 1.0)
         faceNode.update()
-        }
-      //if(stepValue%2 == 0){posepass = "../static/pose/hellomirai.csv"}
+      }
       if (mixer != undefined) { makeAnimation(posepass) }
-      //elapsedFlag =true
+      (<HTMLInputElement>document.getElementById('flag')).value = '0';
     }
-    //let step_elapsed = time - startStep
-    //if(step_elapsed > 5000){}
 
+    // アニメーションの定期処理
+    if (mixer) {
+      mixer.update(delta)
+    }
     // 最終更新時間
     lastTime = time;
-    cnt += 1
 
     // レンダリング
     renderer.render(scene, camera)
   }
- update()
+  update()
 })
 
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
+}

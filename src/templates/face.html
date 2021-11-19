@@ -1,5 +1,6 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
+<input id="vueLanguage" value="{{ language }}" style="display: none;"></input>
 
 <div id="opening">
   <div id="openingContents">
@@ -17,26 +18,36 @@
   <div id="trainingArea">
     <!-- 自分の顔を表示 -->
     <div id="container" style="visibility: hidden;">
-      <video id="video" width="200" height="150" autoplay></video>
+      <video id="video" width="200" height="150" autoplay playsinline="true"></video>
       <canvas id="faceCanvas" width="200" height="150"></canvas>
     </div>
     <!-- モデル表示 -->
-    <div class="modelAndDialogue">
+    <div class="modelAndDialogue" v-bind:class="modelAndDialogueFlex">
       <div id="modelArea">
+        <div id="loading" class="container faceProgress">
+          <div id="progressTextArea">
+            <p>Now Loading ...</p>
+            <p id="progressNum"></p>
+          </div>
+          <div id="progressBar">
+            <div id="progressBarFull"></div>
+          </div>
+        </div>
         <canvas id="canvas"></canvas>
       </div>
-      <p class="modelMessage">[[ modelMessage ]]</p>
+      <p class="modelMessage" v-if="info && firstDialogue">[[ info[language].komatiModeChoice ]]</p>
+      <p class="modelMessage" v-if="info && multipleTimesDialogue">[[ modelMessage ]]</p>
     </div>
   </div>
   <!-- モード選択画面 -->
   <template v-if='modeChoicePage'>
     <div class="choiceBtnGrid">
-      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText">初心者<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
+      <button class="circleBtn yellowCircleBtn" @click="beginnerMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextBeginner ]]<img class="beginner_icon" src="../static/images/beginner_icon.png" alt="初心者マーク"></span></button>
       <div id="plateArea">
-        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText">経験者<span class="material-icons star_icon">star</span></span></button>
-        <div class="plate" id="navy">
+        <button class="circleBtn orangeCircleBtn" @click="advancedMode()"><span class="circleBtnText" v-if="info">[[ info[language].circleBtnTextAdvanced ]]<span class="material-icons star_icon">star</span></span></button>
+        <!--<div class="plate" id="navy">
           <span>準備中</span>
-        </div>
+        </div>-->
       </div>
     </div>
   </template>
@@ -45,18 +56,24 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">[[ tutorialTitle ]]</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].tutorialTitle ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <p class="note_text">[[ tutorialText[tutorialCountNum] ]]</p>
         <button v-if='startBtn' class="btn-handWritte" type="submit" @click="trainingStart()">[[ startBtnMessage ]]</button>
         <div class="beginnerNextBtnArea" v-if='nextBtnArea'>
-          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()">もう1回</button>
+          <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()" v-if="info">[[ info[language].replay ]]</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
         </div>
-        <div  id="toggleArea">
-          <p class="note_text">自分の顔を確認する</p>
-          <toggle-button v-model="toggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
+        <div class="allToggleArea" v-if="allToggleArea">
+          <div class="toggleArea">
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
+            <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
+          </div>
+          <div class="toggleArea" v-if="cameraChangeBtn">
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
+            <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +83,7 @@
     <div class="note_wrap">
       <div class="note">
         <div class="header">
-          <p class="note_text text_heading"><span class="highlighter">あいうえお体操</span></p>
+          <p class="note_text text_heading"><span class="highlighter" v-if="info">[[ info[language].aiueoGymnastics ]]</span></p>
           <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
         </div>
         <div class="mainText">
@@ -76,15 +93,70 @@
               <span class="material-icons">[[ item.check ]]</span>
             </div>
           </div>
-          <img class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
+          <div class="pie" v-if="pieChart" v-bind:style="{background:pieChartColor}"></div>
+          <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
+        </div>
+        <button v-if="info && advancedStartBtn" class="btn-handWritte" @click="advancedStart">[[ info[language].start ]]</button>
+        <button v-if="info && advancedFinish" class="btn-handWritte" @click="advancedEnd">[[ info[language].finishText ]]</button>
+        <div class="allToggleArea" v-if="allToggleArea">
+          <div class="toggleArea">
+            <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
+            <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
+          </div>
+          <div class="toggleArea" v-if="cameraChangeBtn">
+            <p class="note_text" v-if="info">[[ info[language].myFaceBiggerToggle ]]</p>
+            <toggle-button v-model="cameraChangeToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
+          </div>
         </div>
       </div>
+    </div>
+  </template>
+  <!-- スタンプカード -->
+  <template v-if='stampCard'>
+    <div id="visit-stamp">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="5">
+              <span id="stampCardTitle">
+              スタンプカード
+              <img class="logo" src="../static/images/logo.png" alt="にこトレ！のロゴ">
+              </span>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stamp material-icons">insert_emoticon</span></td>
+            <td><span class="stamp material-icons">star</span></td>
+            <td><span class="stamp material-icons">local_florist</span></td>
+            <td><span class="stamp material-icons">cruelty_free</span></td>
+            <td><img class=" stamp hanamaruStamp" src="../static/images/yokudekimashita.png" alt="よくできましたの画像"></span></td>
+          </tr>
+          <tr>
+            <td><span class="stamp material-icons">auto_awesome</span></td>
+            <td><span class="stamp material-icons">pets</span></td>
+            <td><span class="stamp material-icons">sentiment_satisfied_alt</span></td>
+            <td><span class="stamp material-icons">favorite</span></td>
+            <td><img class="stamp hanamaruStamp" src="../static/images/hanamaru.png" alt="はなまるの画像"></span></td>
+          </tr>
+          <tr>
+            <td rowspan="2" colspan="5">
+              <span id="stampCardFooter">
+              [[ stampCardText ]]
+              <button class="btn-handWritte" type="submit" @click="back2top">もどる</button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </template>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="../static/js/face/clmtrackr.js"></script>
 <script src="../static/js/face/model_pca_20_svm.js"></script>
 <script src="../static/webpack/face.js"></script>

@@ -5,6 +5,8 @@ $bg-thin-color:#ffa963;
 $sub-color: #FFD655;
 $BG-white-thin: #fffffff3;
 $text-color: #494949;
+$border-progress: #707070;
+$bg-progress: #535353;
 $grid-size: 12rem;
 
 html {
@@ -24,6 +26,11 @@ body {
   }
 }
 
+.topModelArea{
+  width: calc(100vw*(2/7));
+  height: calc(100vh*(5/7));
+}
+
 /* model & dialog */
 .modelAndDialogue{
   width: unset;
@@ -41,6 +48,14 @@ body {
     border-radius: 10px;
     font-size: 1.1rem;
     color: $text-color;
+  }
+}
+.modelAndDialogueFlex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p{
+    padding: 1rem 2rem;
   }
 }
 
@@ -105,6 +120,62 @@ input[type=checkbox]:checked + .checkbox::after {
   opacity: 1;
 }
 
+/* select & option */
+.cp_ipselect {
+  overflow: hidden;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  span{
+    font-size: 1.3rem;
+    color: $text-color;
+  }
+}
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl01 {
+  position: relative;
+  border: 3px solid $dark-main-color;
+  border-radius: 50px;
+  background: #ffffff;
+}
+.cp_ipselect.cp_sl01::before {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid $dark-main-color;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl01 select {
+  padding: 0 2rem 0 0.5rem;
+}
+
 /* mobileここから */
 @media screen and (max-width: 950px) {
   body {
@@ -116,5 +187,37 @@ input[type=checkbox]:checked + .checkbox::after {
       width: calc(100vw*(3/4));
       height: calc(100vh*(3/4));
     }
+  }
+
+  .topModelArea{
+    width: calc(100vw*(3/4));
+    height: calc(100vh*(3/4));
+  }
+
+  .cp_ipselect {
+    padding: 0.3rem 0.5rem;
+    text-align: center;
+    span{
+      font-size: 1.2rem;
+      color: $text-color;
+    }
+  }
+  .cp_ipselect select {
+    padding-right: 1em;
+    text-indent: 0.01px;
+    font-size: 1rem;
+  }
+  .cp_ipselect select::-ms-expand {
+      display: none;
+  }
+  .cp_ipselect.cp_sl01 {
+    border: 3px solid $dark-main-color;
+  }
+  .cp_ipselect.cp_sl01::before {
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+  .cp_ipselect.cp_sl01 select {
+    padding: 0 1.5rem 0 0.3rem;
   }
 }
