@@ -21,6 +21,7 @@ var numeric = exports;
 if(typeof commonjsGlobal !== "undefined") { commonjsGlobal.numeric = numeric; }
 
 numeric.version = "1.2.6";
+var eval2 = eval;
 
 // 1. Utility functions
 numeric.bench = function bench (f,interval) {
@@ -2030,11 +2031,11 @@ numeric.ccsbinop = function ccsbinop(body,setup) {
 (function() {
     var k,A,B,C;
     for(k in numeric.ops2) {
-        if(isFinite(eval('1'+numeric.ops2[k]+'0'))) A = '[Y[0],Y[1],numeric.'+k+'(X,Y[2])]';
+        if(isFinite(eval2('1'+numeric.ops2[k]+'0'))) A = '[Y[0],Y[1],numeric.'+k+'(X,Y[2])]';
         else A = 'NaN';
-        if(isFinite(eval('0'+numeric.ops2[k]+'1'))) B = '[X[0],X[1],numeric.'+k+'(X[2],Y)]';
+        if(isFinite(eval2('0'+numeric.ops2[k]+'1'))) B = '[X[0],X[1],numeric.'+k+'(X[2],Y)]';
         else B = 'NaN';
-        if(isFinite(eval('1'+numeric.ops2[k]+'0')) && isFinite(eval('0'+numeric.ops2[k]+'1'))) C = 'numeric.ccs'+k+'MM(X,Y)';
+        if(isFinite(eval2('1'+numeric.ops2[k]+'0')) && isFinite(eval2('0'+numeric.ops2[k]+'1'))) C = 'numeric.ccs'+k+'MM(X,Y)';
         else C = 'NaN';
         numeric['ccs'+k+'MM'] = numeric.ccsbinop('zk = xk '+numeric.ops2[k]+'yk;');
         numeric['ccs'+k] = Function('X','Y',
