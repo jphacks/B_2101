@@ -1,17 +1,6 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 <input id="vueLanguage" value="{{ language }}" style="display: none;"></input>
-<input id="loading" type="text" value="0" style="display: none;"></input>
-
-<div id="loading" class="container" style="display:none;">
-  <div id="progressTextArea">
-    <p>Now Loading ...</p>
-    <p id="progressNum"></p>
-  </div>
-  <div id="progressBar">
-    <div id="progressBarFull"></div>
-  </div>
-</div>
 
 <div id="opening">
   <div id="openingContents">
@@ -35,6 +24,15 @@
     <!-- モデル表示 -->
     <div class="modelAndDialogue" v-bind:class="modelAndDialogueFlex">
       <div id="modelArea">
+        <div id="loading" class="container faceProgress">
+          <div id="progressTextArea">
+            <p>Now Loading ...</p>
+            <p id="progressNum"></p>
+          </div>
+          <div id="progressBar">
+            <div id="progressBarFull"></div>
+          </div>
+        </div>
         <canvas id="canvas"></canvas>
       </div>
       <p class="modelMessage" v-if="info && firstDialogue">[[ info[language].komatiModeChoice ]]</p>
@@ -67,7 +65,7 @@
           <button class="btn-handWritte replayBtn" type="submit" @click="replayBtn()" v-if="info">[[ info[language].replay ]]</button>
           <button class="btn-handWritte" type="submit" @click="nextTraining()">[[ nextBtnMessage ]]</button>
         </div>
-        <div class="allToggleArea">
+        <div class="allToggleArea" v-if="allToggleArea">
           <div class="toggleArea">
             <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
@@ -100,7 +98,7 @@
         </div>
         <button v-if="info && advancedStartBtn" class="btn-handWritte" @click="advancedStart">[[ info[language].start ]]</button>
         <button v-if="info && advancedFinish" class="btn-handWritte" @click="advancedEnd">[[ info[language].finishText ]]</button>
-        <div class="allToggleArea">
+        <div class="allToggleArea" v-if="allToggleArea">
           <div class="toggleArea">
             <p class="note_text" v-if="info">[[ info[language].checkMyFaceToggle ]]</p>
             <toggle-button v-model="faceShowToggle" :width="60" :height="30" color="#ff943d" :labels="true"></toggle-button>
