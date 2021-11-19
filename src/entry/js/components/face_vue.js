@@ -17,6 +17,7 @@ const face = new Vue({
     startBtn: true,
     nextBtnArea: false,
     advancedStartBtn: true,
+    pieChart: false,
     hanamaru: false,
     cameraChangeBtn: false,
     modelMessage: '',
@@ -47,7 +48,8 @@ const face = new Vue({
     stampCard: false,
     advancedFinish: false,
     stampCardText: '',
-    animationFrame: 0
+    animationFrame: 0,
+    pieChartColor: 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
   },
   mounted: function () {
     this.language = document.getElementById('vueLanguage').value
@@ -93,6 +95,7 @@ const face = new Vue({
     },
     advancedStart: function () {
       this.faceFuncStart()
+      this.pieChart = true
       var sound = document.getElementById('vueSound').value
       if (sound == 1) {
         const try_se = new Audio("./static/sound/sound_effect/try.mp3")
@@ -128,6 +131,8 @@ const face = new Vue({
             end_voice.play()
           }
           this.animationFlag = 10
+          this.pieChart = false
+          this.pieChartColor = 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
           this.hanamaru = true
           this.faceShowToggle = false
           this.cameraChangeToggle = false
@@ -348,10 +353,13 @@ const face = new Vue({
               //あ，お 応援フラグ
               if (abs_y > 200) {
                 ouen_flag_ao = 3 //がんばった
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #f36d00 0)'
               } else if (abs_y > 180) {
                 ouen_flag_ao = 2 //あとちょっと
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #ffffff 0)'
               } else {
                 ouen_flag_ao = 1 //もっと頑張れ
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
                 };
               flag_ao.push(ouen_flag_ao)
               console.log(flag_ao)
@@ -374,10 +382,13 @@ const face = new Vue({
               //う 応援フラグ
               if (abs_x < 370) {
                 ouen_flag_u = 3 //がんばった
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #f36d00 0)'
               } else if (abs_x < 375) {
                 ouen_flag_u = 2 //あとちょっと
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #ffffff 0)'
               } else {
                 ouen_flag_u = 1 //もっと頑張れ
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
               };
               flag_u.push(ouen_flag_u)
               if (flag_u.length>=100){
@@ -398,10 +409,13 @@ const face = new Vue({
               //い，え 応援フラグ
               if (abs_x > 390) {
                 ouen_flag_ie = 3 //がんばった
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #f36d00 0)'
               } else if (abs_x > 380) {
                 ouen_flag_ie = 2 //あとちょっと
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ff943d 0, #ff943d 66%, #ffffff 0)'
               } else {
                 ouen_flag_ie = 1 //もっと頑張れ
+                self.pieChartColor = 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
               };
               flag_ie.push(ouen_flag_ie)
               if (flag_ie.length>=100){

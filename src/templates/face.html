@@ -95,7 +95,7 @@
               <span class="material-icons">[[ item.check ]]</span>
             </div>
           </div>
-          <div class="pie"></div>
+          <div class="pie" v-if="pieChart" v-bind:style="{background:pieChartColor}"></div>
           <img v-if='hanamaru' class="hanamaru" src="../static/images/hanamaru.png" alt="はなまるの画像">
         </div>
         <button v-if="info && advancedStartBtn" class="btn-handWritte" @click="advancedStart">[[ info[language].start ]]</button>
