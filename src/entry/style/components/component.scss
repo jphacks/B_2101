@@ -20,6 +20,8 @@ body {
 }
 
 #modelArea{
+  width: calc(100vw*(2/7));
+  height: calc(100vh*(5/7));
   canvas{
     width: calc(100vw*(2/7));
     height: calc(100vh*(5/7));
@@ -179,6 +181,8 @@ input[type=checkbox]:checked + .checkbox::after {
   }
 
   #modelArea{
+    width: calc(100vw*(3/4));
+    height: calc(100vh*(3/4));
     canvas{
       width: calc(100vw*(3/4));
       height: calc(100vh*(3/4));
