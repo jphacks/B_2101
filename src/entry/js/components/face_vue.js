@@ -104,6 +104,7 @@ const face = new Vue({
       let count = 0;
       this.animationFlag = 1
       this.modelMessage = advancedMessage[count]
+      this.advancedText[count].check = 'local_fire_department'
       const countUp = () => {
         this.advancedText[count].check = 'done'
         if (sound == 1) {
@@ -132,6 +133,8 @@ const face = new Vue({
           this.cameraChangeToggle = false
           this.advancedFinish = true
           this.localStorageCount()
+        } else {
+          this.advancedText[count].check = 'local_fire_department'
         }
       }, 10000);
     },
