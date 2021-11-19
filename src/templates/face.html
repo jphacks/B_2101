@@ -1,17 +1,6 @@
 {% extends "layout.html" %}{% block content %}
 <input id="vueSound" value="{{ sound }}" style="display: none;"></input>
 <input id="vueLanguage" value="{{ language }}" style="display: none;"></input>
-<input id="loading" type="text" value="0" style="display: none;"></input>
-
-<div id="loading" class="container" style="display:none;">
-  <div id="progressTextArea">
-    <p>Now Loading ...</p>
-    <p id="progressNum"></p>
-  </div>
-  <div id="progressBar">
-    <div id="progressBarFull"></div>
-  </div>
-</div>
 
 <div id="opening">
   <div id="openingContents">
@@ -35,6 +24,15 @@
     <!-- モデル表示 -->
     <div class="modelAndDialogue" v-bind:class="modelAndDialogueFlex">
       <div id="modelArea">
+        <div id="loading" class="container faceProgress">
+          <div id="progressTextArea">
+            <p>Now Loading ...</p>
+            <p id="progressNum"></p>
+          </div>
+          <div id="progressBar">
+            <div id="progressBarFull"></div>
+          </div>
+        </div>
         <canvas id="canvas"></canvas>
       </div>
       <p class="modelMessage" v-if="info && firstDialogue">[[ info[language].komatiModeChoice ]]</p>
