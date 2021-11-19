@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 0 auto;
+  margin: 18rem auto 0;
+  align-items: center;
 }
 
 #progressTextArea{
@@ -15,19 +16,25 @@
 }
 
 #progressBar {
-    width: 13rem;
-    height: 1rem;
-    border: 0.15rem solid $border-progress;
-    //margin-top: 1.5rem;
-    background-color: $bg-progress;
-    border-radius: 25px;
+  width: 13rem;
+  height: 1rem;
+  border: 0.15rem solid $border-progress;
+  background-color: $bg-progress;
+  border-radius: 25px;
 }
 
 #progressBarFull {
-    height: 0.8rem;
-    background-color: $dark-main-color;
-    width: 0%;
-    border-radius: 25px;
-    margin-top: -0.05rem;
-    margin-left: 0.03rem;
+  height: 0.7rem;
+  background-color: $dark-main-color;
+  width: 0%;
+  border-radius: 25px;
+  margin-top: -0.02rem;
+  margin-left: 0.005rem;
+}
+
+/* mobileここから */
+@media screen and (max-width: 950px) {
+  #loading{
+    margin: 11rem auto 0;
+  }
 }

@@ -41,7 +41,7 @@
   <!-- ServiceWorkerの登録 -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('../static/js/face/sw.js')
+      navigator.serviceWorker.register('../static/js/sw.js')
         .then((reg) => {
           console.log('Service worker registered.', reg);
         });
