@@ -130,7 +130,7 @@ const face = new Vue({
             nextPlay.play()
           }
         }
-        //console.log(count++);
+        console.log(count++);
         this.animationFlag += 1
         this.modelMessage = advancedMessage[count]
       }
