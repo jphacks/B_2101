@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
         })
       },
       (progress) => {
-        console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
+        //console.log('Loading model...', Math.round(100.0 * (progress.loaded / progress.total)), '%');
         const progressNum = <HTMLInputElement>document.getElementById('progressNum');
         progressNum.innerHTML = String(Math.round(100.0 * (progress.loaded / progress.total)) + '%');
         const progressBarFull = <HTMLInputElement>document.getElementById('progressBarFull');
@@ -190,9 +190,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //html側から1以外の変数が代入されていると分岐
     if (Number(step.value) != 0) {
-      console.log("step.value" + step.value)
+      //console.log("step.value" + step.value)
       stepValue = Number(step.value);
-      console.log("stepValue" + stepValue)
+      //console.log("stepValue" + stepValue)
       if (mixer != null) { resetFaceNode(faceNode) }
       if (stepValue == -5) {
         camera.position.set(0, 1.3, 0.85);

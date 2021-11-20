@@ -116,7 +116,7 @@ const face = new Vue({
         try_se.play()
       }
       const advancedMessage = this.info[this.language].advancedMessage
-      console.log('start!!')
+      //console.log('start!!')
       this.advancedStartBtn = false
       let count = 0;
       this.animationFlag = 1
@@ -130,7 +130,7 @@ const face = new Vue({
             nextPlay.play()
           }
         }
-        console.log(count++);
+        //console.log(count++);
         this.animationFlag += 1
         this.modelMessage = advancedMessage[count]
       }
@@ -222,7 +222,7 @@ const face = new Vue({
         this.replayBtn()
         if (this.tutorialCountNum == 5) {
           this.nextBtnMessage = this.info[this.language].finishText
-          console.log('finish')
+          //console.log('finish')
         }
       } else {
         // 終わるボタンを押したときの処理
@@ -250,23 +250,23 @@ const face = new Vue({
       }
     },
     cameraChange: function () {
-      console.log('change!')
+      //console.log('change!')
       var trainingArea = document.getElementById('trainingArea')
       trainingArea.style.flexDirection = 'column-reverse'
     },
     localStorageCount: function () {
       if (localStorage.length == 0) {
         localStorage.setItem('key', 1)
-        console.log('localStorage create!')
+        //console.log('localStorage create!')
       } else {
         var value = localStorage.getItem('key')
         var int = parseInt(value)
-        console.log(int)
+        //console.log(int)
         int += 1
         localStorage.removeItem('key')
         localStorage.setItem('key', int)
         value = localStorage.getItem('key')
-        console.log(value)
+        //console.log(value)
       }
     },
     back2top: function () {
@@ -292,7 +292,7 @@ const face = new Vue({
           } else {
             visitCount = 10
           }
-          console.log(visitCount)
+          //console.log(visitCount)
         }
         var sheetNum = Math.floor(getVisitCount / 10) + 1
         if (getVisitCount % 10 == 0) {
@@ -363,9 +363,9 @@ const face = new Vue({
             var abs_dis_x = positions[14][0] - positions[0][0];
             var abs_x = Math.round(1000 * (positions[50][0] - positions[44][0]) / abs_dis_x);
             var abs_y = Math.round(1000 * (positions[53][1] - positions[47][1]) / abs_dis_x);
-            console.log('正規化後の口角の座標');
-            console.log('相対x座標(50-44)：「' + abs_x + '」');
-            console.log('相対y座標(53-47)：「' + abs_y + '」');
+            //console.log('正規化後の口角の座標');
+            //console.log('相対x座標(50-44)：「' + abs_x + '」');
+            //console.log('相対y座標(53-47)：「' + abs_y + '」');
             if(self.animationFlag == 1 || self.animationFlag == 5){
               //あ，お 応援フラグ
               if (abs_y > 200) {
@@ -379,13 +379,13 @@ const face = new Vue({
                 self.pieChartColor = 'conic-gradient(#FFD655 33%, #ffffff 0, #ffffff 66%, #ffffff 0)'
                 };
               flag_ao.push(ouen_flag_ao)
-              console.log(flag_ao)
+              //console.log(flag_ao)
               if (flag_ao.length>=100){
                 flag=Math.max(...flag_ao)
-                console.log("flag")
-                console.log(flag)
+                //console.log("flag")
+                //console.log(flag)
                 if (flag==3){
-                  console.log("FLAG3!!!!!!!!!!!!!!!!!!!!!!")
+                  //console.log("FLAG3!!!!!!!!!!!!!!!!!!!!!!")
                   self.modelMessage = self.info[self.language].faceTrainingMsgOK
                 }
                 else if (flag==2){
@@ -410,8 +410,8 @@ const face = new Vue({
               flag_u.push(ouen_flag_u)
               if (flag_u.length>=100){
                 flag=Math.max(...flag_u)
-                console.log("flag")
-                console.log(flag)
+                //console.log("flag")
+                //console.log(flag)
                 if (flag==3){
                   self.modelMessage = self.info[self.language].faceTrainingMsgOK
                 }
@@ -437,8 +437,8 @@ const face = new Vue({
               flag_ie.push(ouen_flag_ie)
               if (flag_ie.length>=100){
                 flag=Math.max(...flag_ie)
-                console.log("flag")
-                console.log(flag)
+                //console.log("flag")
+                //console.log(flag)
                 if (flag==3){
                   self.modelMessage = self.info[self.language].faceTrainingMsgOK
                 }
@@ -450,9 +450,9 @@ const face = new Vue({
                 flag_ie=[]
                 };
             }
-            console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」');
-            console.log('う　応援フラグ:「' + ouen_flag_u + '」');
-            console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」');
+            //console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」');
+           // console.log('う　応援フラグ:「' + ouen_flag_u + '」');
+           // console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」');
             // canvas をクリア
             context.clearRect(0, 0, canvas.width, canvas.height);
             // canvas にトラッキング結果を描画
@@ -466,7 +466,7 @@ const face = new Vue({
     },
     faceFuncStop: function () {
       cancelAnimationFrame(this.animationFrame);
-      console.log('stop!')
+      //console.log('stop!')
       var canvas = document.getElementById("faceCanvas");
       var context = canvas.getContext("2d");
       context.clearRect(0, 0, canvas.width, canvas.height);
