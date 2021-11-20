@@ -16,7 +16,7 @@ const top = new Vue({
       var result = window.confirm('本当にスタンプカードをリセットしてもよろしいですか？');
       if( result ) {
         localStorage.removeItem('key')
-        console.log('localStorageRemove!')
+        //console.log('localStorageRemove!')
       }
     },
     hello: function () {
@@ -29,8 +29,8 @@ const top = new Vue({
   },
   watch: {
     selected: function () {
-      console.log(this.selected)
-      console.log(this.info[this.selected].inquiry)
+      //console.log(this.selected)
+      //console.log(this.info[this.selected].inquiry)
     }
   }
 });

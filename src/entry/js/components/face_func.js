@@ -59,9 +59,9 @@ function drawLoop() {
   var abs_x = Math.round(1000*(positions[50][0] - positions[44][0])/abs_dis_x)
   var abs_y = Math.round(1000*(positions[53][1] - positions[47][1])/abs_dis_x)
 
-  console.log('正規化後の口角の座標');
-  console.log('相対x座標(50-44)：「' + abs_x + '」');
-  console.log('相対y座標(53-47)：「' + abs_y + '」');
+  //console.log('正規化後の口角の座標');
+  //console.log('相対x座標(50-44)：「' + abs_x + '」');
+  //console.log('相対y座標(53-47)：「' + abs_y + '」');
   /*
   console.log('----------------------------------');
   console.log('53：「' + positions[53][1] + '」');
@@ -96,9 +96,9 @@ function drawLoop() {
     ouen_flag_ie=1 //もっと頑張れ
   }
 
-  console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」')
-  console.log('う　応援フラグ:「' + ouen_flag_u + '」')
-  console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」')
+  //console.log('あ，お　応援フラグ:「' + ouen_flag_ao + '」')
+  //console.log('う　応援フラグ:「' + ouen_flag_u + '」')
+  //console.log('い，え　応援フラグ:「' + ouen_flag_ie + '」')
 
 
 
